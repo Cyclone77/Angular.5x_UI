@@ -1,0 +1,16 @@
+<el-menu model="2" class="el-menu-vertical-demo" (modelChange)="handle($event)">
+    <el-menu-item index="index"><i class="el-icon-menu"></i>主页</el-menu-item>
+    <el-submenu index="1">
+        <ng-template #title>
+            <i class="el-icon-message"></i>导航一
+        </ng-template>
+        <el-menu-item index="1-1">
+            <i class="el-icon-menu"></i>选项1
+        </el-menu-item>
+        <el-menu-item index="1-2">
+            <i class="el-icon-message"></i>选项2
+        </el-menu-item>
+    </el-submenu>
+    <el-menu-item index="psnedit"><i class="el-icon-menu"></i>人员管理</el-menu-item>
+    <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
+</el-menu>

@@ -1,0 +1,11 @@
+.sidebar {
+    height: 100%;
+    padding: 0 20px;
+    background-color: #03163c;
+}
+
+.syscore {
+    height: 100%;
+    line-height: 60px;
+    float: right;
+}
