@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,12 +23,18 @@ export class HeaderComponent implements OnInit {
     label: '建议反馈'
   }];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
-  selectitem(event, xx) {
-    console.log(event);
+  selectitem(e) {
+    switch (e.value) {
+      case 'quit':
+        this.router.navigate(['/logon']);
+        break;
+    }
   }
 }
