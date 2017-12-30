@@ -2,10 +2,10 @@
     <div class="gl-salarcore">
         <div class="wapper">
             <el-button-group>
-                <el-button type="primary" size="mini">选择薪级工资标准表</el-button>
+                <el-button type="primary" size="mini" (click)="selectTable()">选择薪级工资标准表</el-button>
                 <el-button type="primary" size="mini">修改</el-button>
             </el-button-group>
-            <span>已选择：岗位薪点标准表</span>
+            <span>已选择：{{ tblDlg.selectedTblName }}</span>
         </div>
 
         <div class="wapper-right">
@@ -13,8 +13,24 @@
         </div>
     </div>
     <div class="gl-panel">
-        <app-headline [title]="title"></app-headline>
+        <app-headline [title]="moduleTitle"></app-headline>
         <div class="gl-content">
         </div>
     </div>
+</div>
+
+<div class="gl-dialog">
+    <el-dialog [(visible)]="tblDlg.toggle">
+        <ng-template #title>
+            <span>{{tblDlg.title}}</span>
+        </ng-template>
+        <div class="tbllist">
+            <el-card class="box-card">
+                <div *ngFor="let item of tblDlg.datalist" class="text item">
+                    <span>{{item.name}}</span>
+                    <el-button type="text" (click)="useTable(item.name)">使用</el-button>
+                </div>
+            </el-card>
+        </div>
+    </el-dialog>
 </div>
