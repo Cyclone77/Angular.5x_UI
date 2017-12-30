@@ -15,8 +15,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  handle(index: string): void {
-    const path = `views/${index}`;
+  handle(path: string): void {
     this.router.navigate([path]);
   }
 

@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LogonComponent } from './views/logon/logon.component';
 import { HomeComponent } from './views/home/home.component';
-import { PsneditComponent } from './views/psnedit/psnedit.component';
 
 import { routers } from './router';
 
@@ -16,8 +15,13 @@ import { ElModule } from 'element-angular';
 import { MenuComponent } from './views/home/menu/menu.component';
 import { HeaderComponent } from './views/home/header/header.component';
 import { IndexComponent } from './views/index/index.component';
-import { SalarypostComponent } from './views/salarypost/salarypost.component';
 import { HeadlineComponent } from './components/headline/headline.component';
+import { Page404Component } from './views/page404/page404.component';
+
+
+import { PsneditComponent } from './client/psnedit/psnedit.component';
+import { SalarypostComponent } from './client/salarypost/salarypost.component';
+import { SalaryenteringComponent } from './client/salaryentering/salaryentering.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import { HeadlineComponent } from './components/headline/headline.component';
     HeaderComponent,
     IndexComponent,
     SalarypostComponent,
-    HeadlineComponent
+    HeadlineComponent,
+    SalaryenteringComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
