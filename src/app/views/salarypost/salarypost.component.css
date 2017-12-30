@@ -1,0 +1,26 @@
+.gl-salarcore {
+    background-color: #fff;
+    padding: 16px;
+}
+
+.wapper {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.wapper-right {
+    float: right;
+}
+
+.gl-panel {
+    position: absolute;
+    top: 4.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-top: 0;
+    overflow: auto;
+}

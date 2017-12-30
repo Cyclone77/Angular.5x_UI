@@ -16,6 +16,8 @@ import { ElModule } from 'element-angular';
 import { MenuComponent } from './views/home/menu/menu.component';
 import { HeaderComponent } from './views/home/header/header.component';
 import { IndexComponent } from './views/index/index.component';
+import { SalarypostComponent } from './views/salarypost/salarypost.component';
+import { HeadlineComponent } from './components/headline/headline.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { IndexComponent } from './views/index/index.component';
     PsneditComponent,
     MenuComponent,
     HeaderComponent,
-    IndexComponent
+    IndexComponent,
+    SalarypostComponent,
+    HeadlineComponent
   ],
   imports: [
     BrowserModule,

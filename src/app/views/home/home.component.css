@@ -14,9 +14,19 @@
     margin-right: -240px;
 }
 
+.gl-menu {
+    overflow: auto;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 .gl-logo {
     height: 60px;
-    background-color: blueviolet;
+    background-color: #f63c42;
 }
 
 .gl-area {
@@ -29,6 +39,7 @@
     margin-left: 240px;
     height: 100%;
     position: relative;
+    background-color: #edf4f9;
 }
 
 .gl-header {
@@ -37,11 +48,9 @@
 
 .gl-main {
     position: absolute;
-    top: 60px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 74px;
+    left: 14px;
+    bottom: 14px;
+    right: 14px;
     margin: auto;
-    overflow: auto;
-    background-color: #edf4f9;
 }
