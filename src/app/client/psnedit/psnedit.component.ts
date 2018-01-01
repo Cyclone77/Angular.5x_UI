@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PsneditComponent implements OnInit {
 
+  psnStyle = {
+    'width': '260px'
+  };
+
   constructor() { }
 
   ngOnInit() {

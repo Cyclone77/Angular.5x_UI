@@ -22,6 +22,7 @@ import { Page404Component } from './views/page404/page404.component';
 import { PsneditComponent } from './client/psnedit/psnedit.component';
 import { SalarypostComponent } from './client/salarypost/salarypost.component';
 import { SalaryenteringComponent } from './client/salaryentering/salaryentering.component';
+import { LrcontrolComponent } from './components/lrcontrol/lrcontrol.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SalaryenteringComponent } from './client/salaryentering/salaryentering.
     SalarypostComponent,
     HeadlineComponent,
     SalaryenteringComponent,
-    Page404Component
+    Page404Component,
+    LrcontrolComponent
   ],
   imports: [
     BrowserModule,

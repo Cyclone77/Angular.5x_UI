@@ -1,0 +1,23 @@
+.gl-layout {
+    background-color: #fff;
+    height: 100%;
+}
+
+.gl-left {
+    width: 200px;
+    border-right: 2px solid #EFF2F7;
+    height: 100%;
+    float: left;
+    overflow: auto;
+}
+
+.gl-area {
+    width: 100%;
+    height: 100%;
+    padding-left: 200px;
+}
+
+.gl-content {
+    height: 100%;
+    overflow: auto;
+}
