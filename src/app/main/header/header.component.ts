@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  private data: any[] = [{
+  data: any[] = [{
     value: 'edit',
     label: '修改信息'
   }, {
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   selectitem(e) {
     switch (e.value) {
       case 'quit':
-        this.router.navigate(['/logon']);
+        this.router.navigate(['/login']);
         break;
     }
   }

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-logon',
-  templateUrl: './logon.component.html',
-  styleUrls: ['./logon.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LogonComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router
@@ -16,6 +16,6 @@ export class LogonComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(['/views']);
+    this.router.navigate(['/main']);
   }
 }

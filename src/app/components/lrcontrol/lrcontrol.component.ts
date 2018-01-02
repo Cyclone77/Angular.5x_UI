@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgStyle } from '@angular/common';
+// import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-lrcontrol',
