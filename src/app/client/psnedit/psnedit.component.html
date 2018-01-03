@@ -1,1 +1,8 @@
-<app-lrcontrol [lrstyle]="psnStyle"></app-lrcontrol>
+<app-lrcontrol [lrstyle]="psnStyle">
+    <ng-template #left>
+        <p>左侧树</p>
+    </ng-template>
+    <ng-template #right>
+        <p>右侧内容区域</p>
+    </ng-template>
+</app-lrcontrol>

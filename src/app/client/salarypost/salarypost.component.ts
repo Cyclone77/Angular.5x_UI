@@ -24,15 +24,15 @@ export class SalarypostComponent implements OnInit {
     date: '2017-08-19',
     address: '上海市普陀区金沙江路 1518 弄',
   }, {
-    name: '水爷',
+    name: '水爷2',
     date: '2017-08-20',
     address: '上海市普陀区金沙江路 1518 弄',
   }, {
-    name: '水爷',
+    name: '水爷3',
     date: '2017-08-21',
     address: '上海市普陀区金沙江路 1518 弄',
   }, {
-    name: '水爷',
+    name: '水爷4',
     date: '2017-08-22',
     address: '上海市普陀区金沙江路 1510 弄',
   }];
@@ -56,10 +56,15 @@ export class SalarypostComponent implements OnInit {
   }
 
   handle(scope) {
+    console.log(this.getFormatModel(scope.index));
     console.dir(scope);
   }
 
   cellclick(scope) {
     console.dir(scope);
+  }
+
+  getFormatModel(index: number): any {
+    return this.tableData[index];
   }
 }

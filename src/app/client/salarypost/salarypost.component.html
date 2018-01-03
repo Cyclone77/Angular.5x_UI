@@ -17,6 +17,9 @@
         <div class="gl-content">
             <el-table [model]="tableData" [border]="true" [scroll-x]="false">
                 <el-table-column model-key="name" label="姓名" width="140">
+                    <ng-template #slot let-scope="scope">
+                        <a href="#">{{ tableData[scope.index].name }}</a>
+                    </ng-template>
                 </el-table-column>
                 <el-table-column model-key="date" label="日期" width="140">
                 </el-table-column>

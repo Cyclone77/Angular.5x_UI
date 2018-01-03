@@ -37,11 +37,15 @@ const mainRoutes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      { path: '', redirectTo: 'test', pathMatch: 'full' },
+      { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', component: IndexComponent },
       { path: 'salaryentering', component: SalaryenteringComponent },
       { path: 'salarypost', component: SalarypostComponent },
-      { path: 'psnedit', component: PsneditComponent }
+      { path: 'psnedit', component: PsneditComponent },
+      {
+        path: 'backstage',
+        loadChildren: 'app/backstage/backstage.module#BackstageModule'
+      }
     ]
   }
 ];
