@@ -5,11 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 // Element UI依赖
-import { ElModule } from 'element-angular';
+// import { ElModule } from 'element-angular';
 
 // 布局组件
 import { MenuComponent } from './../layout/menu/menu.component';
-import { HeaderComponent } from './../layout/header/header.component';
+// import { HeaderComponent } from './../layout/header/header.component';
 
 import { AdminComponent } from './admin.component';
 
@@ -20,7 +20,7 @@ const adminRoutes: Routes = [
     children: [
       {
         path: 'module-manage',
-        loadChildren: 'app/admin/module-manage/module-manage.module#ModuleManageModule'
+        loadChildren: './module-manage/module-manage.module#ModuleManageModule'
       }
     ]
   }
@@ -28,16 +28,15 @@ const adminRoutes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    ElModule.forRoot(),
+    // CommonModule,
+    // ElModule.forRoot(),
 
     RouterModule.forChild(adminRoutes)
   ],
   declarations: [
-    MenuComponent,
+    // MenuComponent,
     // HeaderComponent
     AdminComponent
-  ],
-  bootstrap: []
+  ]
 })
 export class AdminModule { }

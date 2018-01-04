@@ -14,11 +14,12 @@ const router: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(router)
   ],
   declarations: [
     ModuleManageComponent,
-    LrcontrolComponent
+    // LrcontrolComponent
   ]
 })
 export class ModuleManageModule { }

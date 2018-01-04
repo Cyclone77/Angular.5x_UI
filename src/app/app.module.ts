@@ -8,6 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ElModule } from 'element-angular';
 
+// 公用组件
+import { MenuComponent } from './layout/menu/menu.component';
+
 // 加载路由模块
 import { AppRoutingModule } from './app-routing.module';
 
