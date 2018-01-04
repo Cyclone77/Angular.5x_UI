@@ -1,5 +1,5 @@
-<div class="gl-layout">
-    <div class="gl-salarcore">
+<gl-udcontrol>
+    <ng-template #top>
         <div class="wapper">
             <el-button-group>
                 <el-button type="primary" size="mini" (click)="selectTable()">选择薪级工资标准表</el-button>
@@ -11,8 +11,8 @@
         <div class="wapper-right">
             <el-button type="primary" size="mini">输出</el-button>
         </div>
-    </div>
-    <div class="gl-panel">
+    </ng-template>
+    <ng-template #bottom>
         <app-headline [title]="moduleTitle"></app-headline>
         <div class="gl-content">
             <el-table [model]="tableData" [border]="true" [scroll-x]="false">
@@ -32,8 +32,8 @@
                 </el-table-column>
             </el-table>
         </div>
-    </div>
-</div>
+    </ng-template>
+</gl-udcontrol>
 
 <div class="gl-dialog">
     <el-dialog [(visible)]="tblDlg.toggle">

@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ElModule } from 'element-angular';
 
 // 公用组件
-import { HeadlineComponent } from './../../components/headline/headline.component';
+import { ComponentsModule } from './../../components/components.module';
 
 // 具体页面组件
 import { SalarypostComponent } from './salarypost.component';
@@ -19,11 +19,13 @@ const router: Routes = [
   imports: [
     CommonModule,
     ElModule.forRoot(),
+    ComponentsModule,
     RouterModule.forChild(router)
   ],
   declarations: [
     SalarypostComponent,
-    HeadlineComponent
+    // HeadlineComponent,
+    // ComponentsModule
   ]
 })
 export class SalarypostModule { }

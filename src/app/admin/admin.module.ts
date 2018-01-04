@@ -8,9 +8,10 @@ import { CommonModule } from '@angular/common';
 // import { ElModule } from 'element-angular';
 
 // 布局组件
-import { MenuComponent } from './../layout/menu/menu.component';
-// import { HeaderComponent } from './../layout/header/header.component';
+import { ComponentsModule } from './../components/components.module';
+import { ComponentlayoutModule } from './../components/componentlayout.module';
 
+// 功能组件
 import { AdminComponent } from './admin.component';
 
 const adminRoutes: Routes = [
@@ -30,7 +31,8 @@ const adminRoutes: Routes = [
   imports: [
     // CommonModule,
     // ElModule.forRoot(),
-
+    ComponentsModule,
+    ComponentlayoutModule,
     RouterModule.forChild(adminRoutes)
   ],
   declarations: [

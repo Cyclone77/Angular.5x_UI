@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { PsneditComponent } from './psnedit.component';
 
-import { LrcontrolComponent } from './../../components/lrcontrol/lrcontrol.component';
+import { ComponentsModule } from './../../components/components.module';
 
 const router: Routes = [
   {
@@ -15,11 +15,12 @@ const router: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    ComponentsModule,
     RouterModule.forChild(router)
   ],
   declarations: [
     PsneditComponent,
-    LrcontrolComponent
+    // ComponentsModule
   ]
 })
 export class PsneditModule { }

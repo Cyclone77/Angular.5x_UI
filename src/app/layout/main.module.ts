@@ -9,8 +9,8 @@ import { ElModule } from 'element-angular';
 
 // 布局组件
 import { MainComponent } from './main.component';
-import { MenuComponent } from './menu/menu.component';
-import { HeaderComponent } from './header/header.component';
+
+import { ComponentlayoutModule } from './../components/componentlayout.module';
 
 // 具体路由
 // 1.如果把组件当作功能界面使用，（子路由）不能使用其他组件
@@ -59,15 +59,20 @@ const mainRoutes: Routes = [
     // BrowserAnimationsModule,
 
     CommonModule,
-    ElModule.forRoot(),
+
+    ComponentlayoutModule,
+
+    // ElModule.forRoot(),
     RouterModule.forChild(mainRoutes)
   ],
   declarations: [
-    MenuComponent,
-    HeaderComponent,
+    // MenuComponent,
+    // HeaderComponent,
     MainComponent,
 
-    // UdcontrolComponent,
+    // HeadlineComponent,
+    // LrcontrolComponent,
+    // UdcontrolComponent
     // 具体组件
   ]
 })
