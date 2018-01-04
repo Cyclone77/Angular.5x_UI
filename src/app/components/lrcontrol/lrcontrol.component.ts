@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ContentChild, TemplateRef  } from '@angular/core';
 @Component({
-  selector: 'app-lrcontrol',
+  // tslint:disable-next-line:component-selector
+  selector: 'gl-lrcontrol',
   templateUrl: './lrcontrol.component.html',
   styleUrls: ['./lrcontrol.component.css']
 })

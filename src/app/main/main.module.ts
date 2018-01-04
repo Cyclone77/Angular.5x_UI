@@ -15,6 +15,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { HeadlineComponent } from './../components/headline/headline.component';
 import { LrcontrolComponent } from './../components/lrcontrol/lrcontrol.component';
+import { UdcontrolComponent } from './../components/udcontrol/udcontrol.component';
 
 // 具体功能组件
 import { IndexComponent } from './../client/index/index.component';
@@ -66,6 +67,7 @@ const mainRoutes: Routes = [
 
     HeadlineComponent,
     LrcontrolComponent,
+    // UdcontrolComponent,
     // 具体组件
     IndexComponent,
     SalaryenteringComponent,
