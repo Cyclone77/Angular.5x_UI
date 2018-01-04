@@ -10,15 +10,6 @@ import { ElModule } from 'element-angular';
 
 // 加载路由模块
 import { AppRoutingModule } from './app-routing.module';
-import { LrcontrolComponent } from './components/lrcontrol/lrcontrol.component';
-
-// 具体组件
-import { MenuComponent } from './main/menu/menu.component';
-
-// 错误页面
-import { Page404Component } from './views/page404/page404.component';
-
-
 
 @NgModule({
   declarations: [
@@ -28,7 +19,6 @@ import { Page404Component } from './views/page404/page404.component';
     // MenuComponent,
     // LrcontrolComponent,
     // 其他页面
-    Page404Component
   ],
   imports: [
     CommonModule,

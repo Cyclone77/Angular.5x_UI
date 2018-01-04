@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login.component';
 
-const loginRoutes: Routes = [
+const router: Routes = [
   {
     path: '',
     component: LoginComponent
@@ -11,11 +11,10 @@ const loginRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(loginRoutes)
+    RouterModule.forChild(router)
   ],
   declarations: [
     LoginComponent
   ]
 })
 export class LoginModule { }
-
