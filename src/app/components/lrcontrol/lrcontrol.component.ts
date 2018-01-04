@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver  } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, TemplateRef  } from '@angular/core';
 @Component({
   selector: 'app-lrcontrol',
   templateUrl: './lrcontrol.component.html',
@@ -6,9 +6,10 @@ import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactory
 })
 export class LrcontrolComponent implements OnInit {
 
-  @Input() lrstyle: any;
-  @ViewChild('left') left: ViewContainerRef;
-  constructor(private resolver: ComponentFactoryResolver) {}
+  @Input() leftwidth: number;
+  @ContentChild('left') leftTmp: TemplateRef<any>;
+  @ContentChild('right') rightTmp: TemplateRef<any>;
+  constructor() {}
 
   ngOnInit() {
   }

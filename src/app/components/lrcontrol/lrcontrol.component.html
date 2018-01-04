@@ -1,10 +1,18 @@
 <div class="gl-layout">
-    <div class="gl-left" [ngStyle]="lrstyle" #left>
-        <ng-container></ng-container>
-    </div>
-    <div class="gl-area">
-        <div class="gl-content">
-            <ng-container></ng-container>
+    <ng-container *ngIf="leftTmp">
+
+        <div class="gl-left" [ngStyle]="{ 'width.px': leftwidth }">
+            <ng-template [ngTemplateOutlet]="leftTmp" [ngTemplateOutletContext]="{ psnData: { name : '张三' } }"></ng-template>
         </div>
+
+    </ng-container>
+    <div class="gl-area">
+
+        <ng-container *ngIf="rightTmp">
+            <div class="gl-content">
+                <ng-template [ngTemplateOutlet]="rightTmp"></ng-template>
+            </div>
+        </ng-container>
+
     </div>
 </div>
