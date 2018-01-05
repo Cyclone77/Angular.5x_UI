@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ContentChild, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,14 +8,16 @@ import { Component, OnInit, Input, ContentChild, ElementRef, ViewChild, AfterVie
 })
 export class UdcontrolComponent implements OnInit {
 
+  top: number;
   @Input() padding: number;
 
   @ContentChild('top') topTmp: ElementRef;
   @ContentChild('bottom') bottomTmp: ElementRef;
 
   @ViewChild('topEl') topEl: ElementRef;
-  top: number;
-  constructor() {
+  constructor(
+    private cdr: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {}
@@ -24,9 +26,8 @@ export class UdcontrolComponent implements OnInit {
   ngAfterViewInit() {
     if (this.topEl) {
       const el: HTMLElement = <HTMLElement>this.topEl.nativeElement;
-      // const  salarEl = el.querySelector('.gl-salarcore');
-      console.log(el);
-      this.top = <number>el.clientHeight + 14;
+      this.top = el.clientHeight + 14;
+      this.cdr.detectChanges();
     }
   }
 

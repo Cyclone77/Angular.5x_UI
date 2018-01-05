@@ -22,6 +22,10 @@ const adminRoutes: Routes = [
       {
         path: 'module-manage',
         loadChildren: './module-manage/module-manage.module#ModuleManageModule'
+      },
+      {
+        path: 'authorization',
+        loadChildren: './authorization/authorization.module#AuthorizationModule'
       }
     ]
   }
