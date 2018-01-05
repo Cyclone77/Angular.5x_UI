@@ -1,6 +1,6 @@
 <div class="gl-layout">
-    <ng-container *ngIf="topTmp">
-        <div class="gl-salarcore" [ngStyle]="{ 'padding.px': padding }">
+    <ng-container>
+        <div class="gl-salarcore" *ngIf="topTmp" [ngStyle]="{ 'padding.px': padding }" #topEl>
             <ng-template [ngTemplateOutlet]="topTmp"></ng-template>
         </div>
     </ng-container>

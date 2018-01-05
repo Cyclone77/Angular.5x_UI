@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
 
   url = 'http://192.168.0.50:8080/api/Core/GetSetItems';
   url1 = 'http://192.168.0.50:8080/api/Core/GetUserOnline';
-  tableData = [];
+  tableData: any[] = [];
   userOnline = [];
   json = Object.assign({
     'Content-Type': 'application/json'
@@ -26,20 +26,11 @@ export class IndexComponent implements OnInit {
   constructor(
     private http: HttpClient
   ) {
-    setTimeout(() => {
-      this.tableData = [{
-        ItemID: 'PClassID',
-        ItemLenght: 5,
-        ItemName: '所在人员库'
-      }];
-    }, 100);
   }
 
   ngOnInit() {
     this.http.get(this.url, this.myHttpHead).subscribe(data => {
-      // console.log(JSON.parse(data['Entity']));
-      this.tableData = data['Entity'];
-      console.log(this.tableData);
+      this.tableData = data['ListData'];
     });
 
     this.http.get(this.url1, this.myHttpHead).subscribe(data => {

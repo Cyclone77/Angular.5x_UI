@@ -8,11 +8,9 @@ import { ComponentsModule } from './../../components/components.module';
 
 // 具体页面
 import { ModuleManageComponent } from './module-manage.component';
-import { AddComponent } from './add/add.component';
 
 const router: Routes = [
-  { path: '', component: ModuleManageComponent },
-  { path: 'add', component: AddComponent }
+  { path: '', component: ModuleManageComponent }
 ];
 
 @NgModule({
@@ -23,8 +21,7 @@ const router: Routes = [
     ElModule.forRoot()
   ],
   declarations: [
-    ModuleManageComponent,
-    AddComponent
+    ModuleManageComponent
   ]
 })
 export class ModuleManageModule { }

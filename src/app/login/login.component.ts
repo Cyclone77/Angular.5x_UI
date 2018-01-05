@@ -30,13 +30,11 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.http.post(this.url, JSON.stringify(this.usrData), this.myHttpHead).subscribe(data => {
-      if (<boolean>data['IsSucceed']) {
-        console.log(data['Data']['TokenObj']['access_token']);
-        console.log(data['Data']['TokenObj']['profile']['sid']);
+    this.http.post(this.url, JSON.stringify(this.usrData), this.myHttpHead).subscribe(json => {
+      if (json['IsSucceed']) {
 
-        sessionStorage.setItem('Authorization', data['Data']['TokenObj']['access_token']);
-        sessionStorage.setItem('SessionID', data['Data']['TokenObj']['profile']['sid']);
+        sessionStorage.setItem('Authorization', json['Data']['access_token']);
+        sessionStorage.setItem('SessionID', json['Data']['sid']);
         this.router.navigate(['/client']);
       } else {
         this.message.show('帐号和密码不匹配！');
