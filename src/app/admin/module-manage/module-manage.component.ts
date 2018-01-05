@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-module-manage',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModuleManageComponent implements OnInit {
 
-  constructor() { }
+  title = '模块内容';
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
   }
 
+  addModule() {
+    this.router.navigate(['add'],  { relativeTo: this.route });
+  }
 }

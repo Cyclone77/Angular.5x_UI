@@ -3,23 +3,28 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 // 公用组件
-import { LrcontrolComponent } from './../../components/lrcontrol/lrcontrol.component';
+import { ElModule } from 'element-angular';
+import { ComponentsModule } from './../../components/components.module';
 
 // 具体页面
 import { ModuleManageComponent } from './module-manage.component';
+import { AddComponent } from './add/add.component';
 
 const router: Routes = [
-  { path: '', component: ModuleManageComponent }
+  { path: '', component: ModuleManageComponent },
+  { path: 'add', component: AddComponent }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(router)
+    ComponentsModule,
+    RouterModule.forChild(router),
+    ElModule.forRoot()
   ],
   declarations: [
     ModuleManageComponent,
-    // LrcontrolComponent
+    AddComponent
   ]
 })
 export class ModuleManageModule { }

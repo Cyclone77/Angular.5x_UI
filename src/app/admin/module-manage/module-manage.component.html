@@ -1,18 +1,10 @@
-<!-- <gl-udcontrol>
+<gl-udcontrol>
     <ng-template #top>
-        <el-button type="primary" size="mini">新增模块</el-button>
+        <el-button type="primary" size="mini" (click)="addModule()">新增模块</el-button>
     </ng-template>
     <ng-template #bottom>
-        <div class="gl-content"></div>
+        <div class="gl-content">
+            <app-headline [title]="title"></app-headline>
+        </div>
     </ng-template>
-</gl-udcontrol> -->
-
-<!-- <gl-lrcontrol [leftwidth]="260">
-    <ng-template let-scope="psnData" #left>
-        <p>左侧树{{ scope.name }}</p>
-    </ng-template>
-    <ng-template #right>
-        <p>右侧内容区域</p>
-    </ng-template>
-</gl-lrcontrol> -->
-<p>后台模块管理</p>
+</gl-udcontrol>

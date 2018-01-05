@@ -39,7 +39,7 @@
 
 .gl-logo {
     height: 60px;
-    background-color: #3593f0;
+    background-color: #3596fa;
 }
 
 .gl-area {
@@ -66,4 +66,5 @@
     bottom: 14px;
     right: 14px;
     margin: auto;
+    overflow: auto;
 }
