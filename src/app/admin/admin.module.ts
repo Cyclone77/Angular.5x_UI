@@ -26,6 +26,14 @@ const adminRoutes: Routes = [
       {
         path: 'authorization',
         loadChildren: './authorization/authorization.module#AuthorizationModule'
+      },
+      {
+        path: 'user',
+        loadChildren: './user/user.module#UserModule'
+      },
+      {
+        path: 'role',
+        loadChildren: './role/role.module#RoleModule'
       }
     ]
   }

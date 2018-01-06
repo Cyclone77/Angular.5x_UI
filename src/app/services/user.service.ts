@@ -28,6 +28,7 @@ export class UserService {
       }
     }, (err: HttpErrorResponse)  => {
       console.log(err);
+      this.message.show('帐号和密码不匹配！');
     });
   }
 
