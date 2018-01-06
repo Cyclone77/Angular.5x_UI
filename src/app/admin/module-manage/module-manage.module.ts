@@ -6,6 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ElModule } from 'element-angular';
 import { ComponentsModule } from './../../components/components.module';
 
+// 服务
+import { GAjaxService } from './../../services/g-ajax.service';
+import { UserService } from './../../services/user.service';
+import { UserOption } from './../../classes/user-login';
+
 // 具体页面
 import { ModuleManageComponent } from './module-manage.component';
 
@@ -22,6 +27,11 @@ const router: Routes = [
   ],
   declarations: [
     ModuleManageComponent
+  ],
+  providers: [
+    GAjaxService,
+    UserService,
+    UserOption
   ]
 })
 export class ModuleManageModule { }

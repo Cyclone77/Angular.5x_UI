@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizationComponent implements OnInit {
 
-  constructor() { }
+  tableData: any[] = [];
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
   }
 
+  addGroup() {
+    this.router.navigate(['add'],  { relativeTo: this.route });
+  }
 }
