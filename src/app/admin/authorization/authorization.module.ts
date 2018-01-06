@@ -11,6 +11,10 @@ import { UserService } from './../../services/user.service';
 import { ElModule } from 'element-angular';
 import { ComponentsModule } from './../../components/components.module';
 
+// primeng UI
+import { AccordionModule } from 'primeng/primeng';
+import { TreeModule } from 'primeng/primeng';
+
 import { AuthorizationComponent } from './authorization.component';
 import { AddComponent } from './add/add.component';
 import { UserOption, UserLogin } from './../../classes/user-login';
@@ -27,7 +31,9 @@ const router: Routes = [
     // FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(router),
-    ElModule.forRoot()
+    ElModule.forRoot(),
+    AccordionModule,
+    TreeModule
   ],
   declarations: [
     AuthorizationComponent,
