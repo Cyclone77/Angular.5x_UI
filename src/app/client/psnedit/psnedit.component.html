@@ -1,6 +1,6 @@
 <gl-lrcontrol [leftwidth]="260">
     <ng-template let-scope="psnData" #left>
-        <p-tree [value]="treeData" [style]="{ 'border': 'none' }"></p-tree>
+        <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" [style]="{ 'border': 'none' }"></p-tree>
     </ng-template>
     <ng-template #right>
         <p>右侧内容区域</p>

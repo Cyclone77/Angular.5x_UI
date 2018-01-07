@@ -9,12 +9,12 @@
         </div>
 
         <div class="wapper-right">
-            <el-button type="primary" size="mini">输出</el-button>
+            <el-button type="primary" size="mini" (click)="downExcel()">输出</el-button>
         </div>
     </ng-template>
     <ng-template #bottom>
         <app-headline [title]="moduleTitle"></app-headline>
-        <div class="gl-content">
+        <div class="gl-content" #divTable>
             <el-table [model]="tableData" [border]="true" [scroll-x]="false">
                 <el-table-column model-key="name" label="姓名" width="140">
                     <ng-template #slot let-scope="scope">
@@ -41,12 +41,10 @@
             <span>{{tblDlg.title}}</span>
         </ng-template>
         <div class="tbllist">
-            <el-card class="box-card">
-                <div *ngFor="let item of tblDlg.datalist" class="text item">
-                    <span>{{item.name}}</span>
-                    <el-button type="text" (click)="useTable(item.name)">使用</el-button>
-                </div>
-            </el-card>
+            <div *ngFor="let item of tblDlg.datalist" class="text item">
+                <el-button type="text" (click)="useTable(item.name)">使用</el-button>
+                <span>{{item.name}}</span>
+            </div>
         </div>
     </el-dialog>
 </div>

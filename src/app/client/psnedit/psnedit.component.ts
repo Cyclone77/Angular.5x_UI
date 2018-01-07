@@ -12,6 +12,7 @@ export class PsneditComponent implements OnInit {
     'width': '260px'
   };
   treeData: TreeNode[];
+  selectedNode: any;
   constructor() { }
 
   ngOnInit() {
@@ -35,6 +36,11 @@ export class PsneditComponent implements OnInit {
               "children": [{"label": "Invoices.txt", "icon": "fa-file-word-o", "data": "Invoices for this month"}]
           }]
     }];
+  }
+
+  nodeSelect(event) {
+    console.log(this.selectedNode);
+    console.log(event);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ContentChild } from '@angular/core';
 
 @Component({
   selector: 'app-salarypost',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./salarypost.component.css']
 })
 export class SalarypostComponent implements OnInit {
+
+  @ContentChild('divTable') divTbl: ElementRef;
 
   moduleTitle = '镶边表';
   tblDlg = {
@@ -66,5 +68,9 @@ export class SalarypostComponent implements OnInit {
 
   getFormatModel(index: number): any {
     return this.tableData[index];
+  }
+  
+  downExcel() {
+    const $divEl: HTMLElement = <HTMLElement>this.divTbl.nativeElement;
   }
 }
