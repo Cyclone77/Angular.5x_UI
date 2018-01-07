@@ -1,8 +1,8 @@
 <div class="sidebar">
 
     <div class="syscore">
-        <el-dropdown trigger="click" [model]="data" type="primary" size="mini" [split-button]="true" (selected)="selectitem($event)">
-            张三
+        <el-dropdown trigger="click" [model]="data" type="primary" [ngStyle]="{ 'color': '#fff' }" size="mini" (selected)="selectitem($event)">
+            <span class="dropdown-text">张三</span>
         </el-dropdown>
     </div>
 </div>

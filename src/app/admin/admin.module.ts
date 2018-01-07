@@ -41,7 +41,7 @@ const adminRoutes: Routes = [
 
 @NgModule({
   imports: [
-    // CommonModule,
+    CommonModule,
     // ElModule.forRoot(),
     ComponentsModule,
     ComponentlayoutModule,

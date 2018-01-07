@@ -1,6 +1,6 @@
 <gl-lrcontrol [leftwidth]="260">
     <ng-template let-scope="psnData" #left>
-        <p>左侧树{{ scope.name }}</p>
+        <p-tree [value]="treeData" [style]="{ 'border': 'none' }"></p-tree>
     </ng-template>
     <ng-template #right>
         <p>右侧内容区域</p>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MenuComponent } from './../layout/menu/menu.component';
 
 @Component({
@@ -7,6 +8,8 @@ import { MenuComponent } from './../layout/menu/menu.component';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
+  leftwidth = 260;
 
   constructor() { }
 

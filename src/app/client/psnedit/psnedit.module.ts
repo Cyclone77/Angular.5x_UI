@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PsneditComponent } from './psnedit.component';
 
 import { ComponentsModule } from './../../components/components.module';
-
+// primeng UI
+// import { AccordionModule } from 'primeng/primeng';
+import { TreeModule } from 'primeng/primeng';
 const router: Routes = [
   {
     path: '',
@@ -16,7 +18,9 @@ const router: Routes = [
   imports: [
     CommonModule,
     ComponentsModule,
-    RouterModule.forChild(router)
+    RouterModule.forChild(router),
+    // AccordionModule,
+    TreeModule
   ],
   declarations: [
     PsneditComponent,

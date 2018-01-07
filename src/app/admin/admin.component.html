@@ -1,5 +1,5 @@
 <div class="gl-layout">
-    <div class="gl-aside">
+    <div class="gl-aside" [ngStyle]="{ 'width.px' : leftwidth, 'margin-right.px': -leftwidth }">
         <div class="gl-logo">
             <img src="assets/sysimgs/logo.png" alt="">
         </div>
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="gl-area">
-        <div class="gl-content">
+        <div class="gl-content" [ngStyle]="{ 'margin-left.px':  leftwidth }">
             <div class="gl-header">
                 <app-header></app-header>
             </div>
