@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
+  leftwidth = 260;
+
   constructor(
     private router: Router
   ) { }
