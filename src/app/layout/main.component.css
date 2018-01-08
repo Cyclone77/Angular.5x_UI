@@ -61,10 +61,10 @@
 
 .gl-main {
     position: absolute;
-    top: 74px;
-    left: 14px;
-    bottom: 14px;
-    right: 14px;
+    top: 70px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
     margin: auto;
     overflow: auto;
 }

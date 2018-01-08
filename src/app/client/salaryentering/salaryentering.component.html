@@ -3,7 +3,7 @@
         <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" [style]="{ 'border': 'none' }"></p-tree>
     </ng-template>
     <ng-template #right>
-        <gl-udcontrol>
+        <gl-udcontrol [setTop]="true">
             <ng-template #top>
                 <el-button-group>
                     <el-button type="primary" size="mini" (click)="selectPsn()">选择人员</el-button>
@@ -11,7 +11,7 @@
                 </el-button-group>
             </ng-template>
             <ng-template #bottom>
-                内容
+                <gl-headline [title]="'员工薪资录入'"></gl-headline>
             </ng-template>
         </gl-udcontrol>
     </ng-template>

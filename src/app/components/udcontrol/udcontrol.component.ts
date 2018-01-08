@@ -10,6 +10,7 @@ export class UdcontrolComponent implements OnInit {
 
   top: number;
   @Input() padding: number;
+  @Input() setTop: boolean;
 
   @ContentChild('top') topTmp: ElementRef;
   @ContentChild('bottom') bottomTmp: ElementRef;
@@ -26,7 +27,7 @@ export class UdcontrolComponent implements OnInit {
   ngAfterViewInit() {
     if (this.topEl) {
       const el: HTMLElement = <HTMLElement>this.topEl.nativeElement;
-      this.top = el.clientHeight + 14;
+      this.top = el.clientHeight + (this.setTop ? 0 : 10);
       this.cdr.detectChanges();
     }
   }

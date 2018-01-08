@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
-  selector: 'app-headline',
+  // tslint:disable-next-line:component-selector
+  selector: 'gl-headline',
   templateUrl: './headline.component.html',
   styleUrls: ['./headline.component.css']
 })
