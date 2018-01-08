@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { UserService } from './../services/user.service';
 import { UserOption } from './../classes/user-login';
 
 @Injectable()
@@ -11,14 +10,13 @@ export class GAjaxService {
 
   constructor(
     private http: HttpClient,
-    private userlogin: UserService,
     private userOpt: UserOption
   ) { }
 
   // 构建header
   buildHeader(header) {
-    this.userOpt = this.userlogin.getUserOpt();
-    const headerJSON = Object.assign(this.myHeaderJSON, header);
+    this.userOpt = <UserOption>JSON.parse(sessionStorage.getItem('GLPROGECT_001')) || {} as UserOption;
+    const headerJSON = Object.assign(this.userOpt,  Object.assign(this.myHeaderJSON, header));
     const httpHead = { headers: new HttpHeaders(headerJSON) };
     return httpHead;
   }
@@ -47,7 +45,7 @@ export class GAjaxService {
       this.http.post(url, option, this.buildHeader(header)).subscribe(data => {
         resolve(data);
       }, (err: HttpErrorResponse)  => {
-        reject(err.error.message);
+        reject(err.error);
       });
     });
   }

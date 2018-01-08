@@ -16,8 +16,9 @@ import { Json } from './../../../classes/json';
 export class AddComponent implements OnInit {
 
   validateForm: FormGroup;
-  url = 'http://localhost:2261/api/Core/PolicyGroup_Insert';
-
+  url = 'http://192.168.0.50:8080/api/Core/PolicyGroup_Insert';
+  loading = false;
+  saveText = '保存';
   constructor(
     private router: Router,
     private http: GAjaxService,
@@ -33,16 +34,25 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.formBuilder.group({
-      GroupName: [ '' ],
+      Group_Name: [ '' ],
       Parent: [ '' ],
+      haschild: [ '' ]
     });
   }
 
   submit(): void {
     // console.log(this.validateForm.value);
-    this.http.post(this.url, this.validateForm.value, (json: Json) => {
+    this.loading = true;
+    this.saveText = '保存中……';
+    this.http.post(this.url, this.validateForm.value).then((json: Json) => {
       if (json.IsSucceed) {
+        this.router.navigate(['../'],  { relativeTo: this.route });
+      } else {
+        this.loading = false;
+        this.saveText = '保存';
       }
+    }, err => {
+      console.log(err);
     });
   }
 }

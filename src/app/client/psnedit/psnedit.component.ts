@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TreeModule, TreeNode } from 'primeng/primeng';
+import { Component, OnInit, AfterViewInit, ViewChild, forwardRef, Inject } from '@angular/core';
+import { TreeModule, TreeNode, Tree } from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-psnedit',
@@ -13,7 +14,9 @@ export class PsneditComponent implements OnInit {
   };
   treeData: TreeNode[];
   selectedNode: any;
-  constructor() { }
+
+  @ViewChild('expandingTree') expandingTree: Tree;
+  constructor() {}
 
   ngOnInit() {
     this.treeData = [{
@@ -36,11 +39,32 @@ export class PsneditComponent implements OnInit {
               "children": [{"label": "Invoices.txt", "icon": "fa-file-word-o", "data": "Invoices for this month"}]
           }]
     }];
+
+    // this.expandingTree.isSelected(this.treeData[0]);
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
+    this.treeData.forEach( node => {
+      this.expandRecursive(node, true);
+    });
+    // this.expandingTree.selection = this.treeData[0]['children'][1];
+    // this.expandingTree.isSelected(this.treeData[0]['children'][1]);
+    this.selectedNode = this.treeData[0]['children'][1];
   }
 
   nodeSelect(event) {
     console.log(this.selectedNode);
     console.log(event);
   }
+
+  private expandRecursive(node: TreeNode, isExpand: boolean) {
+    node.expanded = isExpand;
+    if (node.children) {
+        node.children.forEach( childNode => {
+            this.expandRecursive(childNode, isExpand);
+        } );
+    }
+}
 
 }

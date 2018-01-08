@@ -11,10 +11,10 @@ export class UserService {
   myHeaderJSON = { 'Content-Type': 'application/json' };
   httpHead = { headers: new HttpHeaders(this.myHeaderJSON) };
 
+  userOpt = {} as UserOption;
   constructor(
     private http: HttpClient,
-    private message: ElMessageService,
-    private userOpt: UserOption
+    private message: ElMessageService
   ) {
   }
 
@@ -23,7 +23,7 @@ export class UserService {
       this.http.post(this.url, user, this.httpHead).subscribe((json: Json) => {
         if (json.IsSucceed) {
           Object.assign(this.userOpt, json.Data);
-          console.log(this.userOpt);
+          this.setParams();
           resolve();
         } else {
           reject('帐号和密码不匹配！');
@@ -35,8 +35,8 @@ export class UserService {
     });
   }
 
-  getUserOpt() {
-    console.log(this.userOpt);
-    return this.userOpt;
+  setParams() {
+    this.userOpt.Authorization = this.userOpt['Token_type'] + ' ' + this.userOpt.Access_token;
+    sessionStorage.setItem('GLPROGECT_001', JSON.stringify(this.userOpt));
   }
 }

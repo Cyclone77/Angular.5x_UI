@@ -1,11 +1,12 @@
 export class UserLogin {
-    username: string;
-    password: string;
+    UserAccount: string;
+    Password: string;
 }
 
 export class UserOption {
-    loginState: boolean;
-    AccessToken: string;
+    LoginState: boolean;
+    Access_token: string;
     SessionID: string;
     UserAccount: string;
+    Authorization: string;
 }

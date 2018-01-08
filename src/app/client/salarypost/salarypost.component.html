@@ -3,7 +3,7 @@
         <div class="wapper">
             <el-button-group>
                 <el-button type="primary" size="mini" (click)="selectTable()">选择薪级工资标准表</el-button>
-                <el-button type="primary" size="mini">修改</el-button>
+                <el-button type="primary" size="mini" (click)="changeEditMode()">{{editMode?"完成":"修改"}}</el-button>
             </el-button-group>
             <span>已选择：{{ tblDlg.selectedTblName }}</span>
         </div>
@@ -32,7 +32,7 @@
                 </el-table-column>
             </el-table>
         </div>-->
-        <p-dataTable [value]="tableData" [editable]="true" [style]="{'text-align':'center'}">
+        <p-dataTable [value]="tableData" [editable]="editMode" [style]="{'text-align':'center'}">
             <p-column *ngFor="let col of cols,let key=index" [field]="col.field" [header]="col.header" [editable]="key!=0" ></p-column>
         </p-dataTable>
     </ng-template>

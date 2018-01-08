@@ -11,6 +11,9 @@ export class SalarypostComponent implements OnInit {
   @ContentChild('divTable') divTbl: ElementRef;
 
   moduleTitle = '薪级工资标准表';
+
+  //表格的编辑模式
+  editMode = false;
   tblDlg = {
     title: '标准表选择',
     toggle: false,
@@ -80,7 +83,7 @@ export class SalarypostComponent implements OnInit {
     'Salary7': '上海',
     'Salary8': '上海',
     'Salary9': '上海'
-  },{
+  }, {
     'PostLevel': '五岗',
     'Salary1': '2017-08-19',
     'Salary2': '上海',
@@ -170,5 +173,9 @@ export class SalarypostComponent implements OnInit {
 
   downExcel() {
     const $divEl: HTMLElement = <HTMLElement>this.divTbl.nativeElement;
+  }
+
+  changeEditMode() {
+    this.editMode = (!this.editMode);
   }
 }
