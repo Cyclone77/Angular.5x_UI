@@ -9,3 +9,11 @@
     line-height: 60px;
     float: right;
 }
+
+.drop-text {
+    color: #fff;
+}
+
+.el-dropdown {
+    color: #fff;
+}
