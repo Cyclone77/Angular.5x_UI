@@ -11,6 +11,8 @@ import { ComponentsModule } from './../../components/components.module';
 // 具体页面组件
 import { SalarypostComponent } from './salarypost.component';
 
+import { DataTableModule, SharedModule } from 'primeng/primeng';
+
 const router: Routes = [
   { path: '', component: SalarypostComponent }
 ];
@@ -20,7 +22,9 @@ const router: Routes = [
     CommonModule,
     ElModule.forRoot(),
     ComponentsModule,
-    RouterModule.forChild(router)
+    RouterModule.forChild(router),
+    DataTableModule,
+    SharedModule
   ],
   declarations: [
     SalarypostComponent,

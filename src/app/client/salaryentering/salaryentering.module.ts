@@ -10,7 +10,7 @@ import { ComponentsModule } from './../../components/components.module';
 import { SalaryenteringComponent } from './salaryentering.component';
 
 // primeng UI
-import { TreeModule } from 'primeng/primeng';
+import { TreeModule, DataTableModule } from 'primeng/primeng';
 
 // UI 组件
 import { ElModule } from 'element-angular';
@@ -25,7 +25,8 @@ const router: Routes = [
     ComponentsModule,
     RouterModule.forChild(router),
     TreeModule,
-    ElModule.forRoot()
+    ElModule.forRoot(),
+    DataTableModule
   ],
   declarations: [
     SalaryenteringComponent,

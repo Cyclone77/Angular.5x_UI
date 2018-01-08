@@ -24,36 +24,31 @@ export class GAjaxService {
   }
 
   // get方法
-  get(url: string, fn: any, header?: any): void {
-    if (url.length === 0) {
-      fn({ Err: 'URL不能为空！'});
-    }
+  get(url: string, header?: any) {
+    return new Promise((resolve, reject) => {
+      if (url.length === 0) {
+        reject('URL不能为空！');
+      }
 
-    if (typeof fn !== 'function') {
-      fn({ Err: '回调函数不存在！'});
-    }
-
-    this.http.get(url, this.buildHeader(header)).subscribe(data => {
-      fn(data);
-    }, (err: HttpErrorResponse)  => {
-      fn({ Err: err.error.message });
+      this.http.get(url, this.buildHeader(header)).subscribe(data => {
+        resolve(data);
+      }, (err: HttpErrorResponse)  => {
+        reject(err.error.message);
+      });
     });
   }
 
   // post方法
-  post(url: string, option = {}, fn: any, header?: any): void {
-    if (url.length === 0) {
-      fn({ Err: 'URL不能为空！'});
-    }
-
-    if (typeof fn !== 'function') {
-      fn({ Err: '回调函数不存在！'});
-    }
-
-    this.http.post(url, option, this.buildHeader(header)).subscribe(data => {
-      fn(data);
-    }, (err: HttpErrorResponse)  => {
-      fn({ Err: err.error.message });
+  post(url: string, option = {}, header?: any) {
+    return new Promise((resolve, reject) => {
+      if (url.length === 0) {
+        reject('URL不能为空！');
+      }
+      this.http.post(url, option, this.buildHeader(header)).subscribe(data => {
+        resolve(data);
+      }, (err: HttpErrorResponse)  => {
+        reject(err.error.message);
+      });
     });
   }
 }

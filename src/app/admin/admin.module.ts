@@ -34,6 +34,10 @@ const adminRoutes: Routes = [
       {
         path: 'role',
         loadChildren: './role/role.module#RoleModule'
+      },
+      {
+        path: 'unitdendrogram',
+        loadChildren: './unitdendrogram/unitdendrogram.module#UnitdendrogramModule'
       }
     ]
   }

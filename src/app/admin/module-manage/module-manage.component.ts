@@ -21,9 +21,11 @@ export class ModuleManageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get(this.url, (json: Json) => {
+    this.http.get(this.url).then((json: Json) => {
       const arr = json.ListData;
       this.tableData = <any[]>arr;
+    }, err => {
+      console.log(err);
     });
   }
 }

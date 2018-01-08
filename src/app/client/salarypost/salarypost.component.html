@@ -14,7 +14,7 @@
     </ng-template>
     <ng-template #bottom>
         <gl-headline [title]="moduleTitle"></gl-headline>
-        <div class="gl-content" #divTable>
+        <!--<div class="gl-content" #divTable>
             <el-table [model]="tableData" [border]="true" [scroll-x]="false">
                 <el-table-column model-key="name" label="姓名" width="140">
                     <ng-template #slot let-scope="scope">
@@ -31,7 +31,10 @@
                     </ng-template>
                 </el-table-column>
             </el-table>
-        </div>
+        </div>-->
+        <p-dataTable [value]="tableData" [editable]="true" [style]="{'text-align':'center'}">
+            <p-column *ngFor="let col of cols,let key=index" [field]="col.field" [header]="col.header" [editable]="key!=0" ></p-column>
+        </p-dataTable>
     </ng-template>
 </gl-udcontrol>
 
