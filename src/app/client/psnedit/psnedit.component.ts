@@ -65,6 +65,6 @@ export class PsneditComponent implements OnInit {
             this.expandRecursive(childNode, isExpand);
         } );
     }
-}
+  }
 
 }

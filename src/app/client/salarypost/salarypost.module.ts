@@ -15,6 +15,7 @@ import { UserOption } from './../../classes/user-login';
 import { SalarypostComponent } from './salarypost.component';
 
 import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { GrowlModule } from 'primeng/primeng';
 
 const router: Routes = [
   { path: '', component: SalarypostComponent }
@@ -27,7 +28,8 @@ const router: Routes = [
     ComponentsModule,
     RouterModule.forChild(router),
     DataTableModule,
-    SharedModule
+    SharedModule,
+    GrowlModule
   ],
   declarations: [
     SalarypostComponent,

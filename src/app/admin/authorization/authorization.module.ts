@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GAjaxService } from './../../services/g-ajax.service';
 import { UserService } from './../../services/user.service';
 import { AuthorizationService } from './authorization.service';
-import { AppHttpConfigService } from './../../app-http-config.service';
 
 // 公用组件
 import { ElModule } from 'element-angular';
@@ -49,8 +48,7 @@ const router: Routes = [
     UserService,
     UserOption,
     UserLogin,
-    AuthorizationService,
-    AppHttpConfigService
+    AuthorizationService
   ]
 })
 export class AuthorizationModule { }

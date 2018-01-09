@@ -31,7 +31,7 @@ export class GAjaxService {
       this.http.get(url, this.buildHeader(header)).subscribe(data => {
         resolve(data);
       }, (err: HttpErrorResponse)  => {
-        reject(err.error.message);
+        reject(err);
       });
     });
   }

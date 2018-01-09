@@ -3,6 +3,15 @@
         <el-button type="primary" size="mini">全屏查看</el-button>
     </ng-template>
     <ng-template #bottom>
-        <p-organizationChart [value]="data"></p-organizationChart>
+        <gl-headline [title]="'机构树'"></gl-headline>
+        <gl-lrcontrol [leftwidth]="260">
+            <ng-template let-scope="psnData" #left>
+                <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)"></p-tree>
+            </ng-template>
+            <ng-template #right>
+                <div class="gl-content ">
+                </div>
+            </ng-template>
+        </gl-lrcontrol>
     </ng-template>
 </gl-udcontrol>

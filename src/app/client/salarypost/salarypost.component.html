@@ -32,8 +32,9 @@
                 </el-table-column>
             </el-table>
         </div>-->
-        <p-dataTable [value]="tableData" [editable]="editMode" [style]="{'text-align':'center'}">
-            <p-column *ngFor="let col of cols,let key=index" [field]="col.field" [header]="col.header" [editable]="key!=0" ></p-column>
+        <p-growl [(value)]="msgs"></p-growl>
+        <p-dataTable [value]="tableData" [editable]="editMode" [style]="{'text-align':'center'}" [loading]="loading" (onEditComplete)="editCell($event)">
+            <p-column *ngFor="let col of cols,let key=index" [field]="col.field" [header]="col.header" [editable]="key!=0"></p-column>
         </p-dataTable>
     </ng-template>
 </gl-udcontrol>
@@ -45,7 +46,7 @@
         </ng-template>
         <div class="tbllist">
             <div *ngFor="let item of tblDlg.datalist" class="text item">
-                <el-button type="text" (click)="useTable(item.name)">使用</el-button>
+                <el-button type="text" (click)="useTable(item.name,item.value)">使用</el-button>
                 <span>{{item.name}}</span>
             </div>
         </div>

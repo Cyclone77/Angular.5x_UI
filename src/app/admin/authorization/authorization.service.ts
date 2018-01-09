@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 // 异步取数
 import { GAjaxService } from './../../services/g-ajax.service';
-import { AppHttpConfigService } from './../../app-http-config.service';
 
 @Injectable()
 export class AuthorizationService {
@@ -25,14 +24,13 @@ export class AuthorizationService {
   PolicyGroup_Update = '/api/Core/PolicyGroup_Update';
 
   constructor(
-    private http: GAjaxService,
-    private address: AppHttpConfigService
+    private http: GAjaxService
   ) { }
 
   // 构建url
   url(action) {
-    return this.address.ADMIN_AUTHORIZATION + `${action}?GL=${+ new Date()}`;
-    // return `${action}?GL=${+ new Date()}`;
+    // return this.address.ADMIN_AUTHORIZATION + `${action}?GL=${+ new Date()}`;
+    return `${action}?GL=${+ new Date()}`;
   }
 
   // 获得模块树

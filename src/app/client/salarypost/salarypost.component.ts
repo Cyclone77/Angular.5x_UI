@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ContentChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GAjaxService } from './../../services/g-ajax.service';
 import { Json } from '../../classes/json';
+import { Message } from 'primeng/components/common/api';
+import { GrowlModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-salarypost',
@@ -16,142 +18,66 @@ export class SalarypostComponent implements OnInit {
   moduleTitle = '薪级工资标准表';
 
   // 请求地址
-  url = 'http://192.168.0.50:8080/api/Core/CodeItem_Select?modelId=M00001&codeId=SDXJ';
+  getColUrl = 'http://localhost:2261/api/Core/CodeItem_Select?moduleId=M00001&codeId=SDXJ';
+  getDataUrl = 'http://localhost:2261/api/M00001/Standard_SelectBy_STANDARD_TYPE';
+  updateUrl = 'http://localhost:2261/api/M00001/Standard_Update_Standard_Salary';
 
   // 表格的编辑模式
   editMode = false;
+
+  msgs: Message[] = [];
+
+  // 是否显示等待
+  loading = false;
   tblDlg = {
     title: '标准表选择',
     toggle: false,
+    value: '01',
     width: 500,
     datalist: [{
-      name: '岗位薪点标准表(全民、大集体)'
+      name: '岗位薪点标准表(全民、大集体)',
+      value: '01'
     }, {
-      name: '岗位薪点标准表(自聘)'
+      name: '岗位薪点标准表(自聘)',
+      value: '02'
     }],
     selectedTblName: ''
   };
 
   cols: any[]= [
-    {field: 'PostLevel', header: '岗级'}
+    {field: 'POST_LEVEL_CN', header: '岗级'}
 ];
 
-  tableData: any[] = [{
-    'PostLevel': '一岗',
-    'SALARY01': '2',
-    'SALARY02': '3',
-    'SALARY03': '4',
-    'SALARY04': '5',
-    'SALARY05': '6',
-    'SALARY06': '7',
-    'SALARY07': '8',
-    'SALARY08': '9',
-    'SALARY09': '0'
-  }, {
-    'PostLevel': '二岗',
-    'SALARY01': '2',
-    'SALARY02': '3',
-    'SALARY03': '4',
-    'SALARY04': '5',
-    'SALARY05': '6',
-    'SALARY06': '7',
-    'SALARY07': '8',
-    'SALARY08': '9',
-    'SALARY09': '12'
-  }, {
-    'PostLevel': '三岗',
-    'SALARY01': '3',
-    'SALARY02': '234',
-    'SALARY03': '54',
-    'SALARY04': '45634',
-    'SALARY05': '345',
-    'SALARY06': '789',
-    'SALARY07': '23',
-    'SALARY08': '4',
-    'SALARY09': '6'
-  }, {
-    'PostLevel': '四岗',
-    'SALARY01': '5467',
-    'SALARY02': '465',
-    'SALARY03': '上海',
-    'SALARY04': '上海',
-    'SALARY05': '上海',
-    'SALARY06': '上海',
-    'SALARY07': '上海',
-    'SALARY08': '上海',
-    'SALARY09': '上海'
-  }, {
-    'PostLevel': '五岗',
-    'SALARY01': '2017-08-19',
-    'SALARY02': '上海',
-    'SALARY03': '上海',
-    'SALARY04': '上海',
-    'SALARY05': '上海',
-    'SALARY06': '上海',
-    'SALARY07': '上海',
-    'SALARY08': '上海',
-    'SALARY09': '上海'
-  }, {
-    'PostLevel': '六岗',
-    'SALARY01': '2017-08-19',
-    'SALARY02': '上海',
-    'SALARY03': '上海',
-    'SALARY04': '上海',
-    'SALARY05': '上海',
-    'SALARY06': '上海',
-    'SALARY07': '上海',
-    'SALARY08': '上海',
-    'SALARY09': '上海'
-  }, {
-    'PostLevel': '七岗',
-    'SALARY01': '2017-08-19',
-    'SALARY02': '上海',
-    'SALARY03': '上海',
-    'SALARY04': '上海',
-    'SALARY05': '上海',
-    'SALARY06': '上海',
-    'SALARY07': '上海',
-    'SALARY08': '上海',
-    'SALARY09': '上海'
-  }, {
-    'PostLevel': '八岗',
-    'SALARY01': '2017-08-19',
-    'SALARY02': '上海',
-    'SALARY03': '上海',
-    'SALARY04': '上海',
-    'SALARY05': '上海',
-    'SALARY06': '上海',
-    'SALARY07': '上海',
-    'SALARY08': '上海',
-    'SALARY09': '上海'
-  }, {
-    'PostLevel': '九岗',
-    'SALARY01': '2017-08-19',
-    'SALARY02': '上海',
-    'SALARY03': '上海',
-    'SALARY04': '上海',
-    'SALARY05': '上海',
-    'SALARY06': '上海',
-    'SALARY07': '上海',
-    'SALARY08': '上海',
-    'SALARY09': '上海'
-  }];
+  tableData: any[] = [];
   constructor(
     private http: GAjaxService
   ) { }
 
   ngOnInit() {
-    this.http.get(this.url).then((json: Json) => {
+    this.http.get(this.getColUrl).then((json: Json) => {
       // tslint:disable-next-line:curly
       if (!json.IsSucceed) return alert(json.Err);
        for (let i = 0; i < json.ListData.length; i++) {
          const item = json.ListData[i];
          this.cols.push({field: 'SALARY' + item.ID, header: item.Name});
        }
+       this.loadData();
     }, err => {
       console.log(err);
     });
     this.tblDlg.selectedTblName = this.tblDlg.datalist[0].name;
+  }
+
+  loadData() {
+    const _getDataUrl = this.getDataUrl + '?standardType=' + this.tblDlg.value;
+    this.loading = true;
+    this.http.get(_getDataUrl).then((json: Json) => {
+      this.loading = false;
+      if (!json.IsSucceed) return alert(json.Err);
+      this.tableData = json.ListData;
+    }, err => {
+      console.log(err);
+    });
   }
 
   selectTable() {
@@ -162,14 +88,14 @@ export class SalarypostComponent implements OnInit {
     this.tblDlg.toggle = false;
   }
 
-  useTable(tblname) {
+  useTable(tblname, value) {
     this.tblDlg.selectedTblName = tblname;
     this.tblDlg.toggle = false;
-  }
+    if (this.tblDlg.value !== value) {
+      this.tblDlg.value = value;
+      this.loadData();
+    }
 
-  handle(scope) {
-    console.log(this.getFormatModel(scope.index));
-    console.dir(scope);
   }
 
   cellclick(scope) {
@@ -186,5 +112,44 @@ export class SalarypostComponent implements OnInit {
 
   changeEditMode() {
     this.editMode = (!this.editMode);
+  }
+
+  editCell(event) {
+    const value = event.data[event.column.field];
+    if (!value) {
+      return false;
+    }
+    const reg = new RegExp('^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$');
+    if (!reg.test(value)) {
+      return this.showError('保存的值必须为正值数字!');
+    }
+    this.updateField(event.data, event.column.field, value);
+  }
+
+  showSuccess(val) {
+    this.msgs = [];
+    this.msgs.push( {severity: 'success', summary: '系统提示', detail: val});
+  }
+
+  showError(val) {
+    this.msgs = [];
+    this.msgs.push({severity: 'error', summary: '系统提示', detail: val});
+  }
+
+  updateField(data, field: string, val: number) {
+    const Data = {};
+    Data[field] = val;
+    this.http.post(this.updateUrl, {
+      Key_ID: data.KEY_ID,
+      Disp_Order: data.DISP_ORDER,
+      SetID: 'STANDARD',
+      Data: Data
+    }).then((json: Json) => {
+      // tslint:disable-next-line:curly
+      if (!json.IsSucceed) return this.showError(json.Err);
+      this.showSuccess('保存成功');
+    }, err => {
+      this.showError(err);
+    });
   }
 }
