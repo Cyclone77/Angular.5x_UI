@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef, ContentChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ContentChild } from '@angular/core';
 import { GAjaxService } from './../../services/g-ajax.service';
 import { Json } from '../../classes/json';
 import { Message } from 'primeng/components/common/api';
-import { GrowlModule } from 'primeng/primeng';
+import { SalarypostService } from './salarypost.service';
 
 @Component({
   selector: 'app-salarypost',
@@ -13,22 +12,26 @@ import { GrowlModule } from 'primeng/primeng';
 
 export class SalarypostComponent implements OnInit {
 
-  @ContentChild('divTable') divTbl: ElementRef;
+  //@ContentChild('divTable') divTbl: ElementRef;
 
+  // 常量
   moduleTitle = '薪级工资标准表';
 
   // 请求地址
-  getColUrl = 'http://localhost:2261/api/Core/CodeItem_Select?moduleId=M00001&codeId=SDXJ';
-  getDataUrl = 'http://localhost:2261/api/M00001/Standard_SelectBy_STANDARD_TYPE';
-  updateUrl = 'http://localhost:2261/api/M00001/Standard_Update_Standard_Salary';
+  //getColUrl = '/api/Core/CodeItem/Select?moduleId=M00001&codeId=SDXJ';
+  //getDataUrl = '/api/M00001/Standard/SelectBy_Type';
+  //updateUrl = '/api/M00001/Standard/UpdateBy_Salary';
 
   // 表格的编辑模式
   editMode = false;
 
+  // 消息容器
   msgs: Message[] = [];
 
   // 是否显示等待
   loading = false;
+
+  // 选择表格弹窗对象
   tblDlg = {
     title: '标准表选择',
     toggle: false,
@@ -41,24 +44,27 @@ export class SalarypostComponent implements OnInit {
       name: '岗位薪点标准表(自聘)',
       value: '02'
     }],
-    selectedTblName: ''
+    selectedTblName: '' // 选择的表名
   };
 
+  // 表格列
   cols: any[]= [
     {field: 'POST_LEVEL_CN', header: '岗级'}
-];
+  ];
 
+  // 表格数据
   tableData: any[] = [];
   constructor(
-    private http: GAjaxService
+    private http: GAjaxService,
+    private request: SalarypostService
   ) { }
 
   ngOnInit() {
-    this.http.get(this.getColUrl).then((json: Json) => {
+    this.request.getColData().then((json: Json) => {
       // tslint:disable-next-line:curly
       if (!json.IsSucceed) return alert(json.Err);
        for (let i = 0; i < json.ListData.length; i++) {
-         const item = json.ListData[i];
+         let item = json.ListData[i];
          this.cols.push({field: 'SALARY' + item.ID, header: item.Name});
        }
        this.loadData();
@@ -68,26 +74,31 @@ export class SalarypostComponent implements OnInit {
     this.tblDlg.selectedTblName = this.tblDlg.datalist[0].name;
   }
 
+  // 加载表格数据
   loadData() {
-    const _getDataUrl = this.getDataUrl + '?standardType=' + this.tblDlg.value;
     this.loading = true;
-    this.http.get(_getDataUrl).then((json: Json) => {
+    this.request.loadData(this.tblDlg.value).then((json: Json) => {
       this.loading = false;
-      if (!json.IsSucceed) return alert(json.Err);
+      if (!json.IsSucceed) {
+        return this.showError(json.Err);
+      }
       this.tableData = json.ListData;
     }, err => {
       console.log(err);
     });
   }
 
+  // 选择表格
   selectTable() {
     this.tblDlg.toggle = true;
   }
 
+  // 关闭表格选择框
   closeTblDlg() {
     this.tblDlg.toggle = false;
   }
 
+  // 使用表格
   useTable(tblname, value) {
     this.tblDlg.selectedTblName = tblname;
     this.tblDlg.toggle = false;
@@ -98,28 +109,23 @@ export class SalarypostComponent implements OnInit {
 
   }
 
-  cellclick(scope) {
-    console.dir(scope);
-  }
-
-  getFormatModel(index: number): any {
-    return this.tableData[index];
-  }
-
+  // 输出表格
   downExcel() {
-    const $divEl: HTMLElement = <HTMLElement>this.divTbl.nativeElement;
+    //const $divEl: HTMLElement = <HTMLElement>this.divTbl.nativeElement;
   }
 
+  // 改变编辑模式
   changeEditMode() {
     this.editMode = (!this.editMode);
   }
 
+  // 编辑单元格
   editCell(event) {
-    const value = event.data[event.column.field];
+    let value = event.data[event.column.field];
     if (!value) {
       return false;
     }
-    const reg = new RegExp('^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$');
+    let reg = new RegExp('^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$');
     if (!reg.test(value)) {
       return this.showError('保存的值必须为正值数字!');
     }
@@ -128,7 +134,7 @@ export class SalarypostComponent implements OnInit {
 
   showSuccess(val) {
     this.msgs = [];
-    this.msgs.push( {severity: 'success', summary: '系统提示', detail: val});
+    this.msgs.push({severity: 'success', summary: '系统提示', detail: val});
   }
 
   showError(val) {
@@ -136,10 +142,11 @@ export class SalarypostComponent implements OnInit {
     this.msgs.push({severity: 'error', summary: '系统提示', detail: val});
   }
 
+  // 更新字段
   updateField(data, field: string, val: number) {
-    const Data = {};
+    let Data = {};
     Data[field] = val;
-    this.http.post(this.updateUrl, {
+    this.request.updateField({
       Key_ID: data.KEY_ID,
       Disp_Order: data.DISP_ORDER,
       SetID: 'STANDARD',

@@ -7,7 +7,7 @@ import { GAjaxService } from './../../services/g-ajax.service';
 export class UnitdendrogramService {
 
   // 获得机构树
-  OrgTree_Select_ByParent = '/api/Core/OrgTree_Select_ByParent';
+  OrgTree_Select_ByParent = '/api/M00002/OrgTree/Select_ByParent';
 
   constructor(
     private http: GAjaxService
@@ -21,6 +21,6 @@ export class UnitdendrogramService {
 
   // 获得模块树
   getUnitTree(parentId: string = '.') {
-    return this.http.get(this.url(this.OrgTree_Select_ByParent) + `&moduleId=M00001&parentId=${parentId}`);
+    return this.http.get(this.url(this.OrgTree_Select_ByParent) + `&parent=${parentId}`);
   }
 }

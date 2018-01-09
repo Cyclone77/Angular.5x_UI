@@ -33,11 +33,11 @@ export class UnitdendrogramComponent implements OnInit {
       let nodes: TreeNode[] = [];
       json.ListData.forEach(item => {
         nodes.push({
-          label: item['GROUP_NAME'],
-          data: item['GROUP_ID'],
+          label: item['DisplayChapterName'],
+          data: item['ITEM_ID'],
           expandedIcon: 'fa-folder-open',
           collapsedIcon: 'fa-folder',
-          leaf: !item['HASCHILD']
+          leaf: !item['CHILD']
         });
       });
       if (event && event.node.data) {

@@ -15,13 +15,13 @@ export class AuthorizationService {
   public SelectTblRow: TreeNode;
 
   // 获得模块树
-  PolicyGroup_Select = '/api/Core/PolicyGroup_Select';
+  PolicyGroup_Select = '/api/Core/PolicyGroup/Select';
   // 删除模块
-  PolicyGroup_Delete = '/api/Core/PolicyGroup_Delete';
+  PolicyGroup_Delete = '/api/Core/PolicyGroup/Delete';
   // 增加模块
-  PolicyGroup_Insert = '/api/Core/PolicyGroup_Insert';
+  PolicyGroup_Insert = '/api/Core/PolicyGroup/Insert';
   // 更新模块
-  PolicyGroup_Update = '/api/Core/PolicyGroup_Update';
+  PolicyGroup_Update = '/api/Core/PolicyGroup/Update';
 
   constructor(
     private http: GAjaxService

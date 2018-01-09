@@ -4,12 +4,16 @@
     "license": "MIT",
     "npm": {
         "ng": "ng",
-        "start": "ng serve --proxy proxy.config.json",
+        "start": "ng serve",
         "build": "ng build --prod",
         "bc": "ng build -base-href=/324.CDSDJT/Client/",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
+    },
+    "scripts": {
+        "start": "ng serve --proxy proxy.conf.json",
+        "build": "ng build -base-href=/324.CDSDJT/Client/ --proxy=http://192.168.0.50:8080"
     },
     "private": true,
     "dependencies": {

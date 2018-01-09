@@ -10,6 +10,7 @@ import { ComponentsModule } from './../../components/components.module';
 import { GAjaxService } from './../../services/g-ajax.service';
 import { UserService } from './../../services/user.service';
 import { UserOption } from './../../classes/user-login';
+import { SalarypostService} from './salarypost.service';
 
 // 具体页面组件
 import { SalarypostComponent } from './salarypost.component';
@@ -39,7 +40,8 @@ const router: Routes = [
   providers: [
     GAjaxService,
     UserService,
-    UserOption
+    UserOption,
+    SalarypostService
   ]
 })
 export class SalarypostModule { }

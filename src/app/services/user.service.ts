@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 @Injectable()
 export class UserService {
 
-  url = 'http://192.168.0.50:8080/api/Core/Login';
+  url = '/api/Core/UserLogon/Login';
   myHeaderJSON = { 'Content-Type': 'application/json' };
   httpHead = { headers: new HttpHeaders(this.myHeaderJSON) };
 
