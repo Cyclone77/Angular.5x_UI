@@ -20,10 +20,12 @@ import { TreeModule } from 'primeng/primeng';
 import { AuthorizationComponent } from './authorization.component';
 import { AddComponent } from './add/add.component';
 import { UserOption, UserLogin } from './../../classes/user-login';
+import { EditComponent } from './edit/edit.component';
 
 const router: Routes = [
   { path: '', component: AuthorizationComponent },
-  { path: 'add', component: AddComponent}
+  { path: 'add', component: AddComponent },
+  { path: 'edit', component: EditComponent }
 ];
 
 @NgModule({
@@ -39,7 +41,8 @@ const router: Routes = [
   ],
   declarations: [
     AuthorizationComponent,
-    AddComponent
+    AddComponent,
+    EditComponent
   ],
   providers: [
     GAjaxService,

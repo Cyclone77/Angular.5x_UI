@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { TreeModule, TreeNode } from 'primeng/primeng';
+import { TreeNode } from 'primeng/primeng';
 
-import { GAjaxService } from '../../services/g-ajax.service';
 import { AuthorizationService } from './authorization.service';
 import { Json } from '../../classes/json';
 
@@ -17,10 +16,11 @@ export class AuthorizationComponent implements OnInit {
   tableData: any[] = [];
   selectNode: TreeNode;
   treeData: TreeNode[] = [];
+  selectedNode: any;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: GAjaxService,
     private request: AuthorizationService
   ) { }
 
@@ -50,7 +50,7 @@ export class AuthorizationComponent implements OnInit {
   }
 
   nodeSelect(event) {
-    this.selectNode = event.node;
+    this.request.SelectNode = this.selectNode = event.node;
     this.loadTbl();
   }
 
@@ -62,6 +62,8 @@ export class AuthorizationComponent implements OnInit {
 
   eidtModule(row) {
     const id = row.rowData['GROUP_ID'];
+    this.request.SelectTblRow = row.rowData;
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
 

@@ -1,17 +1,18 @@
 <gl-udcontrol>
     <ng-template #top>
-        <el-button-group>
+        <el-button type="primary" size="mini" (click)="addGroup()">新增分组</el-button>
+        <!-- <el-button-group>
             <el-button type="primary" size="mini" (click)="addGroup()">新增分组</el-button>
             <el-button type="primary" size="mini">新增同层分组</el-button>
             <el-button type="primary" size="mini">新增下层分组</el-button>
             <el-button type="primary" size="mini">删除分组</el-button>
-        </el-button-group>
+        </el-button-group> -->
     </ng-template>
     <ng-template #bottom>
         <gl-headline [title]="'授权信息'"></gl-headline>
         <gl-lrcontrol [leftwidth]="260">
             <ng-template let-scope="psnData" #left>
-                <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" (onNodeSelect)="nodeSelect($event) "></p-tree>
+                <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event) "></p-tree>
             </ng-template>
             <ng-template #right>
                 <div class="gl-content ">
