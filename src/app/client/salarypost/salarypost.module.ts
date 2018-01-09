@@ -7,6 +7,9 @@ import { ElModule } from 'element-angular';
 
 // 公用组件
 import { ComponentsModule } from './../../components/components.module';
+import { GAjaxService } from './../../services/g-ajax.service';
+import { UserService } from './../../services/user.service';
+import { UserOption } from './../../classes/user-login';
 
 // 具体页面组件
 import { SalarypostComponent } from './salarypost.component';
@@ -30,6 +33,11 @@ const router: Routes = [
     SalarypostComponent,
     // HeadlineComponent,
     // ComponentsModule
+  ],
+  providers: [
+    GAjaxService,
+    UserService,
+    UserOption
   ]
 })
 export class SalarypostModule { }

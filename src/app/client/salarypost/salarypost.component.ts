@@ -1,4 +1,7 @@
 import { Component, OnInit, ElementRef, ContentChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { GAjaxService } from './../../services/g-ajax.service';
+import { Json } from '../../classes/json';
 
 @Component({
   selector: 'app-salarypost',
@@ -12,7 +15,10 @@ export class SalarypostComponent implements OnInit {
 
   moduleTitle = '薪级工资标准表';
 
-  //表格的编辑模式
+  // 请求地址
+  url = 'http://192.168.0.50:8080/api/Core/CodeItem_Select?modelId=M00001&codeId=SDXJ';
+
+  // 表格的编辑模式
   editMode = false;
   tblDlg = {
     title: '标准表选择',
@@ -27,121 +33,124 @@ export class SalarypostComponent implements OnInit {
   };
 
   cols: any[]= [
-    {field: 'PostLevel', header: '岗级'},
-    {field: 'Salary1', header: '1薪'},
-    {field: 'Salary2', header: '2薪'},
-    {field: 'Salary3', header: '3薪'},
-    {field: 'Salary4', header: '4薪'},
-    {field: 'Salary5', header: '5薪'},
-    {field: 'Salary6', header: '6薪'},
-    {field: 'Salary7', header: '7薪'},
-    {field: 'Salary8', header: '8薪'},
-    {field: 'Salary9', header: '9薪'},
+    {field: 'PostLevel', header: '岗级'}
 ];
 
   tableData: any[] = [{
     'PostLevel': '一岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2',
+    'SALARY02': '3',
+    'SALARY03': '4',
+    'SALARY04': '5',
+    'SALARY05': '6',
+    'SALARY06': '7',
+    'SALARY07': '8',
+    'SALARY08': '9',
+    'SALARY09': '0'
   }, {
     'PostLevel': '二岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2',
+    'SALARY02': '3',
+    'SALARY03': '4',
+    'SALARY04': '5',
+    'SALARY05': '6',
+    'SALARY06': '7',
+    'SALARY07': '8',
+    'SALARY08': '9',
+    'SALARY09': '12'
   }, {
     'PostLevel': '三岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '3',
+    'SALARY02': '234',
+    'SALARY03': '54',
+    'SALARY04': '45634',
+    'SALARY05': '345',
+    'SALARY06': '789',
+    'SALARY07': '23',
+    'SALARY08': '4',
+    'SALARY09': '6'
   }, {
     'PostLevel': '四岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '5467',
+    'SALARY02': '465',
+    'SALARY03': '上海',
+    'SALARY04': '上海',
+    'SALARY05': '上海',
+    'SALARY06': '上海',
+    'SALARY07': '上海',
+    'SALARY08': '上海',
+    'SALARY09': '上海'
   }, {
     'PostLevel': '五岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2017-08-19',
+    'SALARY02': '上海',
+    'SALARY03': '上海',
+    'SALARY04': '上海',
+    'SALARY05': '上海',
+    'SALARY06': '上海',
+    'SALARY07': '上海',
+    'SALARY08': '上海',
+    'SALARY09': '上海'
   }, {
     'PostLevel': '六岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2017-08-19',
+    'SALARY02': '上海',
+    'SALARY03': '上海',
+    'SALARY04': '上海',
+    'SALARY05': '上海',
+    'SALARY06': '上海',
+    'SALARY07': '上海',
+    'SALARY08': '上海',
+    'SALARY09': '上海'
   }, {
     'PostLevel': '七岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2017-08-19',
+    'SALARY02': '上海',
+    'SALARY03': '上海',
+    'SALARY04': '上海',
+    'SALARY05': '上海',
+    'SALARY06': '上海',
+    'SALARY07': '上海',
+    'SALARY08': '上海',
+    'SALARY09': '上海'
   }, {
     'PostLevel': '八岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2017-08-19',
+    'SALARY02': '上海',
+    'SALARY03': '上海',
+    'SALARY04': '上海',
+    'SALARY05': '上海',
+    'SALARY06': '上海',
+    'SALARY07': '上海',
+    'SALARY08': '上海',
+    'SALARY09': '上海'
   }, {
     'PostLevel': '九岗',
-    'Salary1': '2017-08-19',
-    'Salary2': '上海',
-    'Salary3': '上海',
-    'Salary4': '上海',
-    'Salary5': '上海',
-    'Salary6': '上海',
-    'Salary7': '上海',
-    'Salary8': '上海',
-    'Salary9': '上海'
+    'SALARY01': '2017-08-19',
+    'SALARY02': '上海',
+    'SALARY03': '上海',
+    'SALARY04': '上海',
+    'SALARY05': '上海',
+    'SALARY06': '上海',
+    'SALARY07': '上海',
+    'SALARY08': '上海',
+    'SALARY09': '上海'
   }];
-  constructor() { }
+  constructor(
+    private http: GAjaxService
+  ) { }
 
   ngOnInit() {
+    this.http.get(this.url).then((json: Json) => {
+      // tslint:disable-next-line:curly
+      if (!json.IsSucceed) return alert(json.Err);
+       for (let i = 0; i < json.ListData.length; i++) {
+         const item = json.ListData[i];
+         this.cols.push({field: 'SALARY' + item.ID, header: item.Name});
+       }
+    }, err => {
+      console.log(err);
+    });
     this.tblDlg.selectedTblName = this.tblDlg.datalist[0].name;
   }
 

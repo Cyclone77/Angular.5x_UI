@@ -4,4 +4,5 @@ export class Json {
     Data: any;
     ListData: any[];
     IsTimeout?: boolean;
+    Entity?: any;
 }

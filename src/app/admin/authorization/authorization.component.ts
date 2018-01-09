@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TreeModule, TreeNode } from 'primeng/primeng';
 
 import { GAjaxService } from '../../services/g-ajax.service';
+import { AuthorizationService } from './authorization.service';
 import { Json } from '../../classes/json';
 
 @Component({
@@ -14,35 +15,47 @@ import { Json } from '../../classes/json';
 export class AuthorizationComponent implements OnInit {
 
   tableData: any[] = [];
-  url = 'http://192.168.0.50:8080/api/Core/PolicyGroup_Select?parentId=.';
-  delurl = 'http://192.168.0.50:8080/api/Core/PolicyGroup_Delete';
+  selectNode: TreeNode;
   treeData: TreeNode[] = [];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: GAjaxService
+    private http: GAjaxService,
+    private request: AuthorizationService
   ) { }
 
   ngOnInit() {
-    this.http.get(this.url).then((json: Json) => {
-      this.tableData = json.ListData;
-      this.loadTree();
-    });
+    this.nodeExpand();
   }
 
-  loadTree() {
-    this.tableData.forEach(item => {
-        this.treeData.push({
+  nodeExpand(event?) {
+    this.request.getModuleTree(event && event.node.data).then((json: Json) => {
+      // tslint:disable-next-line:prefer-const
+      let nodes: TreeNode[] = [];
+      json.ListData.forEach(item => {
+        nodes.push({
           label: item['GROUP_NAME'],
           data: item['GROUP_ID'],
           expandedIcon: 'fa-folder-open',
-          collapsedIcon: 'fa-folder'
+          collapsedIcon: 'fa-folder',
+          leaf: !item['HASCHILD']
         });
+      });
+      if (event && event.node.data) {
+        event.node.children = nodes;
+      } else {
+        this.treeData = nodes;
+      }
     });
   }
 
+  nodeSelect(event) {
+    this.selectNode = event.node;
+    this.loadTbl();
+  }
+
   loadTbl() {
-    this.http.get(this.url).then((json: Json) => {
+    this.request.getModuleTbl(this.selectNode.data).then((json: Json) => {
       this.tableData = json.ListData;
     });
   }
@@ -51,16 +64,14 @@ export class AuthorizationComponent implements OnInit {
     const id = row.rowData['GROUP_ID'];
   }
 
+
   delModule(row) {
     const id = row.rowData['GROUP_ID'];
-    this.http.post(this.delurl, { GROUP_ID : id }).then((json: Json) => {
-      if (!json.IsSucceed) {
-        console.log('删除错误！');
-      }else {
-        this.loadTbl();
+    this.request.deleteModule(id).then((json: Json) => {
+      if (json.IsSucceed) {
+        this.tableData = json.ListData;
+        this.nodeExpand();
       }
-    }, err => {
-      console.log(err);
     });
   }
 
