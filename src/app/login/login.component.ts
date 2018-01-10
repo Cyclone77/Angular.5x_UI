@@ -31,4 +31,11 @@ export class LoginComponent implements OnInit {
     });
     // this.router.navigate(['/client']);
   }
+
+  // 密码框回车事件
+  keyUp(e) {
+    if (e.keyCode === 13) {
+      this.login();
+    }
+  }
 }

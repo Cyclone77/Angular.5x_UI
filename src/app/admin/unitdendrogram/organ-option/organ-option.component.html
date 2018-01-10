@@ -1,0 +1,43 @@
+<div class="gl-content">
+    <el-form [formGroup]="validateForm" [inline]="true" label-width="160px" size="small">
+        <el-form-item label="营业注册号：">
+            <el-input formControlName="B0303"></el-input>
+        </el-form-item>
+        <el-form-item label="注册资本：">
+            <el-input formControlName="B0304"></el-input>
+        </el-form-item>
+        <el-form-item label="组织机构代码：">
+            <el-input formControlName="B0306"></el-input>
+        </el-form-item>
+        <el-form-item label="税务登记号：">
+            <el-input formControlName="B0306"></el-input>
+        </el-form-item>
+        <el-form-item label="安全许可证编号：">
+            <el-input formControlName="B0309"></el-input>
+        </el-form-item>
+        <el-form-item label="营业期限：">
+            <el-input formControlName="B0305"></el-input>
+        </el-form-item>
+        <el-form-item label="公司类型：">
+            <el-input formControlName="B0312"></el-input>
+        </el-form-item>
+        <el-form-item label="经济类型：">
+            <el-input formControlName="B0313"></el-input>
+        </el-form-item>
+        <el-form-item label="成立时间：">
+            <el-input formControlName="B0311"></el-input>
+        </el-form-item>
+        <el-form-item label="单位所属行业：">
+            <el-input formControlName="B0315"></el-input>
+        </el-form-item>
+        <el-form-item label="组织机构有效期：">
+            <el-input formControlName="B0305"></el-input>
+        </el-form-item>
+        <el-form-item label="公司所在地：">
+            <el-input formControlName="B0314"></el-input>
+        </el-form-item>
+        <div [ngStyle]="{ 'margin-left.px': '160' }">
+            <el-button type="primary">保存</el-button>
+        </div>
+    </el-form>
+</div>

@@ -15,9 +15,19 @@ import { UserService } from './../../services/user.service';
 import { UserOption, UserLogin } from './../../classes/user-login';
 
 import { UnitdendrogramService } from './unitdendrogram.service';
+import { OrganOptionComponent } from './organ-option/organ-option.component';
+import { LegalRepresetComponent } from './legal-represet/legal-represet.component';
 
 const router: Routes = [
-  { path: '', component: UnitdendrogramComponent }
+  {
+    path: '',
+    component: UnitdendrogramComponent,
+    children: [
+      { path: '', redirectTo: 'organ-option', pathMatch: 'full' },
+      { path: 'organ-option', component: OrganOptionComponent },
+      { path: 'legal-represet', component: LegalRepresetComponent }
+    ]
+  }
 ];
 
 @NgModule({
@@ -37,6 +47,10 @@ const router: Routes = [
     UserOption,
     UserLogin
   ],
-  declarations: [UnitdendrogramComponent]
+  declarations: [
+    UnitdendrogramComponent,
+    OrganOptionComponent,
+    LegalRepresetComponent
+  ]
 })
 export class UnitdendrogramModule { }

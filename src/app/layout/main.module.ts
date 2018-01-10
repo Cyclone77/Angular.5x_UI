@@ -36,12 +36,12 @@ const mainRoutes: Routes = [
         loadChildren: 'app/client/index/index.module#IndexModule'
       },
       {
-        path: 'salaryEntering',
-        loadChildren: 'app/client/salaryEntering/salaryEntering.module#SalaryEnteringModule'
+        path: 'salary-manage/salary-entering',
+        loadChildren: 'app/client/salary-manage/salary-entering/salary-entering.module#SalaryEnteringModule'
       },
       {
-        path: 'salaryPost',
-        loadChildren: 'app/client/salaryPost/salaryPost.module#SalaryPostModule'
+        path: 'salary-manage/salary-post',
+        loadChildren: 'app/client/salary-manage/salary-post/salary-post.module#SalaryPostModule'
       },
       {
         path: 'psnedit',

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SalaryPostComponent } from './salarypost.component';
+import { OrganOptionComponent } from './organ-option.component';
 
-describe('SalaryPostComponent', () => {
-  let component: SalaryPostComponent;
-  let fixture: ComponentFixture<SalaryPostComponent>;
+describe('OrganOptionComponent', () => {
+  let component: OrganOptionComponent;
+  let fixture: ComponentFixture<OrganOptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SalaryPostComponent ]
+      declarations: [ OrganOptionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SalaryPostComponent);
+    fixture = TestBed.createComponent(OrganOptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

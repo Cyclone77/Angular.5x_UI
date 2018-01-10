@@ -16,7 +16,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class UnitdendrogramComponent implements OnInit {
 
-  validateForm: FormGroup;
   selectNode: TreeNode;
   treeData: TreeNode[] = [];
   selectedNode: any;
@@ -27,33 +26,11 @@ export class UnitdendrogramComponent implements OnInit {
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder
   ) { }
 
+  routerLink() {
+  }
+
   ngOnInit() {
     this.nodeExpand();
-    this.validateForm = this.formBuilder.group({
-      B0301: [ '' ],
-      B0302: [ '' ],
-      B0303: [ '' ],
-      B0304: [ '' ],
-      B0305: [ '' ],
-      B0306: [ '' ],
-      B0307: [ '' ],
-      B0308: [ '' ],
-      B0309: [ '' ],
-      B0310: [ '' ],
-      B0311: [ '' ],
-      B0312: [ '' ],
-      B0313: [ '' ],
-      B0314: [ '' ],
-      B0315: [ '' ],
-      B0316: [ '' ],
-      B03END_DATE: [''],
-      B03START_DATE: [''],
-      DATA_ROW: [''],
-      DISP_ORDER: [''],
-      IS_DELETED: [''],
-      IS_LAST_ROW: [''],
-      KEY_ID: ['']
-    });
   }
 
   nodeExpand(event?) {
@@ -78,7 +55,11 @@ export class UnitdendrogramComponent implements OnInit {
   }
 
   nodeSelect(event) {
+    this.request.SelectNode = event.node;
+  }
 
+  routerPage(path) {
+    this.router.navigate([path],  { relativeTo: this.route });
   }
 
 }

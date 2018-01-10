@@ -1,6 +1,10 @@
 <gl-lrcontrol [leftwidth]="260">
     <ng-template let-scope="psnData" #left>
-        <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" [style]="{ 'border': 'none' }"></p-tree>
+        <div class="ui-inputgroup">            
+            <input type="text" pInputText placeholder="输出查询内容" >
+            <button pButton type="button" label="查询"></button>        
+        </div>
+        <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode"(onNodeSelect)="nodeSelect($event)" [style]="{ 'border': 'none' }"></p-tree>         
     </ng-template>
     <ng-template #right>
         <gl-udcontrol [setTop]="true">
@@ -13,7 +17,7 @@
             <ng-template #bottom>
                 <gl-headline [title]="'员工薪资录入'"></gl-headline>
                 <div class="tblControl">
-                    <p-dataTable [value]="tblData" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [style]="{ 'text-align' : 'center' } ">
+                    <p-dataTable [value]="tblData" [rows]="15" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,15,25]" [style]="{ 'text-align' : 'center' } ">
                         <p-column header="姓名" field="brand"></p-column>
                         <p-column header="性别" field="lastYearSale"></p-column>
                         <p-column header="人员归属" field="thisYearSale"></p-column>

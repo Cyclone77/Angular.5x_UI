@@ -1,4 +1,5 @@
-.treeview {
+.gl-content {
+    padding: 25px;
     overflow: auto;
     height: 100%;
 }

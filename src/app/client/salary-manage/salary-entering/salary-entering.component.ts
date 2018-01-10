@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
 
 @Component({
-  selector: 'app-salaryEntering',
-  templateUrl: './salaryEntering.component.html',
-  styleUrls: ['./salaryEntering.component.css']
+  selector: 'app-salary-entering',
+  templateUrl: './salary-entering.component.html',
+  styleUrls: ['./salary-entering.component.css']
 })
 export class SalaryEnteringComponent implements OnInit {
 

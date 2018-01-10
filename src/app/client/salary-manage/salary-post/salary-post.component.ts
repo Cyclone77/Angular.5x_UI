@@ -1,13 +1,13 @@
 import { Component, OnInit, ContentChild } from '@angular/core';
-import { GAjaxService } from './../../services/g-ajax.service';
-import { Json } from '../../classes/json';
+import { GAjaxService } from './../../../services/g-ajax.service';
+import { Json } from '../../../classes/json';
 import { Message } from 'primeng/components/common/api';
-import { SalaryPostService } from './salaryPost.service';
+import { SalaryPostService } from './salary-post.service';
 
 @Component({
-  selector: 'app-salarypost',
-  templateUrl: './salarypost.component.html',
-  styleUrls: ['./salarypost.component.css']
+  selector: 'app-salary-post',
+  templateUrl: './salary-post.component.html',
+  styleUrls: ['./salary-post.component.css']
 })
 
 export class SalaryPostComponent implements OnInit {

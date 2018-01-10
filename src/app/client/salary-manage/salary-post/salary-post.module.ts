@@ -6,14 +6,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ElModule } from 'element-angular';
 
 // 公用组件
-import { ComponentsModule } from './../../components/components.module';
-import { GAjaxService } from './../../services/g-ajax.service';
-import { UserService } from './../../services/user.service';
-import { UserOption } from './../../classes/user-login';
-import { SalaryPostService} from './salaryPost.service';
+import { ComponentsModule } from './../../../components/components.module';
+import { GAjaxService } from './../../../services/g-ajax.service';
+import { UserService } from './../../../services/user.service';
+import { UserOption } from './../../../classes/user-login';
+import { SalaryPostService} from './salary-post.service';
 
 // 具体页面组件
-import { SalaryPostComponent } from './salaryPost.component';
+import { SalaryPostComponent } from './salary-post.component';
 
 import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { GrowlModule } from 'primeng/primeng';

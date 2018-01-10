@@ -4,13 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 // 公用组件
 
-import { ComponentsModule } from './../../components/components.module';
+import { ComponentsModule } from './../../../components/components.module';
 
 // 具体页面组件
-import { SalaryEnteringComponent } from './salaryEntering.component';
+import { SalaryEnteringComponent } from './salary-entering.component';
 
 // primeng UI
-import { TreeModule, DataTableModule } from 'primeng/primeng';
+import { TreeModule, DataTableModule, ButtonModule, InputTextModule } from 'primeng/primeng';
 
 // UI 组件
 import { ElModule } from 'element-angular';
@@ -26,7 +26,9 @@ const router: Routes = [
     RouterModule.forChild(router),
     TreeModule,
     ElModule.forRoot(),
-    DataTableModule
+    DataTableModule,
+    ButtonModule,
+    InputTextModule
   ],
   declarations: [
     SalaryEnteringComponent,
