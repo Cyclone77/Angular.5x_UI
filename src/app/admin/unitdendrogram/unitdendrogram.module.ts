@@ -17,6 +17,7 @@ import { UserOption, UserLogin } from './../../classes/user-login';
 import { UnitdendrogramService } from './unitdendrogram.service';
 import { OrganOptionComponent } from './organ-option/organ-option.component';
 import { LegalRepresetComponent } from './legal-represet/legal-represet.component';
+import { EventBusService } from '../../services/event-bus.service';
 
 const router: Routes = [
   {
@@ -45,7 +46,8 @@ const router: Routes = [
     GAjaxService,
     UserService,
     UserOption,
-    UserLogin
+    UserLogin,
+    EventBusService
   ],
   declarations: [
     UnitdendrogramComponent,

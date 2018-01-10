@@ -8,6 +8,7 @@ import { Json } from '../../classes/json';
 
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+import { EventBusService } from './../../services/event-bus.service';
 
 @Component({
   selector: 'app-unitdendrogram',
@@ -23,7 +24,8 @@ export class UnitdendrogramComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private request: UnitdendrogramService,
-    @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder
+    @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+    private eventBus: EventBusService
   ) { }
 
   routerLink() {
@@ -55,6 +57,7 @@ export class UnitdendrogramComponent implements OnInit {
   }
 
   nodeSelect(event) {
+    this.eventBus.emit('SelectNode', event.node);
     this.request.SelectNode = event.node;
   }
 

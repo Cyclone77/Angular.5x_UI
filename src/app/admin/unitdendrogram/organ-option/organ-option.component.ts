@@ -8,6 +8,8 @@ import { UnitdendrogramService } from './../unitdendrogram.service';
 import { Json } from '../../../classes/json';
 import { HttpDataType } from '../../../classes/http-data-type';
 
+import { EventBusService } from './../../../services/event-bus.service';
+
 @Component({
   selector: 'app-organ-option',
   templateUrl: './organ-option.component.html',
@@ -20,7 +22,8 @@ export class OrganOptionComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private request: UnitdendrogramService,
-    @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder
+    @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+    private eventBus: EventBusService
   ) { }
 
   ngOnInit() {
@@ -50,6 +53,9 @@ export class OrganOptionComponent implements OnInit {
       KEY_ID: ['']
     });
 
+    this.eventBus.on('SelectNode', (data) => {
+      console.log(data);
+    });
     this.loadB03Data();
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
+
 // 异步取数
 import { GAjaxService } from './../../services/g-ajax.service';
 import { HttpDataType } from '../../classes/http-data-type';
@@ -18,8 +19,7 @@ export class UnitdendrogramService {
   OrgTree_Select_ByParent = '/api/M00002/OrgTree/Select_ByParent';
 
   constructor(
-    private http: GAjaxService,
-    private treeEvent: EventBus
+    private http: GAjaxService
   ) { }
 
   // 构建url
