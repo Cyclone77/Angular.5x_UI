@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from './../../components/components.module';
 
 // 具体页面组件
-import { SalaryenteringComponent } from './salaryentering.component';
+import { SalaryEnteringComponent } from './salaryEntering.component';
 
 // primeng UI
 import { TreeModule, DataTableModule } from 'primeng/primeng';
@@ -16,7 +16,7 @@ import { TreeModule, DataTableModule } from 'primeng/primeng';
 import { ElModule } from 'element-angular';
 
 const router: Routes = [
-  { path: '', component: SalaryenteringComponent }
+  { path: '', component: SalaryEnteringComponent }
 ];
 
 @NgModule({
@@ -29,8 +29,8 @@ const router: Routes = [
     DataTableModule
   ],
   declarations: [
-    SalaryenteringComponent,
+    SalaryEnteringComponent,
     // UdcontrolComponent
   ]
 })
-export class SalaryenteringModule { }
+export class SalaryEnteringModule { }

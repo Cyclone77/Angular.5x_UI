@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UnitdendrogramComponent } from './unitdendrogram.component';
 import { ComponentsModule } from './../../components/components.module';
 import { ElModule } from 'element-angular';
@@ -26,7 +27,8 @@ const router: Routes = [
     AccordionModule,
     RouterModule.forChild(router),
     ElModule.forRoot(),
-    TreeModule
+    TreeModule,
+    ReactiveFormsModule
   ],
   providers: [
     UnitdendrogramService,

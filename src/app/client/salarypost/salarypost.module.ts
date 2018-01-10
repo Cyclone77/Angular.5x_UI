@@ -10,16 +10,16 @@ import { ComponentsModule } from './../../components/components.module';
 import { GAjaxService } from './../../services/g-ajax.service';
 import { UserService } from './../../services/user.service';
 import { UserOption } from './../../classes/user-login';
-import { SalarypostService} from './salarypost.service';
+import { SalaryPostService} from './salaryPost.service';
 
 // 具体页面组件
-import { SalarypostComponent } from './salarypost.component';
+import { SalaryPostComponent } from './salaryPost.component';
 
 import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { GrowlModule } from 'primeng/primeng';
 
 const router: Routes = [
-  { path: '', component: SalarypostComponent }
+  { path: '', component: SalaryPostComponent }
 ];
 
 @NgModule({
@@ -33,7 +33,7 @@ const router: Routes = [
     GrowlModule
   ],
   declarations: [
-    SalarypostComponent,
+    SalaryPostComponent,
     // HeadlineComponent,
     // ComponentsModule
   ],
@@ -41,7 +41,7 @@ const router: Routes = [
     GAjaxService,
     UserService,
     UserOption,
-    SalarypostService
+    SalaryPostService
   ]
 })
-export class SalarypostModule { }
+export class SalaryPostModule { }

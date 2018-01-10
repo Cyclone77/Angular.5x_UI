@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 @Injectable()
 export class UserService {
 
-  url = '/api/Core/UserLogon/Login';
+  loginUrl = '/api/Core/UserLogon/Login';
   myHeaderJSON = { 'Content-Type': 'application/json' };
   httpHead = { headers: new HttpHeaders(this.myHeaderJSON) };
 
@@ -20,7 +20,7 @@ export class UserService {
 
   login(user: UserLogin) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.url, user, this.httpHead).subscribe((json: Json) => {
+      this.http.post(this.loginUrl, user, this.httpHead).subscribe((json: Json) => {
         if (json.IsSucceed) {
           Object.assign(this.userOpt, json.Data);
           this.setParams();

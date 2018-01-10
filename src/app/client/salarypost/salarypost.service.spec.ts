@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SalarypostService } from './salarypost.service';
+import { SalaryPostService } from './salarypost.service';
 
-describe('SalarypostService', () => {
+describe('SalaryPostService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SalarypostService]
+      providers: [SalaryPostService]
     });
   });
 
-  it('should be created', inject([SalarypostService], (service: SalarypostService) => {
+  it('should be created', inject([SalaryPostService], (service: SalaryPostService) => {
     expect(service).toBeTruthy();
   }));
 });

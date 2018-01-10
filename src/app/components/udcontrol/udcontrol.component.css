@@ -13,6 +13,6 @@
     margin: 0 auto;
     background-color: #fff;
     padding-top: 0;
-    overflow: auto;
     border-top: 2px solid #edf4f9;
+    overflow: hidden;
 }

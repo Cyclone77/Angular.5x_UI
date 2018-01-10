@@ -13,6 +13,8 @@ import { ComponentlayoutModule } from './../components/componentlayout.module';
 
 // 功能组件
 import { AdminComponent } from './admin.component';
+import { GAjaxService } from '../services/g-ajax.service';
+import { UserOption } from '../classes/user-login';
 
 const adminRoutes: Routes = [
   {
@@ -55,6 +57,10 @@ const adminRoutes: Routes = [
     // MenuComponent,
     // HeaderComponent
     AdminComponent
+  ],
+  providers: [
+    GAjaxService,
+    UserOption
   ]
 })
 export class AdminModule { }

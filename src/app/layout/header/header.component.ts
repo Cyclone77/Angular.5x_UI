@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
+// import { UserService } from './../../services/user.service';
+import { Json } from '../../classes/json';
+import { GAjaxService } from '../../services/g-ajax.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -24,8 +28,11 @@ export class HeaderComponent implements OnInit {
     label: '建议反馈'
   }];
 
+  loginOutUrl = '/api/Core/UserLogon/Logout';
   constructor(
-    private router: Router
+    private router: Router,
+    private http: GAjaxService
+    // private user: UserService
   ) { }
 
   ngOnInit() {
@@ -34,8 +41,16 @@ export class HeaderComponent implements OnInit {
   selectitem(e) {
     switch (e.value) {
       case 'quit':
-        this.router.navigate(['/login']);
+        this.loginOut();
         break;
     }
+  }
+
+  loginOut() {
+    this.http.post(this.loginOutUrl).then((json: Json) => {
+      if (json.IsSucceed) {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

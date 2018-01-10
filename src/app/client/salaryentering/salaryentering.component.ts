@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
 
 @Component({
-  selector: 'app-salaryentering',
-  templateUrl: './salaryentering.component.html',
-  styleUrls: ['./salaryentering.component.css']
+  selector: 'app-salaryEntering',
+  templateUrl: './salaryEntering.component.html',
+  styleUrls: ['./salaryEntering.component.css']
 })
-export class SalaryenteringComponent implements OnInit {
+export class SalaryEnteringComponent implements OnInit {
 
   treeData: TreeNode[];
   tblData: any[];

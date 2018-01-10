@@ -2,7 +2,7 @@ import { Component, OnInit, ContentChild } from '@angular/core';
 import { GAjaxService } from './../../services/g-ajax.service';
 import { Json } from '../../classes/json';
 import { Message } from 'primeng/components/common/api';
-import { SalarypostService } from './salarypost.service';
+import { SalaryPostService } from './salaryPost.service';
 
 @Component({
   selector: 'app-salarypost',
@@ -10,7 +10,7 @@ import { SalarypostService } from './salarypost.service';
   styleUrls: ['./salarypost.component.css']
 })
 
-export class SalarypostComponent implements OnInit {
+export class SalaryPostComponent implements OnInit {
 
   //@ContentChild('divTable') divTbl: ElementRef;
 
@@ -56,7 +56,7 @@ export class SalarypostComponent implements OnInit {
   tableData: any[] = [];
   constructor(
     private http: GAjaxService,
-    private request: SalarypostService
+    private request: SalaryPostService
   ) { }
 
   ngOnInit() {
@@ -147,8 +147,8 @@ export class SalarypostComponent implements OnInit {
     let Data = {};
     Data[field] = val;
     this.request.updateField({
-      Key_ID: data.KEY_ID,
-      Disp_Order: data.DISP_ORDER,
+      KEY_ID: data.KEY_ID,
+      DATA_ROW: data.DATA_ROW,
       SetID: 'STANDARD',
       Data: Data
     }).then((json: Json) => {

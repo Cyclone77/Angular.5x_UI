@@ -15,11 +15,11 @@ import { UserService } from './../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+
   constructor(
-    private router: Router,
     private user: UserService,
-    private message: ElMessageService,
-    private usrData: UserLogin
+    private router: Router,
+    public usrData: UserLogin
   ) { }
 
   ngOnInit() {

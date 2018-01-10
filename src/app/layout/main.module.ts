@@ -11,6 +11,8 @@ import { ElModule } from 'element-angular';
 import { MainComponent } from './main.component';
 
 import { ComponentlayoutModule } from './../components/componentlayout.module';
+import { GAjaxService } from '../services/g-ajax.service';
+import { UserOption } from '../classes/user-login';
 
 // 具体路由
 // 1.如果把组件当作功能界面使用，（子路由）不能使用其他组件
@@ -34,12 +36,12 @@ const mainRoutes: Routes = [
         loadChildren: 'app/client/index/index.module#IndexModule'
       },
       {
-        path: 'salaryentering',
-        loadChildren: 'app/client/salaryentering/salaryentering.module#SalaryenteringModule'
+        path: 'salaryEntering',
+        loadChildren: 'app/client/salaryEntering/salaryEntering.module#SalaryEnteringModule'
       },
       {
-        path: 'salarypost',
-        loadChildren: 'app/client/salarypost/salarypost.module#SalarypostModule'
+        path: 'salaryPost',
+        loadChildren: 'app/client/salaryPost/salaryPost.module#SalaryPostModule'
       },
       {
         path: 'psnedit',
@@ -74,6 +76,10 @@ const mainRoutes: Routes = [
     // LrcontrolComponent,
     // UdcontrolComponent
     // 具体组件
+  ],
+  providers: [
+    UserOption,
+    GAjaxService
   ]
 })
 export class MainModule { }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { GAjaxService } from './../../services/g-ajax.service';
 
 @Injectable()
-export class SalarypostService {
+export class SalaryPostService {
 
   // 请求地址
   getColUrl = '/api/Core/CodeItem/Select';
@@ -26,10 +26,10 @@ export class SalarypostService {
 
   // 获取表格数据
   loadData(type: string) {
-    return this.http.post(this.url(this.getDataUrl) + '&standardType=' + type);
+    return this.http.get(this.getDataUrl + '?standardType=' + type);
   }
 
   updateField(obj: any) {
-    return this.http.post(this.url(this.getDataUrl), obj);
+    return this.http.post(this.updateUrl, obj);
   }
 }

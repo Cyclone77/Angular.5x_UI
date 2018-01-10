@@ -23,6 +23,13 @@ html {
 }
 
 
+/*primeNG 公用样式修改*/
+
+.ui-tree>.ui-tree-container {
+    overflow: inherit;
+}
+
+
 /*滚动条*/
 
 ::-webkit-scrollbar {

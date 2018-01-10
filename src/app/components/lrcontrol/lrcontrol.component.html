@@ -1,16 +1,15 @@
 <div class="gl-layout">
     <ng-container *ngIf="leftTmp">
 
-        <div class="gl-left" [ngStyle]="{ 'width.px': leftwidth }">
+        <div class="gl-left" [ngStyle]="{ 'width.px': leftwidth, 'margin-right.px': -leftwidth }">
             <ng-template [ngTemplateOutlet]="leftTmp" [ngTemplateOutletContext]="{ psnData: { name : '张三' } }"></ng-template>
         </div>
 
     </ng-container>
     <div class="gl-area">
-
         <ng-container *ngIf="rightTmp">
-            <div class="gl-content">
-                <ng-template [ngTemplateOutlet]="rightTmp"></ng-template>
+            <div class="gl-carrier" [ngStyle]="{ 'margin-left.px': leftwidth }">
+                <ng-template [ngTemplateOutlet]=" rightTmp "></ng-template>
             </div>
         </ng-container>
 
