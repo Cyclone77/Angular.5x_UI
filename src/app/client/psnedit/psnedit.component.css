@@ -3,6 +3,10 @@
     border-bottom: 1px solid #EFF2F7;
 }
 
+.collective {
+    padding: 10px 20px;
+}
+
 .treeview {
     overflow: auto;
     position: absolute;

@@ -15,7 +15,8 @@ import { EventBusService } from './../../../services/event-bus.service';
 @Component({
   selector: 'app-organ-option',
   templateUrl: './organ-option.component.html',
-  styleUrls: ['./organ-option.component.css']
+  styleUrls: ['./organ-option.component.css'],
+  providers: [MessageService]
 })
 export class OrganOptionComponent implements OnInit {
 
@@ -23,14 +24,14 @@ export class OrganOptionComponent implements OnInit {
   validateForm: FormGroup;
   selectNode: TreeNode;
   isAdd = false;
-  msgs: Message[] = [];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
     private request: UnitdendrogramService,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private messageService: MessageService
   ) { }
 
   initB03() {
@@ -105,16 +106,16 @@ export class OrganOptionComponent implements OnInit {
     };
     this.request.setB03Data(data, this.isAdd).then((json: Json) => {
       if (json.IsSucceed) {
-        this.showMsg('保存成功！');
+        this.showMsg('保存成功！', 'success');
       } else {
-        this.showMsg(json.Err);
+        this.showMsg(json.Err, 'error');
       }
     }, err => {
-      this.showMsg('保存数据时发生异常！');
+      this.showMsg('保存数据时发生异常！', 'warn');
     });
   }
 
-  showMsg(msg: string) {
-    this.msgs.push({severity: 'error', summary: '系统消息', detail: msg });
+  showMsg(msg: string, type: string) {
+    this.messageService.add({severity: type, summary: '系统消息', detail: msg });
   }
 }
