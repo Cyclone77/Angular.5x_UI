@@ -36,6 +36,6 @@ export class LoginComponent implements OnInit {
     this.user.login(this.usrData).then(() => {
       this.router.navigate(['/client']);
     });
-    // this.router.navigate(['/client']);
+    this.router.navigate(['/client']);
   }
 }

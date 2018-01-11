@@ -14,10 +14,10 @@ const appRoutes: Routes = [
     path: 'client',
     loadChildren: 'app/layout/main.module#MainModule'
   },
-  {
-    path: 'admin',
-    loadChildren: 'app/admin/admin.module#AdminModule'
-  },
+  // {
+  //   path: 'admin',
+  //   loadChildren: 'app/admin/admin.module#AdminModule'
+  // },
   { path: '**', component: Page404Component }
 ];
 

@@ -49,12 +49,24 @@ const mainRoutes: Routes = [
         loadChildren: 'app/client/psnedit/psnedit.module#PsneditModule'
       },
       {
-        path: 'module-manage',
+        path: 'admin/module-manage',
         loadChildren: 'app/admin/module-manage/module-manage.module#ModuleManageModule'
       },
       {
-        path: 'useraccount-manage',
-        loadChildren: 'app/admin/useraccount/useraccount-manage/useraccount-manage.module#UseraccountManageModule'
+        path: 'admin/authorization',
+        loadChildren: 'app/admin/authorization/authorization.module#AuthorizationModule'
+      },
+      {
+        path: 'admin/useraccount',
+        loadChildren: 'app/admin/useraccount/useraccount.module#UseraccountModule'
+      },
+      {
+        path: 'admin/role',
+        loadChildren: 'app/admin/role/role.module#RoleModule'
+      },
+      {
+        path: 'admin/unitdendrogram',
+        loadChildren: 'app/admin/unitdendrogram/unitdendrogram.module#UnitdendrogramModule'
       }
     ]
   }
