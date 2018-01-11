@@ -51,6 +51,10 @@ const mainRoutes: Routes = [
       {
         path: 'module-manage',
         loadChildren: 'app/admin/module-manage/module-manage.module#ModuleManageModule'
+      },
+      {
+        path: 'useraccount-manage',
+        loadChildren: 'app/admin/useraccount/useraccount-manage/useraccount-manage.module#UseraccountManageModule'
       }
     ]
   }

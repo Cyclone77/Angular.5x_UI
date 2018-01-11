@@ -12,7 +12,7 @@ import { Json } from '../../classes/json';
 })
 export class ModuleManageComponent implements OnInit {
 
-  url = 'http://192.168.0.50:8080/api/Core/Module_Select';
+  url = './api/Core/Module/Module_Select';
 
   tableData: any[] = [];
   constructor(

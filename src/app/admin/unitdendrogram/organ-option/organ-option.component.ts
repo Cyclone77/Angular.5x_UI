@@ -33,7 +33,7 @@ export class OrganOptionComponent implements OnInit {
     private eventBus: EventBusService
   ) { }
 
-  ngOnInit() {
+  initB03() {
     this.validateForm = this.formBuilder.group({
       B0301: [ '' ],
       B0302: [ '' ],
@@ -59,11 +59,17 @@ export class OrganOptionComponent implements OnInit {
       IS_LAST_ROW: [''],
       KEY_ID: ['']
     });
+  }
+
+  ngOnInit() {
+    this.initB03();
     this.selectNode = this.request.SelectNode;
     this.eventBus.on('SelectNode', (data) => {
       this.selectNode = data;
+      this.initB03();
       this.loadB03Data();
     });
+
     this.loadB03Data();
   }
 
@@ -72,31 +78,36 @@ export class OrganOptionComponent implements OnInit {
      this.unitname = this.selectNode.label;
    }
     const data: HttpDataType = {
-      KEY_ID: this.selectNode ? this.selectNode.data['GROUP_ID'] : '',
+      KEY_ID: this.selectNode ? this.selectNode.data['UNIT_ID'] : '-1',
       DATA_ROW: 1,
       SetID: 'B03',
       ModuleId: 'M00002',
-      Data: this.validateForm.value,
-      PageIndex: -1,
-      PageSize: -1
+      Data: this.validateForm.value
     };
     this.request.getB03Data(data).then((json: Json) => {
-      if (json.IsSucceed && !json.Data) {
+      if (json.IsSucceed && !json.ListData) {
         this.isAdd = true;
       } else
-      if (json.IsSucceed && json.Data) {
-        this.validateForm = this.formBuilder.group(json.Data);
+      if (json.IsSucceed && json.ListData) {
+        this.validateForm = this.formBuilder.group(json.ListData[0]);
         // this.validateForm.value = json.Data;
       }
     });
   }
 
   saveB03Data() {
-    this.request.setB03Data(this.validateForm.value, this.isAdd).then((json: Json) => {
+    const data: HttpDataType = {
+      KEY_ID: this.selectNode ? this.selectNode.data['UNIT_ID'] : '',
+      DATA_ROW: 1,
+      SetID: 'B03',
+      ModuleId: 'M00002',
+      Data: this.validateForm.value
+    };
+    this.request.setB03Data(data, this.isAdd).then((json: Json) => {
       if (json.IsSucceed) {
         this.showMsg('保存成功！');
       } else {
-        this.showMsg('保存失败！');
+        this.showMsg(json.Err);
       }
     }, err => {
       this.showMsg('保存数据时发生异常！');

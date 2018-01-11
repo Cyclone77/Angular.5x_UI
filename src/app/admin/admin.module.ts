@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 // Element UI依赖
-// import { ElModule } from 'element-angular';
+import { ElModule } from 'element-angular';
 
 // 布局组件
 import { ComponentsModule } from './../components/components.module';
@@ -31,8 +31,8 @@ const adminRoutes: Routes = [
         loadChildren: './authorization/authorization.module#AuthorizationModule'
       },
       {
-        path: 'user',
-        loadChildren: './user/user.module#UserModule'
+        path: 'useraccount',
+        loadChildren: './useraccount/useraccount.module#UseraccountModule'
       },
       {
         path: 'role',

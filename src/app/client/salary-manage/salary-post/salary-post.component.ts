@@ -17,6 +17,8 @@ export class SalaryPostComponent implements OnInit {
   // 常量
   moduleTitle = '薪级工资标准表';
 
+  ModuleId = 'M00001';
+
   // 请求地址
   // getColUrl = '/api/Core/CodeItem/Select?moduleId=M00001&codeId=SDXJ';
   // getDataUrl = '/api/M00001/Standard/SelectBy_Type';
@@ -149,6 +151,7 @@ export class SalaryPostComponent implements OnInit {
     this.request.updateField({
       KEY_ID: data.KEY_ID,
       DATA_ROW: data.DATA_ROW,
+      ModuleId: this.ModuleId,
       SetID: 'STANDARD',
       Data: Data
     }).then((json: Json) => {

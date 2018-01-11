@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, forwardRef, Inject } from '@angular/core';
 import { TreeModule, TreeNode, Tree } from 'primeng/primeng';
 
+import { MenuItem } from 'primeng/primeng';
+import { PsneditService } from './psnedit.service';
+import { Json } from '../../classes/json';
 
 @Component({
   selector: 'app-psnedit',
@@ -9,38 +12,47 @@ import { TreeModule, TreeNode, Tree } from 'primeng/primeng';
 })
 export class PsneditComponent implements OnInit {
 
+  items: MenuItem[];
   psnStyle = {
     'width': '260px'
   };
   treeData: TreeNode[];
   selectedNode: any;
+  selectedValues: string[] = [];
 
   @ViewChild('expandingTree') expandingTree: Tree;
-  constructor() {}
+  constructor(
+    private request: PsneditService
+  ) {}
 
   ngOnInit() {
-    this.treeData = [{
-      "label": "Documents",
-      "data": "Documents Folder",
-      "expandedIcon": "fa-folder-open",
-      "collapsedIcon": "fa-folder",
-      "children": [{
-              "label": "Work",
-              "data": "Work Folder",
-              "expandedIcon": "fa-folder-open",
-              "collapsedIcon": "fa-folder",
-              "children": [{"label": "Expenses.doc", "icon": "fa-file-word-o", "data": "Expenses Document"}, {"label": "Resume.doc", "icon": "fa-file-word-o", "data": "Resume Document"}]
-          },
-          {
-              "label": "Home",
-              "data": "Home Folder",
-              "expandedIcon": "fa-folder-open",
-              "collapsedIcon": "fa-folder",
-              "children": [{"label": "Invoices.txt", "icon": "fa-file-word-o", "data": "Invoices for this month"}]
-          }]
-    }];
+    this.items = [
+      {label: '在职人员库', icon: 'fa-bar-chart'},
+      {label: '离退人员', icon: 'fa-calendar'},
+      {label: '借工人员', icon: 'fa-book'}
+    ];
+    this.nodeExpand();
+  }
 
-    // this.expandingTree.isSelected(this.treeData[0]);
+  nodeExpand(event?) {
+    this.request.getUnitTree(event && event.node.data['ITEM_ID']).then((json: Json) => {
+      // tslint:disable-next-line:prefer-const
+      let nodes: TreeNode[] = [];
+      json.ListData.forEach(item => {
+        nodes.push({
+          label: item['DisplayChapterName'],
+          data: item,
+          expandedIcon: 'fa-folder-open',
+          collapsedIcon: 'fa-folder',
+          leaf: !item['CHILD']
+        });
+      });
+      if (event && event.node.data) {
+        event.node.children = nodes;
+      } else {
+        this.treeData = nodes;
+      }
+    });
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

@@ -22,11 +22,33 @@ html {
     overflow: hidden;
 }
 
+label {
+    margin: 0;
+}
+
 
 /*primeNG 公用样式修改*/
 
+
+/*data tree*/
+
 .ui-tree>.ui-tree-container {
     overflow: inherit;
+}
+
+
+/*menu tabmenu*/
+
+.ui-widget-header {
+    border: none;
+}
+
+
+/*input inputgroup*/
+
+.ui-inputgroup .ui-inputtext {
+    padding-left: 5px;
+    padding-top: 5px;
 }
 
 

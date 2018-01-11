@@ -32,16 +32,30 @@
         <i class="fa fa-address-card fa-fw fa-lg"></i>
         <span class="menu-text">授权分组</span>
     </el-menu-item>
-    <el-menu-item index="admin/user">
-        <i class="fa fa-address-book-o fa-fw fa-lg"></i>
-        <span class="menu-text">用户管理</span>
-    </el-menu-item>
+    <el-submenu index="1">
+        <ng-template #title>
+            <i class="fa  fa-key fa-lg"></i>
+            <span class="menu-text">账户管理</span>
+        </ng-template>
+        <el-menu-item index="admin/useraccount/useraccount-manage">
+            <span class="menu-child-stance"></span>
+            <i class="fa fa-users fa-fw fa-lg"></i>
+            <span class="menu-text">账户管理</span>
+        </el-menu-item>
+        <el-menu-item index="admin/useraccount/usermodule-manage">
+            <span class="menu-child-stance"></span>
+            <i class="fa fa-venus-mars fa-fw fa-lg"></i>
+            <span class="menu-text">账户模块</span>
+        </el-menu-item>
+    </el-submenu>
+
+
     <el-menu-item index="admin/role">
         <i class="fa fa-drivers-license-o fa-fw fa-lg"></i>
         <span class="menu-text">角色管理</span>
     </el-menu-item>
     <el-menu-item index="admin/unitdendrogram">
         <i class="fa fa-university fa-fw fa-lg"></i>
-        <span class="menu-text">机构树状图</span>
+        <span class="menu-text">机构管理</span>
     </el-menu-item>
 </el-menu>

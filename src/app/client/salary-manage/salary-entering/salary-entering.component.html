@@ -1,10 +1,14 @@
 <gl-lrcontrol [leftwidth]="260">
     <ng-template let-scope="psnData" #left>
-        <div class="ui-inputgroup">            
-            <input type="text" pInputText placeholder="输出查询内容" >
-            <button pButton type="button" label="查询"></button>        
+        <div class="search">
+            <div class="ui-inputgroup">            
+                <input type="text" pInputText placeholder="输出查询内容" >
+                <button pButton type="button" label="查询"></button>        
+            </div>
         </div>
-        <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)"></p-tree>         
+        <div class="treeview">
+            <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)"></p-tree>     
+        </div>    
     </ng-template>
     <ng-template #right>
         <gl-udcontrol [setTop]="true">
