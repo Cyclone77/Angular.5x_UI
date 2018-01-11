@@ -1,0 +1,25 @@
+<gl-headline [title]="unitname"></gl-headline>
+<div class="gl-content">
+    <div class="formarea">
+        <el-form [formGroup]="validateForm" label-width="160px" size="small">
+            <el-form-item label="新单位名称：">
+                <el-input formControlName="UNIT_NAME"></el-input>
+            </el-form-item>
+            <el-form-item label="修改时间：">
+                <el-date-picker formControlName="UPDATE_DATE">
+                </el-date-picker>
+            </el-form-item>
+            <div [ngStyle]="{ 'margin-left.px': '160' }">
+                <el-button type="primary">确认变更</el-button>
+            </div>
+        </el-form>
+    </div>
+    <gl-headline [title]="'机构更名记录'"></gl-headline>
+    <div class="tblControl">
+        <p-dataTable [value]="tblData" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [style]="{ 'text-align' : 'center' } ">
+            <p-column header="旧单位名称" field="UH001"></p-column>
+            <p-column header="新单位名称" field="UH002"></p-column>
+            <p-column header="修改时间" field="UH003"></p-column>
+        </p-dataTable>
+    </div>
+</div>

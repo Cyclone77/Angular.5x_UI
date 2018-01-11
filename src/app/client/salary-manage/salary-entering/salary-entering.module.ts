@@ -9,6 +9,9 @@ import { ComponentsModule } from './../../../components/components.module';
 // 具体页面组件
 import { SalaryEnteringComponent } from './salary-entering.component';
 
+// 服务
+import { SalaryEntertingService } from './salary-enterting.service';
+
 // primeng UI
 import { TreeModule, DataTableModule, ButtonModule, InputTextModule } from 'primeng/primeng';
 
@@ -30,8 +33,11 @@ const router: Routes = [
     ButtonModule,
     InputTextModule
   ],
+  providers: [
+    SalaryEntertingService
+  ],
   declarations: [
-    SalaryEnteringComponent,
+    SalaryEnteringComponent
     // UdcontrolComponent
   ]
 })

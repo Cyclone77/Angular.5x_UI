@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 // import { UserService } from './../../services/user.service';
 import { Json } from '../../classes/json';
 import { GAjaxService } from '../../services/g-ajax.service';
+import { UserService } from '../../services/user.service';
+import { UserOption } from '../../classes/user-login';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +14,8 @@ import { GAjaxService } from '../../services/g-ajax.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
+
+  userData: UserOption;
 
   data: any[] = [{
     value: 'edit',
@@ -31,11 +35,22 @@ export class HeaderComponent implements OnInit {
   loginOutUrl = '/api/Core/UserLogon/Logout';
   constructor(
     private router: Router,
-    private http: GAjaxService
-    // private user: UserService
+    private http: GAjaxService,
+    private user: UserService
   ) { }
 
   ngOnInit() {
+    this.getUserData();
+  }
+
+  /**
+   *
+   *通过sessionStorage获取用户登录信息
+   * @memberof HeaderComponent
+   */
+  getUserData() {
+    const data = JSON.parse(sessionStorage.getItem('GLPROGECT_001'));
+    this.userData = data;
   }
 
   selectitem(e) {
@@ -47,10 +62,8 @@ export class HeaderComponent implements OnInit {
   }
 
   loginOut() {
-    this.http.post(this.loginOutUrl).then((json: Json) => {
-      if (json.IsSucceed) {
+    this.user.logout().then((json: Json) => {
         this.router.navigate(['/login']);
-      }
     });
   }
 }

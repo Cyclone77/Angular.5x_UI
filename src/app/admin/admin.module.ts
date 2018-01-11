@@ -15,6 +15,7 @@ import { ComponentlayoutModule } from './../components/componentlayout.module';
 import { AdminComponent } from './admin.component';
 import { GAjaxService } from '../services/g-ajax.service';
 import { UserOption } from '../classes/user-login';
+import { UserService } from '../services/user.service';
 
 const adminRoutes: Routes = [
   {
@@ -60,7 +61,8 @@ const adminRoutes: Routes = [
   ],
   providers: [
     GAjaxService,
-    UserOption
+    UserOption,
+    UserService
   ]
 })
 export class AdminModule { }

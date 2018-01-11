@@ -5,8 +5,16 @@ export class UserLogin {
 
 export class UserOption {
     LoginState: boolean;
+    Authorization: string;
     Access_token: string;
     SessionID: string;
+    UserID: string;
     UserAccount: string;
-    Authorization: string;
+    UserName: string;
+    LogonTime: string;
+    ActiveTime: string;
+    OrgID: number;
+    UnitID: string;
+    UnitName: string;
+    UserRoleID: any;
 }

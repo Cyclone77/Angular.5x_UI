@@ -12,15 +12,15 @@ import { SalaryPostService } from './salary-post.service';
 
 export class SalaryPostComponent implements OnInit {
 
-  //@ContentChild('divTable') divTbl: ElementRef;
+  // @ContentChild('divTable') divTbl: ElementRef;
 
   // 常量
   moduleTitle = '薪级工资标准表';
 
   // 请求地址
-  //getColUrl = '/api/Core/CodeItem/Select?moduleId=M00001&codeId=SDXJ';
-  //getDataUrl = '/api/M00001/Standard/SelectBy_Type';
-  //updateUrl = '/api/M00001/Standard/UpdateBy_Salary';
+  // getColUrl = '/api/Core/CodeItem/Select?moduleId=M00001&codeId=SDXJ';
+  // getDataUrl = '/api/M00001/Standard/SelectBy_Type';
+  // updateUrl = '/api/M00001/Standard/UpdateBy_Salary';
 
   // 表格的编辑模式
   editMode = false;
@@ -64,7 +64,7 @@ export class SalaryPostComponent implements OnInit {
       // tslint:disable-next-line:curly
       if (!json.IsSucceed) return alert(json.Err);
        for (let i = 0; i < json.ListData.length; i++) {
-         let item = json.ListData[i];
+        const item = json.ListData[i];
          this.cols.push({field: 'SALARY' + item.ID, header: item.Name});
        }
        this.loadData();
@@ -111,7 +111,7 @@ export class SalaryPostComponent implements OnInit {
 
   // 输出表格
   downExcel() {
-    //const $divEl: HTMLElement = <HTMLElement>this.divTbl.nativeElement;
+    // const $divEl: HTMLElement = <HTMLElement>this.divTbl.nativeElement;
   }
 
   // 改变编辑模式
@@ -121,11 +121,11 @@ export class SalaryPostComponent implements OnInit {
 
   // 编辑单元格
   editCell(event) {
-    let value = event.data[event.column.field];
+    const value = event.data[event.column.field];
     if (!value) {
       return false;
     }
-    let reg = new RegExp('^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$');
+    const reg = new RegExp('^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$');
     if (!reg.test(value)) {
       return this.showError('保存的值必须为正值数字!');
     }
@@ -144,7 +144,7 @@ export class SalaryPostComponent implements OnInit {
 
   // 更新字段
   updateField(data, field: string, val: number) {
-    let Data = {};
+    const Data = {};
     Data[field] = val;
     this.request.updateField({
       KEY_ID: data.KEY_ID,

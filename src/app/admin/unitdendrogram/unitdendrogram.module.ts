@@ -6,8 +6,7 @@ import { ComponentsModule } from './../../components/components.module';
 import { ElModule } from 'element-angular';
 
 import { Routes, RouterModule } from '@angular/router';
-import { AccordionModule } from 'primeng/primeng';
-import { TreeModule } from 'primeng/primeng';
+import { TreeModule, DataTableModule, GrowlModule } from 'primeng/primeng';
 
 // 服务
 import { GAjaxService } from './../../services/g-ajax.service';
@@ -18,6 +17,7 @@ import { UnitdendrogramService } from './unitdendrogram.service';
 import { OrganOptionComponent } from './organ-option/organ-option.component';
 import { LegalRepresetComponent } from './legal-represet/legal-represet.component';
 import { EventBusService } from '../../services/event-bus.service';
+import { UnitRenameComponent } from './unit-rename/unit-rename.component';
 
 const router: Routes = [
   {
@@ -26,7 +26,8 @@ const router: Routes = [
     children: [
       { path: '', redirectTo: 'organ-option', pathMatch: 'full' },
       { path: 'organ-option', component: OrganOptionComponent },
-      { path: 'legal-represet', component: LegalRepresetComponent }
+      { path: 'legal-represet', component: LegalRepresetComponent },
+      { path: 'unit-rename', component: UnitRenameComponent }
     ]
   }
 ];
@@ -35,16 +36,17 @@ const router: Routes = [
   imports: [
     CommonModule,
     ComponentsModule,
-    AccordionModule,
     RouterModule.forChild(router),
     ElModule.forRoot(),
     TreeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTableModule,
+    GrowlModule
   ],
   providers: [
     UnitdendrogramService,
     GAjaxService,
-    UserService,
+    // UserService,
     UserOption,
     UserLogin,
     EventBusService
@@ -52,7 +54,8 @@ const router: Routes = [
   declarations: [
     UnitdendrogramComponent,
     OrganOptionComponent,
-    LegalRepresetComponent
+    LegalRepresetComponent,
+    UnitRenameComponent
   ]
 })
 export class UnitdendrogramModule { }

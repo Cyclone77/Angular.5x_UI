@@ -13,6 +13,7 @@ import { MainComponent } from './main.component';
 import { ComponentlayoutModule } from './../components/componentlayout.module';
 import { GAjaxService } from '../services/g-ajax.service';
 import { UserOption } from '../classes/user-login';
+import { UserService } from '../services/user.service';
 
 // 具体路由
 // 1.如果把组件当作功能界面使用，（子路由）不能使用其他组件
@@ -79,7 +80,8 @@ const mainRoutes: Routes = [
   ],
   providers: [
     UserOption,
-    GAjaxService
+    GAjaxService,
+    UserService
   ]
 })
 export class MainModule { }

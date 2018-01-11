@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { TreeNode } from 'primeng/primeng';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { Message } from 'primeng/components/common/api';
 
 import { UnitdendrogramService } from './../unitdendrogram.service';
 import { Json } from '../../../classes/json';
@@ -17,12 +19,17 @@ import { EventBusService } from './../../../services/event-bus.service';
 })
 export class OrganOptionComponent implements OnInit {
 
+  unitname = '未选择单位';
   validateForm: FormGroup;
+  selectNode: TreeNode;
+  isAdd = false;
+  msgs: Message[] = [];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private request: UnitdendrogramService,
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+    private request: UnitdendrogramService,
     private eventBus: EventBusService
   ) { }
 
@@ -52,22 +59,51 @@ export class OrganOptionComponent implements OnInit {
       IS_LAST_ROW: [''],
       KEY_ID: ['']
     });
-
+    this.selectNode = this.request.SelectNode;
     this.eventBus.on('SelectNode', (data) => {
-      console.log(data);
+      this.selectNode = data;
+      this.loadB03Data();
     });
     this.loadB03Data();
   }
 
   loadB03Data() {
+   if (this.selectNode) {
+     this.unitname = this.selectNode.label;
+   }
     const data: HttpDataType = {
-      KEY_ID: this.request.SelectNode.data[''],
+      KEY_ID: this.selectNode ? this.selectNode.data['GROUP_ID'] : '',
       DATA_ROW: 1,
-      SetID: '',
-      ModuleId: 'M00002'
+      SetID: 'B03',
+      ModuleId: 'M00002',
+      Data: this.validateForm.value,
+      PageIndex: -1,
+      PageSize: -1
     };
     this.request.getB03Data(data).then((json: Json) => {
-
+      if (json.IsSucceed && !json.Data) {
+        this.isAdd = true;
+      } else
+      if (json.IsSucceed && json.Data) {
+        this.validateForm = this.formBuilder.group(json.Data);
+        // this.validateForm.value = json.Data;
+      }
     });
+  }
+
+  saveB03Data() {
+    this.request.setB03Data(this.validateForm.value, this.isAdd).then((json: Json) => {
+      if (json.IsSucceed) {
+        this.showMsg('保存成功！');
+      } else {
+        this.showMsg('保存失败！');
+      }
+    }, err => {
+      this.showMsg('保存数据时发生异常！');
+    });
+  }
+
+  showMsg(msg: string) {
+    this.msgs.push({severity: 'error', summary: '系统消息', detail: msg });
   }
 }

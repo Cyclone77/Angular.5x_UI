@@ -1,0 +1,13 @@
+.gl-content {
+    padding: 25px;
+    overflow: auto;
+    height: 100%;
+}
+
+.formarea {
+    width: 450px;
+}
+
+.tblControl {
+    padding-top: 20px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -15,6 +15,13 @@ import { UserService } from './../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+  // 监听事件
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(e) {
+    if (e.keyCode === 13) {
+      this.login();
+    }
+  }
 
   constructor(
     private user: UserService,
@@ -30,12 +37,5 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/client']);
     });
     // this.router.navigate(['/client']);
-  }
-
-  // 密码框回车事件
-  keyUp(e) {
-    if (e.keyCode === 13) {
-      this.login();
-    }
   }
 }

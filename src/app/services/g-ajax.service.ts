@@ -16,7 +16,11 @@ export class GAjaxService {
   // 构建header
   buildHeader(header) {
     this.userOpt = <UserOption>JSON.parse(sessionStorage.getItem('GLPROGECT_001')) || {} as UserOption;
-    const headerJSON = Object.assign(this.userOpt,  Object.assign(this.myHeaderJSON, header));
+    const headerJSON = Object.assign(
+      {
+        'Authorization': this.userOpt.Authorization,
+         'SessionID': this.userOpt.SessionID
+      }, Object.assign(this.myHeaderJSON, header));
     const httpHead = { headers: new HttpHeaders(headerJSON) };
     return httpHead;
   }

@@ -4,7 +4,7 @@
             <input type="text" pInputText placeholder="输出查询内容" >
             <button pButton type="button" label="查询"></button>        
         </div>
-        <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode"(onNodeSelect)="nodeSelect($event)" [style]="{ 'border': 'none' }"></p-tree>         
+        <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)"></p-tree>         
     </ng-template>
     <ng-template #right>
         <gl-udcontrol [setTop]="true">

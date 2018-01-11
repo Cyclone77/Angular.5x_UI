@@ -5,6 +5,7 @@ export class EventBusService {
 
   private callback: EventEmitter<any>;
   private subscriberObj: any;
+  private symbolArr = [];
   public constructor() {
     this.callback = new EventEmitter();
     this.subscriberObj = {};

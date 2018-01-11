@@ -13,7 +13,13 @@ export class UnitdendrogramService {
   public SelectNode: TreeNode;
 
   // 公用获得表数据
-  Dynamic_Select = 'api/Core/Dynamic/Select';
+  Dynamic_Select = '/api/Core/Dynamic/Select';
+
+  // 公用更新表数据
+  Dynamic_Update = '/api/Core/Dynamic/Update';
+
+  // 公用表插入数据
+  Dynamic_Insert = '/api/Core/Dynamic/Insert';
 
   // 获得机构树
   OrgTree_Select_ByParent = '/api/M00002/OrgTree/Select_ByParent';
@@ -36,5 +42,10 @@ export class UnitdendrogramService {
   // 获得B03数据
   getB03Data(option: HttpDataType) {
     return this.http.post(this.url(this.Dynamic_Select), option);
+  }
+
+  // 更新B03数据
+  setB03Data(option, isAdd: boolean) {
+    return this.http.post(this.url(isAdd ? this.Dynamic_Insert : this.Dynamic_Update), option);
   }
 }
