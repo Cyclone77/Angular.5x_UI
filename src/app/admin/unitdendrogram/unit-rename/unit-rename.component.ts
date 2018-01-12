@@ -16,7 +16,7 @@ import { EventBusService } from '../../../services/event-bus.service';
 })
 export class UnitRenameComponent implements OnInit {
 
-  unitname = '未选择单位';
+  unitname = '机构更名';
   validateForm: FormGroup;
   selectNode: TreeNode;
 

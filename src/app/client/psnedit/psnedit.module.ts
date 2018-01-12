@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PsneditComponent } from './psnedit.component';
 import { FormsModule } from '@angular/forms';
 import {
-  TabMenuModule,
+  TabViewModule,
   InputTextModule,
   ButtonModule,
   CheckboxModule,
@@ -32,7 +32,7 @@ const router: Routes = [
     ElModule.forRoot(),
     // AccordionModule,
     TreeModule,
-    TabMenuModule,
+    TabViewModule,
     ButtonModule,
     InputTextModule,
     CheckboxModule,

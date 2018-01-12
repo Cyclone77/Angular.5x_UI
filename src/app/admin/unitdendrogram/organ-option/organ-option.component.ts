@@ -20,7 +20,7 @@ import { EventBusService } from './../../../services/event-bus.service';
 })
 export class OrganOptionComponent implements OnInit {
 
-  unitname = '未选择单位';
+  unitname = '机构信息';
   validateForm: FormGroup;
   selectNode: TreeNode;
   isAdd = false;

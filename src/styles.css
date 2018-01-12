@@ -52,6 +52,13 @@ label {
 }
 
 
+/*panel tabview*/
+
+.ui-tabview .ui-tabview-panel {
+    padding: 0;
+}
+
+
 /*滚动条*/
 
 ::-webkit-scrollbar {

@@ -12,7 +12,7 @@ import { Json } from '../../classes/json';
 })
 export class ModuleManageComponent implements OnInit {
 
-  url = './api/Core/Module/Module_Select';
+  Module_Select = './api/Core/Module/Select';
 
   tableData: any[] = [];
   constructor(
@@ -20,12 +20,27 @@ export class ModuleManageComponent implements OnInit {
     private http: GAjaxService
   ) { }
 
+   // 构建url
+ url(action) {
+    // return this.address.ADMIN_AUTHORIZATION + `${action}?GL=${+ new Date()}`;
+    return `${action}?GL=${+ new Date()}`;
+  }
+
+  //#region 授权分组树
+  // 获得模块树
+  getModuleTable() {
+    return this.http.get(this.url(this.Module_Select));
+  }
+
   ngOnInit() {
-    this.http.get(this.url).then((json: Json) => {
+    this.getModuleTable().then((json: Json) => {
       const arr = json.ListData;
       this.tableData = <any[]>arr;
     }, err => {
       console.log(err);
     });
   }
+
+
+
 }

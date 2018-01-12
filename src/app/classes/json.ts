@@ -5,4 +5,5 @@ export class Json {
     ListData: any[];
     IsTimeout?: boolean;
     Entity?: any;
+    SignData?: any;
 }

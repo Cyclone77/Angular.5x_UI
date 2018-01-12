@@ -1,0 +1,30 @@
+﻿<gl-udcontrol>
+    <ng-template #top>
+        <el-button type="primary" size="mini" (click)="addGroup()">新增角色</el-button>
+    </ng-template>
+    <ng-template #bottom>
+        <gl-headline [title]="'角色信息'"></gl-headline>
+        <gl-lrcontrol [leftwidth]="260">
+            <ng-template let-scope="psnData" #left>
+                <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event) "></p-tree>
+            </ng-template>
+            <ng-template #right>
+                <div class="gl-content ">
+                    <el-table [model]="tableData " [scroll-x]="true " center="all ">
+                        <el-table-column model-key="POLICY_ID" label="角色编码 " width="150">
+                        </el-table-column>
+                        <el-table-column model-key="POLICY_NAME" label="角色名称 " width="300">
+                        </el-table-column>
+                        <el-table-column label="操作 " width="240">
+                            <ng-template #slot let-scope="scope ">
+                                <el-button type="text " size="small " (click)="eidtModule(scope) ">编辑</el-button>
+                                <el-button type="text " size="small " (click)="delModule(scope) ">删除</el-button>
+                            </ng-template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </ng-template>
+        </gl-lrcontrol>
+    </ng-template>
+</gl-udcontrol>
+

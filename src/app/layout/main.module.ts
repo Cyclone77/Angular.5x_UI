@@ -61,8 +61,8 @@ const mainRoutes: Routes = [
         loadChildren: 'app/admin/useraccount/useraccount.module#UseraccountModule'
       },
       {
-        path: 'admin/role',
-        loadChildren: 'app/admin/role/role.module#RoleModule'
+        path: 'admin/policy',
+        loadChildren: 'app/admin/policy/policy.module#PolicyModule'
       },
       {
         path: 'admin/unitdendrogram',

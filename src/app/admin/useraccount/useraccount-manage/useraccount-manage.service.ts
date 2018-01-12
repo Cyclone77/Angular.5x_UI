@@ -39,6 +39,8 @@ export class UseraccountManageService {
   User_Update = '/api/Core/User/Update';
   //#endregion
 
+  Test_Demo = '/api/Core/SetItem/Select';
+
 
 
   constructor(
@@ -82,6 +84,7 @@ export class UseraccountManageService {
   //#region 用户管理
   // 获得授权分组用户
   getUserTbl(groupId: number = -1) {
+    //return this.http.get(this.url(this.Test_Demo) + `&moduleId=M00001&setId=SALARY`);
     return this.http.get(this.url(this.User_GroupUser) + `&groupId=${groupId}`);
   }
 

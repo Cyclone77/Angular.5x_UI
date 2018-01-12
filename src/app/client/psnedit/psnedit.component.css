@@ -4,7 +4,7 @@
 }
 
 .collective {
-    padding: 10px 20px;
+    padding: 10px;
 }
 
 .treeview {
@@ -15,4 +15,31 @@
     left: 0;
     right: 0;
     margin: auto;
+}
+
+
+/*简历表格*/
+
+.psntbl {
+    height: 100%;
+    overflow: auto;
+}
+
+.photo {
+    width: 116px;
+    height: 130px;
+}
+
+.footer-paginator {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.photo {
+    float: left;
+}
+
+.resumeMsg {
+    float: left;
 }
