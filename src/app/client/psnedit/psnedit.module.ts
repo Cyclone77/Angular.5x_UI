@@ -17,11 +17,11 @@ import { ComponentsModule } from './../../components/components.module';
 import { TreeModule } from 'primeng/primeng';
 import { PsneditService } from './psnedit.service';
 import { ElModule } from 'element-angular';
+import { SubsetListComponent } from './subset-list/subset-list.component';
+
 const router: Routes = [
-  {
-    path: '',
-    component: PsneditComponent
-  }
+  { path: '', component: PsneditComponent },
+  { path: 'subset-list', component: SubsetListComponent }
 ];
 
 @NgModule({
@@ -41,6 +41,7 @@ const router: Routes = [
   ],
   declarations: [
     PsneditComponent,
+    SubsetListComponent
     // ComponentsModule
   ],
   providers: [

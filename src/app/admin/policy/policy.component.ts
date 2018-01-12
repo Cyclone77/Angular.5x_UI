@@ -72,7 +72,7 @@ export class PolicyComponent implements OnInit {
 
   delModule(row) {
     const id = row.rowData['POLICY_ID'];
-    this.request.deleteModule(id).then((json: Json) => {
+    this.request.mod_delete(id).then((json: Json) => {
       if (json.IsSucceed) {
         this.tableData = json.ListData;
         this.nodeExpand();

@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, forwardRef, Inject } from '@angular/core';
 import { TreeModule, TreeNode, Tree, LazyLoadEvent } from 'primeng/primeng';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { MenuItem } from 'primeng/primeng';
 import { PsneditService } from './psnedit.service';
@@ -42,7 +43,9 @@ export class PsneditComponent implements OnInit {
 
   @ViewChild('expandingTree') expandingTree: Tree;
   constructor(
-    private request: PsneditService
+    private request: PsneditService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -81,8 +84,9 @@ export class PsneditComponent implements OnInit {
     });
   }
 
-  selectRow(row) {
-    console.log(row);
+selectRow(row) {
+    this.request.KEY_ID = row.KEY_ID;
+    this.router.navigate(['subset-list'], { relativeTo: this.route });
   }
 
   loadCarsLazy(event: LazyLoadEvent) {

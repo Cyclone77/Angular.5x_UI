@@ -4,6 +4,9 @@ import { GAjaxService } from '../../services/g-ajax.service';
 @Injectable()
 export class PsneditService {
 
+  // 选择人员编码
+  KEY_ID: string;
+
   // 获得机构树
   OrgTree_Select_ByParent = '/api/M00002/OrgTree/Select_ByParent';
 

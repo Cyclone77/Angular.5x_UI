@@ -82,8 +82,8 @@ export class PolicyService {
     return this.http.post(this.url(this.MOD_Insert), validateForm.value);
   }
   // 删除
-  mod_delete(parentId: number = -1) {
-    return this.http.post(this.url(this.MOD_Delete) + `&parentId=${parentId}`);
+  mod_delete(keyId:any) {
+    return this.http.post(this.url(this.MOD_Delete),{"POLICY_ID":keyId});
   }
   // 修改
   mod_update(validateForm: FormGroup) {
