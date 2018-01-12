@@ -2,10 +2,24 @@
     <ng-template #top>
         <el-breadcrumb prevent="true" (next)="handle($event)">
             <el-breadcrumb-item to="index">人员管理</el-breadcrumb-item>
-            <el-breadcrumb-item to="">人员子集</el-breadcrumb-item>
+            <el-breadcrumb-item to="">人员信息</el-breadcrumb-item>
         </el-breadcrumb>
     </ng-template>
     <ng-template #bottom>
-
+        <gl-lrcontrol [leftwidth]="230">
+            <ng-template #left>
+                <div class="gl-south">
+                    <!-- <div class="gl-psnmsg"></div> -->
+                    <div class="gl-west">
+                        <ul class="set-menu">
+                            <li class="item-menu" *ngFor="let setid of setList">
+                                {{ setid.SetName }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #region></ng-template>
+        </gl-lrcontrol>
     </ng-template>
 </gl-udcontrol>

@@ -23,14 +23,20 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const data = {
-      POLICY_NAME: [ '' ]
-    };
-    Object.assign(data, this.request.SelectTblRow);
-    this.validateForm = this.formBuilder.group(data);
-    // console.log(this.request.SelectTblRow);
     if (!this.request.SelectTblRow) {
+      this.validateForm = this.formBuilder.group({
+        POLICY_ID: [''],
+        POLICY_NAME: [ '' ],
+        DESCRIPT: [ '' ]
+      });
       this.router.navigate(['../'],  { relativeTo: this.route });
+    }else{
+      this.validateForm = this.formBuilder.group({
+        POLICY_ID: this.request.SelectTblRow['POLICY_ID'],
+        GROUP_ID: this.request.SelectTblRow['GROUP_ID'],
+        POLICY_NAME: this.request.SelectTblRow['POLICY_NAME'],
+        DESCRIPT: this.request.SelectTblRow['DESCRIPT']
+      });
     }
   }
 
@@ -42,8 +48,8 @@ export class EditComponent implements OnInit {
 
   submit(): void {
     // console.log(this.validateForm.value);
-    this.loading = true;
-    this.saveText = '保存中……';
+    // this.loading = true;
+    // this.saveText = '保存中……';
     this.request.mod_update(this.validateForm).then((json: Json) => {
       if (json.IsSucceed) {
         this.router.navigate(['../'],  { relativeTo: this.route });

@@ -1,0 +1,23 @@
+/*子集菜单*/
+
+.gl-psnmsg {
+    height: 150px
+}
+
+.item-menu {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: rgb(106, 76, 72);
+    padding: 0 20px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color .3s, background-color .3s, color .3s;
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-bottom: 1px solid #efefef;
+}
+
+.item-menu:hover {
+    background-color: rgb(229, 211, 209);
+}

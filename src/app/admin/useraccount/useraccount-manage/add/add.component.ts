@@ -28,6 +28,7 @@ type validateResult = {
 export class AddUseraccountComponent implements OnInit {
   validateForm: FormGroup;
   loading = false;
+  that = this;
   saveText = '保存';
   constructor(
     private router: Router,
@@ -55,13 +56,11 @@ export class AddUseraccountComponent implements OnInit {
     const control: AbstractControl = this.validateForm.controls[item]
     return control.dirty && control.hasError('status') ? control.errors.status : ''
   }
-  
   messageCtrl(item: string): string {
     if (!this.validateForm.controls[item]) return
     const control: AbstractControl = this.validateForm.controls[item]
     return control.dirty && control.hasError('message') ? control.errors.message : ''
   }
-
   private passwordValidator = (control: FormControl): validateResult => {
     if (!control.value) {
       return { status: 'error', message: '密码是必填的' }
@@ -72,9 +71,39 @@ export class AddUseraccountComponent implements OnInit {
     return { status: 'success' }
   }
 
+
+
+  rptstatusCtrl(item: string): string {
+    if (!this.validateForm.controls[item]) return
+    const control: AbstractControl = this.validateForm.controls[item]
+    return control.dirty && control.hasError('status') ? control.errors.status : ''
+  }
+  
+  rptmessageCtrl(item: string): string {
+    if (!this.validateForm.controls[item]) return
+    const control: AbstractControl = this.validateForm.controls[item]
+    return control.dirty && control.hasError('message') ? control.errors.message : ''
+  }
+
+  private rptpasswordValidator = (control: FormControl): validateResult => {
+    //that.validateForm.value
+    if (!control.value) {
+      return { status: 'error', message: '密码是必填的' }
+    }
+    var onepwd = control.parent.get("PASSWORD");
+    if(!!onepwd && onepwd.value != control.value){
+        return { status: 'error', message: '两次密码不一致' };
+    }
+    if (control.value.length < 6) {
+      return { status: 'error', message: '密码长度必须大于 6 位' }
+    }
+    return { status: 'success' }
+  }
+
   ngOnInit(): void {
     this.validateForm = this.formBuilder.group({
       PASSWORD: [ '', [this.passwordValidator] ],
+      PASSWORD1: [ '', [this.rptpasswordValidator] ],
       ISADMIN: [ 0 ],
       USER_NAME:[ '' ],
       USER_ACCOUNT:[''],

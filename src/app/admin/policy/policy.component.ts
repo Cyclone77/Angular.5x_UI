@@ -24,7 +24,7 @@ export class PolicyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.nodeExpand();
+      this.nodeExpand();
   }
 
   nodeExpand(event?) {
@@ -45,8 +45,11 @@ export class PolicyComponent implements OnInit {
       } else {
         this.treeData = nodes;
       }
-      if (nodes.length > 0) {
+      if(!this.request.SelectNode && nodes.length > 0){
         this.request.SelectNode = this.selectedNode = nodes[0];
+        this.loadTbl();
+      }else{
+        this.selectedNode = this.request.SelectNode;
         this.loadTbl();
       }
     });

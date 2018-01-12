@@ -15,9 +15,8 @@ import { Json } from '../../../classes/json';
 export class UseraccountManageComponent implements OnInit {
 
   tableData: any[] = [];
-  selectNode: TreeNode;
+  selectedNode: TreeNode;
   treeData: TreeNode[] = [];
-  selectedNode: any;
 
   constructor(
     private router: Router,
@@ -47,26 +46,29 @@ export class UseraccountManageComponent implements OnInit {
       } else {
         this.treeData = nodes;
       }
+      if (nodes.length > 0) {
+        this.request.SelectNode = this.selectedNode = nodes[0];
+        this.loadTbl();
+      }
     });
   }
 
   nodeSelect(event) {
-    this.request.SelectNode = this.selectNode = event.node;
+    this.request.SelectNode = this.selectedNode = event.node;
     this.loadTbl();
   }
 
   loadTbl() {
-    this.request.getUserTbl(this.selectNode.data).then((json: Json) => {
+    this.request.getUserTbl(this.selectedNode.data).then((json: Json) => {
       this.tableData = json.ListData;
     });
   }
 
   eidtModule(row) {
     const id = row.rowData['GROUP_ID'];
-    this.request.SelectTblRow = row.rowData;
+    this.request.SelectTblRow = this.tableData[row['index']];
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
-
 
   delModule(row) {
     const id = row.rowData['GROUP_ID'];

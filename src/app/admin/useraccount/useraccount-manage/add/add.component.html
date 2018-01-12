@@ -19,6 +19,9 @@
                 <el-form-item label="账户密码" [required]="true"[status]="statusCtrl('PASSWORD')" [error]="messageCtrl('PASSWORD')">
                     <el-input formControlName="PASSWORD" native-type="password"></el-input>
                 </el-form-item>
+                <el-form-item label="确认密码" [required]="true"[status]="rptstatusCtrl('PASSWORD1')" [error]="rptmessageCtrl('PASSWORD1')">
+                    <el-input formControlName="PASSWORD1" native-type="password"></el-input>
+                </el-form-item>
                 <el-form-item label="关联姓名"><el-input formControlName="USER_NAME"></el-input></el-form-item>
                 <el-form-item>
                     <el-button type="primary" (click)="submit()" [disabled]="loading">{{ saveText }}</el-button>

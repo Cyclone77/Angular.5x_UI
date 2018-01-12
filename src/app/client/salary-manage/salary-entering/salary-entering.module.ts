@@ -13,7 +13,7 @@ import { SalaryEnteringComponent } from './salary-entering.component';
 import { SalaryEntertingService } from './salary-enterting.service';
 
 // primeng UI
-import { TreeModule, DataTableModule, ButtonModule, InputTextModule } from 'primeng/primeng';
+import { TreeModule, DataTableModule, ButtonModule, InputTextModule, GrowlModule } from 'primeng/primeng';
 
 // UI 组件
 import { ElModule } from 'element-angular';
@@ -31,7 +31,8 @@ const router: Routes = [
     ElModule.forRoot(),
     DataTableModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    GrowlModule
   ],
   providers: [
     SalaryEntertingService

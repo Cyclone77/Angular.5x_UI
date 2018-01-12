@@ -41,6 +41,8 @@ export class PsneditComponent implements OnInit {
   selectedValues: string[] = [];
   totalRecords: number;
 
+  PClassID = '00001';
+
   @ViewChild('expandingTree') expandingTree: Tree;
   constructor(
     private request: PsneditService,
@@ -50,18 +52,14 @@ export class PsneditComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: '在职人员库', icon: 'fa-bar-chart',
-        items: [
-          { label: 'Undo' },
-          { label: 'Redo' }
-      ], command: (event) => {
-        console.log(event);
+      { label: '在职人员库', icon: 'fa-bar-chart', command: (event) => {
+        this.PClassID = '00001';
       }},
       { label: '离退人员', icon: 'fa-calendar' , command: (event) => {
-        console.log('离退人员!');
+        this.PClassID = '00002';
       }},
       { label: '借工人员', icon: 'fa-book' , command: (event) => {
-        console.log('借工人员!');
+        this.PClassID = '00021';
       }}
     ];
     this.nodeExpand();
@@ -69,14 +67,14 @@ export class PsneditComponent implements OnInit {
   }
 
   loadResumeData(event?: LazyLoadEvent) {
-    const data: HttpDataType = {
-      KEY_ID: this.selectedNode ? this.selectedNode.data['UNIT_ID'] : '',
-      DATA_ROW: 1,
-      SetID: 'A01',
+    const data = {
+      UnitId: this.selectedNode ? this.selectedNode.data['UNIT_ID'] : '',
+      PClassId: this.PClassID,
+      Ascription: this.selectedValues.toString(),
       ModuleId: 'M00003',
-      Data: [],
-      PageSize: event.rows,
-      PageIndex: event.first
+      SetID: 'A01',
+      PageSize: event && event.rows || 10,
+      PageIndex: event && event.first || 1
     };
     this.request.getResume(data).then((json: Json) => {
       this.totalRecords = json.SignData;
@@ -85,7 +83,7 @@ export class PsneditComponent implements OnInit {
   }
 
 selectRow(row) {
-    this.request.KEY_ID = row.KEY_ID;
+    this.request.Person_Data = row;
     this.router.navigate(['subset-list'], { relativeTo: this.route });
   }
 
@@ -125,8 +123,7 @@ selectRow(row) {
   }
 
   nodeSelect(event) {
-    console.log(this.selectedNode);
-    console.log(event);
+    this.loadResumeData();
   }
 
   private expandRecursive(node: TreeNode, isExpand: boolean) {
