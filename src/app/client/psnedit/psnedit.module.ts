@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { PsneditComponent } from './psnedit.component';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +19,7 @@ import { TreeModule } from 'primeng/primeng';
 import { PsneditService } from './psnedit.service';
 import { ElModule } from 'element-angular';
 import { SubsetListComponent } from './subset-list/subset-list.component';
+import { UtilService } from '../../services/util.service';
 
 const router: Routes = [
   { path: '', component: PsneditComponent },
@@ -37,7 +39,8 @@ const router: Routes = [
     InputTextModule,
     CheckboxModule,
     FormsModule,
-    DataTableModule
+    DataTableModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PsneditComponent,
@@ -45,7 +48,8 @@ const router: Routes = [
     // ComponentsModule
   ],
   providers: [
-    PsneditService
+    PsneditService,
+    UtilService
   ]
 })
 export class PsneditModule { }

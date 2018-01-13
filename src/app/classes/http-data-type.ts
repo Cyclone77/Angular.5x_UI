@@ -3,7 +3,7 @@ export class HttpDataType {
   DATA_ROW: number;
   ModuleId: string;
   SetID: string;
-  PageIndex?: number;
+  StartRowIndex?: number;
   PageSize?: number;
   Data?: any;
 }

@@ -12,39 +12,29 @@
         </div>
     </ng-template>
     <ng-template #right>
-        <gl-udcontrol>
-            <ng-template #top>
-                <p-tabView>
-                    <p-tabPanel header="在职人员库" leftIcon="fa-calendar">
-                    </p-tabPanel>
-                    <p-tabPanel header="离退人员" leftIcon="fa-print">
-                    </p-tabPanel>
-                    <p-tabPanel header="借工人员" leftIcon="fa-bell-o">
-                    </p-tabPanel>
-                </p-tabView>
-                <div class="collective">
-                    <p-checkbox name="groupname" value="01" [(ngModel)]="selectedValues" label="全民"></p-checkbox>
-                    <p-checkbox name="groupname" value="02" [(ngModel)]="selectedValues" label="大集体"></p-checkbox>
-                    <p-checkbox name="groupname" value="03" [(ngModel)]="selectedValues" label="小集体"></p-checkbox>
-                </div>
-            </ng-template>
-            <ng-template #bottom>
-                <div class="psntbl">
-                    <!-- [resizableColumns]="true"  -->
-                    <p-dataTable [value]="tblData" [resizableColumns]="true" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20,50]" [style]="{ 'text-align' : 'center' } ">
-                        <p-column [style]="{ 'width': '10%' }">
-                            <ng-template pTemplate="header">
-                                <span>姓名</span>
-                            </ng-template>
-                            <ng-template let-row="rowData" pTemplate="body">
-                                <el-button type="text" size="small" (click)="selectRow(row)">{{row.A0101}}</el-button>
-                            </ng-template>
-                        </p-column>
-                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [style]="{ 'width': col.width + '%' }">
-                        </p-column>
-                    </p-dataTable>
-                </div>
-            </ng-template>
-        </gl-udcontrol>
+        <div class="gl-details">
+            <p-tabView (onChange)="handleChange($event)">
+                <p-tabPanel *ngFor="let code of PClassList" [header]="code.ITEM_NAME">
+                </p-tabPanel>
+            </p-tabView>
+            <div class="collective">
+                <p-checkbox *ngFor="let item of Ascription" name="groupname" [value]="item.ITEM_ID" [ngModel]="selectedAscription" (onChange)="onChangeAscr($event)" [label]="item.ITEM_NAME"></p-checkbox>
+            </div>
+            <div class="psntbl">
+                <!-- [resizableColumns]="true"  -->
+                <p-dataTable [value]="tblData" [resizableColumns]="true" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20,50]" [style]="{ 'text-align' : 'center' } ">
+                    <p-column [style]="{ 'width': '10%' }">
+                        <ng-template pTemplate="header">
+                            <span>姓名</span>
+                        </ng-template>
+                        <ng-template let-row="rowData" pTemplate="body">
+                            <el-button type="text" size="small" (click)="selectRow(row)">{{row.A0101}}</el-button>
+                        </ng-template>
+                    </p-column>
+                    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [style]="{ 'width': col.width + '%' }">
+                    </p-column>
+                </p-dataTable>
+            </div>
+        </div>
     </ng-template>
 </gl-lrcontrol>

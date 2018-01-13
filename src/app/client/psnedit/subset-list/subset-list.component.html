@@ -12,14 +12,28 @@
                     <!-- <div class="gl-psnmsg"></div> -->
                     <div class="gl-west">
                         <ul class="set-menu">
-                            <li class="item-menu" *ngFor="let setid of setList">
-                                {{ setid.SetName }}
+                            <li class="item-menu" *ngFor="let set of setList" (click)="selectSet(set)" [class.is-active]="set.SetID === setdata.SetID">
+                                {{ set.SetName }}
                             </li>
                         </ul>
                     </div>
                 </div>
             </ng-template>
-            <ng-template #region></ng-template>
+            <ng-template #right>
+                <div class="set-main" *ngIf="isMain">
+                    <el-form [formGroup]="validateForm" [inline]="true" label-width="160px" size="small">
+                        <el-form-item *ngFor="let field of selectSetField" [label]="field.ItemName" [required]="true">
+                            <el-input [formControlName]="field.ItemID"></el-input>
+                        </el-form-item>
+                        <div [ngStyle]="{ 'margin-left.px': '160' }">
+                            <el-button type="primary" (click)="saveB03Data()">更新</el-button>
+                        </div>
+                    </el-form>
+                </div>
+                <div class="set-syrypx" *ngIf="!isMain">
+
+                </div>
+            </ng-template>
         </gl-lrcontrol>
     </ng-template>
 </gl-udcontrol>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GAjaxService } from '../../services/g-ajax.service';
+import { UtilService } from '../../services/util.service';
 
 @Injectable()
 export class PsneditService {
@@ -13,8 +14,15 @@ export class PsneditService {
   // 获取人员
   Dynamic_Select = '/api/M00003/A01/GetPersonList';
 
+  // 获得人员库
+  PClassList = '/api/M00003/A01/GetPClassList';
+
+  // 人员归属
+  Ascription = '/api/M00003/A01/GetAscriptionList';
+
   constructor(
-    private http: GAjaxService
+    private http: GAjaxService,
+    private util: UtilService
   ) { }
 
   // 构建url
@@ -31,5 +39,15 @@ export class PsneditService {
   // 获得人员列表
   getResume(data) {
     return this.http.post(this.url(this.Dynamic_Select), data);
+  }
+
+  // 获得人员库
+  getPClassList(data) {
+    return this.http.get(this.url(this.PClassList) + '&' + this.util.toQueryString(data));
+  }
+
+  // 获得人员归属
+  GetAscription(data) {
+    return this.http.get(this.url(this.Ascription) + '&' + this.util.toQueryString(data));
   }
 }

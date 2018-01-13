@@ -13,8 +13,10 @@ import { Message } from 'primeng/components/common/api';
 
 
 export class SalaryEnteringComponent implements OnInit {
-  // 树取数等待框
+  // 树取数等待属性
   loading = false;
+  // 表格取数等待属性
+  tableLoading = false;
   // 选中第一个节点
   selectFirstNode = true;
   // 树结构
@@ -71,9 +73,9 @@ export class SalaryEnteringComponent implements OnInit {
     let unitID;
     if (node && node.data && node.data.ITEM_TYPE === 'N') {
       unitID = node.data.UNIT_ID;
-      this.loading = true;
+      this.tableLoading = true;
       this.request.getTableData(unitID).then((json: Json) => {
-        this.loading = false;
+        this.tableLoading = false;
         if (!json.IsSucceed) {
           return this.showError(json.Err);
         }

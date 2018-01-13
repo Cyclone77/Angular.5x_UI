@@ -33,9 +33,11 @@
             </el-table>
         </div>-->
         <p-growl [(value)]="msgs"></p-growl>
-        <p-dataTable [value]="tableData" [editable]="editMode" [style]="{'text-align':'center'}" [loading]="loading" (onEditComplete)="editCell($event)">
-            <p-column *ngFor="let col of cols,let key=index" [field]="col.field" [header]="col.header" [editable]="key!=0"></p-column>
-        </p-dataTable>
+        <div class="dataTbl">
+            <p-dataTable [value]="tableData" [editable]="editMode" [style]="{'text-align':'center'}" [loading]="loading" (onEditComplete)="editCell($event)">
+                <p-column *ngFor="let col of cols,let key=index" [field]="col.field" [header]="col.header" [editable]="key!=0"></p-column>
+            </p-dataTable>
+        </div>
     </ng-template>
 </gl-udcontrol>
 
