@@ -7,7 +7,16 @@
         </el-breadcrumb>
     </ng-template>
     <ng-template #bottom>
-        <gl-headline [title]="'子集名称'"></gl-headline>
-        <div class="set-child-fields"></div>
+        <gl-headline [title]="setName"></gl-headline>
+        <div class="set-child-fields">
+            <el-form [formGroup]="validateForm" [inline]="true" label-width="240px">
+                <el-form-item *ngFor="let field of selectSetField | sysField" [label]="field.ItemName" [required]="true">
+                    <el-input [formControlName]="field.ItemID"></el-input>
+                </el-form-item>
+                <div [ngStyle]="{ 'margin-left.px': '160' }">
+                    <el-button type="primary" (click)="saveB03Data()">更新</el-button>
+                </div>
+            </el-form>
+        </div>
     </ng-template>
 </gl-udcontrol>

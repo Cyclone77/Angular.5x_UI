@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SubsetListService } from '../subset-list.service';
+import { Json } from '../../../../classes/json';
 
 @Component({
   selector: 'app-edit-child-set',
@@ -9,12 +11,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditChildSetComponent implements OnInit {
 
+  validateForm: FormGroup;
+  SetFields = [];
+  selectSetField = [];
+  setName = '';
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private request: SubsetListService
   ) { }
 
   ngOnInit() {
+    this.validateForm = new FormGroup({});
+    if (!this.request.SelectSet) {
+      this.router.navigate(['../'],  { relativeTo: this.route });
+      return;
+    }
+
+    this.setName = this.request.SelectSet.SetName;
+    this.loadSetField();
   }
 
   handle(path: string): void {
@@ -27,4 +44,26 @@ export class EditChildSetComponent implements OnInit {
         break;
     }
   }
+
+  loadSetField() {
+    this.request.getSetTableField({ moduleId: this.request.SelectSet.ModuleID, setId: this.request.SelectSet.SetID }).then((json: Json) => {
+      if (json.IsSucceed) {
+        this.SetFields = json.ListData;
+        this.forminit();
+      }
+    }, err => {});
+  }
+
+  forminit() {
+    const data = {};
+    const colFields = [];
+    this.SetFields.forEach((item, index) => {
+      if (!item['IsSystemField']) {
+        data[item['ItemID']] = [''];
+      }
+    });
+    this.selectSetField = this.SetFields;
+    this.validateForm = this.formBuilder.group(data);
+  }
+
 }

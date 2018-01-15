@@ -45,6 +45,7 @@ export class PsneditComponent implements OnInit {
   PClassID = '00001';
   PClassList: Array<any>;
   Ascription = [];
+  loading = false;
 
   @ViewChild('expandingTree') expandingTree: Tree;
   constructor(
@@ -97,6 +98,7 @@ export class PsneditComponent implements OnInit {
   }
 
   loadResumeData(event?: LazyLoadEvent) {
+    this.loading = true;
     const data = {
       UnitId: this.selectedNode ? this.selectedNode.data['UNIT_ID'] : '',
       PClassId: this.PClassID,
@@ -109,6 +111,7 @@ export class PsneditComponent implements OnInit {
     this.request.getResume(data).then((json: Json) => {
       this.totalRecords = json.SignData;
       this.tblData = json.ListData;
+      this.loading = false;
     });
   }
 

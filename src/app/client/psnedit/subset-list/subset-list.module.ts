@@ -15,6 +15,7 @@ import { ComponentsModule } from './../../../components/components.module';
 import { SubsetListComponent } from './subset-list.component';
 import { SysFieldPipe } from './sys-field.pipe';
 import { EditChildSetComponent } from './edit-child-set/edit-child-set.component';
+import { SubsetListService } from './subset-list.service';
 
 const router: Routes = [
   { path: '', component: SubsetListComponent },
@@ -35,6 +36,9 @@ const router: Routes = [
     SysFieldPipe,
     SubsetListComponent,
     EditChildSetComponent
+  ],
+  providers: [
+    SubsetListService
   ]
 })
 export class SubsetListModule { }

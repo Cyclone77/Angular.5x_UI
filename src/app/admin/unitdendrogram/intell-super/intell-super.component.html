@@ -1,56 +1,62 @@
-<gl-headline [title]="unitName"></gl-headline>
+<gl-headline title="现任董事\监视情况"></gl-headline>
 <div class="gl-content">
-  <div class="gl-imgInfo">
-    <img src="../../../../assets/sysimgs/imgTemp.jpg" alt="照片模板"/>
-  </div>
-  <div class="gl-textInfo">
-      <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
-          <el-form-item label="董事姓名：">
-              <el-input formControlName="B11A0101"></el-input>
-          </el-form-item>
-          <el-form-item label="性别：">
-              <el-input formControlName="B11A0107"></el-input>
-          </el-form-item>
-      </el-form>
-      <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
-          <el-form-item label="人员归属：">
-              <el-input formControlName="B11Personaff"></el-input>
-          </el-form-item>
-          <el-form-item label="职务：">
-              <el-input formControlName="B11A0215A"></el-input>
-          </el-form-item>
-      </el-form>
-      <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
-          <el-form-item label="身份证号码：">
-              <el-input formControlName="B11AC805"></el-input>
-          </el-form-item>
-          <el-form-item label="任现职时间：">
-              <el-input formControlName="B11A0288"></el-input>
-          </el-form-item>
-      </el-form>
-      <div [ngStyle]="{ 'margin-left.px': '160' }">
-          <el-button type="primary" (click)="saveB11Data()">董事变更</el-button>
-      </div>
-  </div>
+    <div class="gl-imgInfo">
+        <img src="../../../../assets/sysimgs/imgTemp.jpg" alt="照片模板" />
+    </div>
+    <div class="gl-textInfo">
+        <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
+            <el-form-item label="董事姓名：">
+                <el-input formControlName="B11A0101"></el-input>
+            </el-form-item>
+            <el-form-item label="性别：">
+                <el-input formControlName="B11A0107"></el-input>
+            </el-form-item>
+        </el-form>
+        <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
+            <el-form-item label="人员归属：">
+                <el-input formControlName="B11Personaff"></el-input>
+            </el-form-item>
+            <el-form-item label="职务：">
+                <el-input formControlName="B11A0215A"></el-input>
+            </el-form-item>
+        </el-form>
+        <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
+            <el-form-item label="身份证号码：">
+                <el-input formControlName="B11AC805"></el-input>
+            </el-form-item>
+            <el-form-item label="任现职时间：">
+                <el-input formControlName="B11A0288"></el-input>
+            </el-form-item>
+        </el-form>
+        <!-- <el-form [formGroup]="validateForm" [inline]="true" size="samll" label-width="160px">
+            <el-form-item label="操作时间：">
+                <el-input formControlName="B11OperateTime">{{B11OperateTime}}</el-input>
+            </el-form-item>
+        </el-form> -->
+        <div [ngStyle]="{ 'margin-left.px': '160' }">
+            <el-button type="primary" (click)="saveB11Data()">董事变更</el-button>
+        </div>
+    </div>
 </div>
-<gl-headline [title]="unitAlignName"></gl-headline>
+<gl-headline title="历任董事\监事"></gl-headline>
 <div class="psntbl">
     <p-dataTable [value]="tblB11Data" [rows]="15" [paginator]="true" [pageLinks]="10" [rowsPerPageOptions]="[5,15,25,50]" [style]="{ 'text-align' : 'center' } ">
         <p-column header="姓名" field="B11A0101"></p-column>
         <p-column header="性别" field="B11A0107"></p-column>
         <p-column header="人员归属" field="B11Personaff"></p-column>
-        <p-column header="职务" field="B11A0215A"></p-column>
         <p-column header="身份证号码" field="B11AC805"></p-column>
-        <p-column header="现任职时间" field="B11A0288"></p-column>
-        <p-column header="操作时间" field="B11OperateTime"></p-column>
-        <p-column>
+        <p-column header="任现职时间" field="B11A0288"></p-column>
+        <!-- <p-column header="操作时间" field="B11OperateTime"></p-column> -->
+        <!-- <p-column *ngFor="let item of items" [header]="item.header" [field]="item.field" [style]="{ 'width': item.width + '%' }">
+        </p-column> -->
+        <!-- <p-column>
             <ng-template pTemplate="header">
-                <span>操作</span>...
+                <span>操作</span>
             </ng-template>
             <ng-template let-row="rowData" pTemplate="body">
-                <el-button type="text" size="small" (click)="selectRow(row)">编辑</el-button>
+                <el-button type="text" size="small" (click)="selectRow(row)">查看</el-button>
             </ng-template>
-        </p-column>
+        </p-column> -->
     </p-dataTable>
 </div>
 <p-growl [life]="3000"></p-growl>

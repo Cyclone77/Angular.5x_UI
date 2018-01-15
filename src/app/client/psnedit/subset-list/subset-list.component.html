@@ -28,8 +28,24 @@
                     <gl-headline [title]="setdata.SetName"></gl-headline>
                     <div class="set-main-content">
                         <el-form [formGroup]="validateForm" [inline]="true" label-width="200px">
-                            <el-form-item *ngFor="let field of selectSetField | sysField" [label]="field.ItemName" [required]="true">
-                                <el-input [formControlName]="field.ItemID"></el-input>
+                            <el-form-item *ngFor="let field of selectSetField | sysField" [label]="field.ItemName" [required]="false">
+                                <el-date-picker *ngIf="field.ItemType=='DateTime'; else elseBlock" [formControlName]="field.ItemID"></el-date-picker>
+
+                                <ng-template #elseBlock>
+                                    <el-input type="textarea" *ngIf="field.ItemType=='Memo'; else elseBlock" [rows]="3" placeholder="请输入内容" [model]="textarea">
+                                    </el-input>
+
+                                    <ng-template #elseBlock>
+                                        <el-cascader *ngIf="field.ItemType=='Code'; else elseBlock" [options]="getCodeOptions(field)" [change-on-select]="true" (modelChange)="changeHandle($event, field)">
+                                        </el-cascader>
+
+                                        <ng-template #elseBlock>
+                                            <el-input [formControlName]="field.ItemID" [elDisabled]="field.ItemType=='Code'"></el-input>
+                                        </ng-template>
+
+                                    </ng-template>
+
+                                </ng-template>
                             </el-form-item>
                             <div [ngStyle]="{ 'margin-left.px': '160' }">
                                 <el-button type="primary" (click)="saveB03Data()">更新</el-button>
@@ -44,7 +60,7 @@
                             <el-button type="text" (click)="addSetChild()">增加记录</el-button>
                         </ng-template>
                     </gl-headline>
-                    <p-dataTable [value]="tblData" [resizableColumns]="true" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20,50]" [style]="{ 'text-align' : 'center' } ">
+                    <p-dataTable [value]="tblData" [loading]="loading" [resizableColumns]="true" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20,50]" [style]="{ 'text-align' : 'center' } ">
                         <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header">
                         </p-column>
                     </p-dataTable>

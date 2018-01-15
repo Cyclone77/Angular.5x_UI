@@ -12,7 +12,15 @@ import { ElModule } from 'element-angular';
 import { ComponentsModule } from './../../../components/components.module';
 
 // primeng UI
-import {DataTableModule, SharedModule, TreeModule, TreeNode, GrowlModule} from 'primeng/primeng';
+import {
+  DataTableModule,
+  SharedModule,
+  TreeModule,
+  TreeNode,
+  GrowlModule,
+  InputTextModule,
+  InputSwitchModule
+} from 'primeng/primeng';
 
 
 // 引入本模块组件
@@ -40,6 +48,8 @@ const router: Routes = [
     RouterModule.forChild(router),
     ElModule.forRoot(),
     DataTableModule,
+    InputTextModule,
+    InputSwitchModule,
     TreeModule
   ],
   declarations: [

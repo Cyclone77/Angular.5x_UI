@@ -14,7 +14,6 @@ import { UserService } from './../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   // 监听事件
   @HostListener('window:keydown', ['$event'])
   onKeyDown(e) {

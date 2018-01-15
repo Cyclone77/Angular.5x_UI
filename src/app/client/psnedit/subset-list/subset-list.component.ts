@@ -19,9 +19,6 @@ export class ExponentialStrengthPipe implements PipeTransform {
   selector: 'app-subset-list',
   templateUrl: './subset-list.component.html',
   styleUrls: ['./subset-list.component.css'],
-  providers: [
-    SubsetListService
-  ]
 })
 export class SubsetListComponent implements OnInit {
 
@@ -62,7 +59,7 @@ export class SubsetListComponent implements OnInit {
     private route: ActivatedRoute,
     private request: SubsetListService,
     private top_request: PsneditService,
-    @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -135,7 +132,23 @@ export class SubsetListComponent implements OnInit {
   }
 
   addSetChild() {
+    this.request.SelectSet = this.setdata;
     this.router.navigate(['edit-child-set'], { relativeTo: this.route });
   }
 
+  // 获取代码项
+  getCodeOptions(field) {
+    return [];
+  }
+
+  changeHandle(event, field) {
+    this.request.getCodeItemData({
+      moduleId: 'M00003',
+      codeId: field.CodeID
+    }).then((json: Json) => {
+      if (json.IsSucceed) {
+        return json.ListData;
+      }
+    });
+  }
 }

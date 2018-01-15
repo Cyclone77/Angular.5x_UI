@@ -22,7 +22,8 @@
             </div>
             <div class="psntbl">
                 <!-- [resizableColumns]="true"  -->
-                <p-dataTable [value]="tblData" [resizableColumns]="true" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20,50]" [style]="{ 'text-align' : 'center' } ">
+                <p-dataTable [value]="tblData" [loading]="loading" loadingIcon="fa-refresh" [resizableColumns]="true" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20,50]"
+                    [style]="{ 'text-align' : 'center' } ">
                     <p-column [style]="{ 'width': '10%' }">
                         <ng-template pTemplate="header">
                             <span>姓名</span>

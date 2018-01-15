@@ -51,7 +51,7 @@ export class UnitdendrogramService {
   // 更新单位名称
   changeUnitName(option: HttpDataType) {
     console.log(option);
-    return this.http.post(this.url('/api/M00002/B01/ModifyUnitName'), option); 
+    return this.http.post(this.url('/api/M00002/B01/ModifyUnitName'), option);
   }
 
   // 获得B11数据

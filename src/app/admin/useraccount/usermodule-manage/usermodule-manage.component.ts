@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
-import {DataTableModule, TreeModule, TreeNode} from 'primeng/primeng';
+import {TreeNode, InputSwitch} from 'primeng/primeng';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Message } from 'primeng/components/common/api';
@@ -41,7 +41,7 @@ export class UsermoduleManageComponent implements OnInit {
     this.request.getModuleTree(event && event.node.data.keyId).then((json: Json) => {
       // tslint:disable-next-line:prefer-const
       let nodes: TreeNode[] = json.Entity;
-      if (event && event.node.data) {
+      if (event && event.node) {
         event.node.children = nodes;
       } else {
         this.treeData = nodes;
@@ -59,8 +59,9 @@ export class UsermoduleManageComponent implements OnInit {
   }
 
   loadTbl() {
-    this.request.mod_select(this.selectedNode.data).then((json: Json) => {
-      // this.tableData = json.ListData;
+    const keyId = this.selectedNode.data.type === 'T' ? '-5' : this.selectedNode.data.keyId;
+    this.request.mod_select(keyId).then((json: Json) => {
+      this.tableData = json.ListData;
     });
   }
 

@@ -28,6 +28,14 @@ label {
 }
 
 
+/*element 公用样式修改*/
+
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+    width: auto;
+}
+
+
 /*primeNG 公用样式修改*/
 
 

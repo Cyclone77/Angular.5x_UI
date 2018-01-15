@@ -1,0 +1,6 @@
+.set-child-fields {
+    position: absolute;
+    top: 60px;
+    bottom: 10px;
+    overflow: auto;
+}
