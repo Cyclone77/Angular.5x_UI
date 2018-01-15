@@ -30,7 +30,7 @@ export class EditComponent implements OnInit {
         DESCRIPT: [ '' ]
       });
       this.router.navigate(['../'],  { relativeTo: this.route });
-    }else{
+    } else {
       this.validateForm = this.formBuilder.group({
         POLICY_ID: this.request.SelectTblRow['POLICY_ID'],
         GROUP_ID: this.request.SelectTblRow['GROUP_ID'],

@@ -28,12 +28,19 @@ export class UserService {
           resolve();
         } else {
           console.log(json.Err);
-          this.message.show('帐号或密码不正确!');
-          // reject('帐号和密码不匹配！');
+          if (json && json.Err) {
+            this.message.show(json.Err);
+          } else {
+            this.message.show('帐号或密码不正确!');
+          }
         }
       }, (err: HttpErrorResponse)  => {
         console.log(err);
-        this.message.show('帐号或密码不正确!');
+        if (err && err.status === 504) {
+          this.message.show('服务器响应超时!');
+        } else {
+          this.message.show('帐号或密码不正确!');
+        }
       });
     });
   }

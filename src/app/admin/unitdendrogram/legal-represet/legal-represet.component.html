@@ -1,3 +1,48 @@
-<p>
-  legal-represet works!
-</p>
+<gl-headline [title]="legalRepreset"></gl-headline>
+<div class="gl-content">
+  <div class="gl-container">
+
+      <div class="gl-img-container">
+        <img src="../../../../../assets/u454_original.png" alt="..." class="img-rounded">
+      </div>
+
+      <div class="gl-form-container">
+          <el-form [formGroup]="validateForm" [inline]="true" label-width="100px" size="small">
+              <el-form-item label="法人姓名：">
+                <el-input formControlName="B04A0101"></el-input>
+              </el-form-item>
+              <el-form-item label="性别：">
+                <el-input formControlName="B04A0107"></el-input>
+              </el-form-item>
+              <el-form-item label="人员归属：">
+                <el-input formControlName="B04Personaff"></el-input>
+              </el-form-item>
+              <el-form-item label="职务：">
+                <el-input formControlName="B04A0215A"></el-input>
+              </el-form-item>
+              <el-form-item label="身份证号码：">
+                <el-input formControlName="B04AC805"></el-input>
+              </el-form-item>
+              <el-form-item label="任现职时间：">
+                <el-input formControlName="B04A0288"></el-input>
+              </el-form-item>
+            </el-form>
+      </div>
+  </div>
+  <div class="gl-btn-container">
+      <el-button type="primary" (click)="changePerson()">法人变更</el-button>
+  </div>
+      <gl-headline [title]="oldLegalRepreset"></gl-headline>
+      <div class="tblControl">
+        <p-dataTable [value]="tblData" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [style]="{ 'text-align' : 'center' } ">
+            <p-column header="姓名" field="B04A0101"></p-column>
+            <p-column header="性别" field="B04A0107"></p-column>
+            <p-column header="人员归属" field="B04Personaff"></p-column>
+            <p-column header="职务" field="B04A0215A"></p-column>
+            <p-column header="身份证号码" field="B04AC805"></p-column>
+            <p-column header="任职时间" field="B04A0288"></p-column>
+            <p-column header="操作时间" field="UH003"></p-column>
+            <p-column header="操作" field="UH003"></p-column>
+        </p-dataTable>
+    </div>
+</div>

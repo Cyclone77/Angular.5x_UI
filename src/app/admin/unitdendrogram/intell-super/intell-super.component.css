@@ -1,0 +1,29 @@
+.gl-content {
+    padding: 25px;
+    overflow: auto;
+    /*
+    height: 100%;
+    */
+}
+
+@media screen and (max-width:1040px){
+  .gl-content >div {
+    clear: both;
+  }
+}
+
+.gl-content > div{
+  float:left;
+}
+
+.gl-imgInfo{
+  width: 10%;
+}
+
+.gl-textInfo{
+  width: 80%;
+  min-width: 250px;
+}
+
+
+

@@ -9,7 +9,7 @@
                 <el-date-picker formControlName="UPDATE_DATE">
                 </el-date-picker>
             </el-form-item>
-            <div [ngStyle]="{ 'margin-left.px': '160' }">
+            <div [ngStyle]="{ 'margin-left.px': '160' }" (click)='changeUnitName()'>
                 <el-button type="primary">确认变更</el-button>
             </div>
         </el-form>

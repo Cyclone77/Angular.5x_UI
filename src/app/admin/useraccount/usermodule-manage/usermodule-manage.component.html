@@ -1,3 +1,21 @@
-<p>
-  账户关联模块
-</p>
+﻿<gl-udcontrol>
+    <ng-template #bottom>
+        <gl-headline [title]="'账户模块授权'"></gl-headline>
+        <gl-lrcontrol [leftwidth]="260">
+            <ng-template let-scope="psnData" #left>
+                <p-tree [value]="treeData" (onNodeExpand)="nodeExpand($event)" selectionMode="single" [style]="{ 'border': 'none' }" [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event) "></p-tree>
+            </ng-template>
+            <ng-template #right>
+                <div class="gl-content">
+                    <p-dataTable [value]="tableData" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [style]="{ 'text-align' : 'center' } ">
+                        <p-column header="模块编码" field="MODULE_ID"></p-column>
+                        <p-column header="模块模块名称" field="MODULE_NAME"></p-column>
+                        <p-column header="使用权限" field="UH003"></p-column>
+                        <p-column header="再权限权限" field="UH004"></p-column>
+                    </p-dataTable>
+                </div>
+            </ng-template>
+        </gl-lrcontrol>
+    </ng-template>
+</gl-udcontrol>
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ContentChild, TemplateRef } from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
@@ -10,6 +10,7 @@ import { Input } from '@angular/core';
 export class HeadlineComponent implements OnInit {
 
   @Input() title: string;
+  @ContentChild('container') containerTemp: TemplateRef<any>;
 
   constructor() { }
 

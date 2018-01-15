@@ -1,0 +1,23 @@
+.gl-content {
+    padding: 25px;
+    overflow: scroll;
+    height: 100%;
+}
+.gl-container{
+    min-width: 800px;
+    
+}
+.gl-img-container{
+    width: 116px;
+    float: left;
+}
+.gl-form-container{
+    width: 670px;
+    float: left;
+}
+.gl-btn-container{
+    clear: both;
+}
+.tblControl {
+    padding-top: 20px;
+}

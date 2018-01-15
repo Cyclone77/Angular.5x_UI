@@ -15,31 +15,27 @@ export class UseraccountManageService {
   public SelectTblRow: TreeNode;
 
 
-  //#region 授权分组树
+  //#region 授权分组树Api
   // 获得模块树
-  PolicyGroup_Select = '/api/Core/PolicyGroup/Select';
+  private PolicyGroup_Select = '/api/Core/PolicyGroup/Select';
   // 删除模块
-  PolicyGroup_Delete = '/api/Core/PolicyGroup/Delete';
+  private PolicyGroup_Delete = '/api/Core/PolicyGroup/Delete';
   // 增加模块
-  PolicyGroup_Insert = '/api/Core/PolicyGroup/Insert';
+  private PolicyGroup_Insert = '/api/Core/PolicyGroup/Insert';
   // 更新模块
-  PolicyGroup_Update = '/api/Core/PolicyGroup/Update';
+  private PolicyGroup_Update = '/api/Core/PolicyGroup/Update';
   //#endregion
 
-  //#region 用户管理
-  // 获得用户
-  User_Select = '/api/Core/User/Select';
-  // 授权分组下的用户
-  User_GroupUser = '/api/Core/User/SelectGroupUser';
-  // 删除模块
-  User_Delete = '/api/Core/User/Delete';
-  // 增加模块
-  User_Insert = '/api/Core/User/Insert';
-  // 更新模块
-  User_Update = '/api/Core/User/Update';
+  //#region 授权分组下的用户Api
+  // 增加
+  private MOD_Insert = '/api/Core/User/Insert';
+  // 删除
+  private MOD_Delete = '/api/Core/User/Delete';
+  // 更新
+  private MOD_Update = '/api/Core/User/Update';
+  // 查询
+  private MOD_Select = '/api/Core/User/SelectGroupUser';
   //#endregion
-
-  Test_Demo = '/api/Core/SetItem/Select';
 
 
 
@@ -80,27 +76,21 @@ export class UseraccountManageService {
   }
   //#endregion
 
-
-  //#region 用户管理
-  // 获得授权分组用户
-  getUserTbl(groupId: number = -1) {
-    //return this.http.get(this.url(this.Test_Demo) + `&moduleId=M00001&setId=SALARY`);
-    return this.http.get(this.url(this.User_GroupUser) + `&groupId=${groupId}`);
+  //#region 用户账户管理
+  // 增加
+  mod_insert(validateForm: FormGroup) {
+    return this.http.post(this.url(this.MOD_Insert), validateForm.value);
   }
-
-  // 删除用户
-  deleteUser(parentId: number = -1) {
-    return this.http.post(this.url(this.User_Delete) + `&parentId=${parentId}`);
+  // 删除
+  mod_delete(keyId: any) {
+    return this.http.post(this.url(this.MOD_Delete), {'USERID': keyId});
   }
-
-  // 增加用户
-  addUser(validateForm: FormGroup) {
-    return this.http.post(this.url(this.User_Insert), validateForm.value);
+  // 修改
+  mod_update(validateForm: FormGroup) {
+    return this.http.post(this.url(this.MOD_Update), validateForm.value);
   }
-
-  // 更新用户数据
-  updataUser(validateForm: FormGroup) {
-    return this.http.post(this.url(this.User_Update), validateForm.value);
+  mod_select(keyId: number = -1) {
+    return this.http.get(this.url(this.MOD_Select) + `&keyId=${keyId}`);
   }
   //#endregion
 

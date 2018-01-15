@@ -8,6 +8,8 @@ export class SubsetListService {
   // 获得子集列表
   SetItem_Select = '/api/Core/SetItem/Select';
 
+  // 获得人员信息
+  Dynamic_Select = '/api/Core/Dynamic/Select';
   constructor(
     private http: GAjaxService,
     private util: UtilService
@@ -17,6 +19,11 @@ export class SubsetListService {
   url(action) {
     // return this.address.ADMIN_AUTHORIZATION + `${action}?GL=${+ new Date()}`;
     return `${action}?GL=${+ new Date()}`;
+  }
+
+  // 获得人员信息
+  getPersonData(data) {
+    return this.http.post(this.url(this.Dynamic_Select), data);
   }
 
   // 获得子集字段

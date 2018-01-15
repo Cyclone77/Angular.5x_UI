@@ -10,17 +10,14 @@
         <div class="gl-content" el-col [span]="12">
             <el-form [formGroup]="validateForm" label-width="120px" size="small" [show-icon]="true" [show-message]="true" el-class="form-demo">
                 <el-form-item label="是否后台管理员">
-                    <el-radio-group formControlName="ISADMIN">
+                    <el-radio-group formControlName="IS_ADMIN">
                         <el-radio label="0">项目账户</el-radio>
                         <el-radio label="1">后台管理员</el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="账户名称" [required]="true"><el-input formControlName="USER_ACCOUNT"></el-input></el-form-item>
+                <el-form-item label="账户名称" [required]="true"><el-input formControlName="USER_ACCOUNT" [disabled]="true"></el-input></el-form-item>
                 <el-form-item label="账户密码" [required]="true"[status]="statusCtrl('PASSWORD')" [error]="messageCtrl('PASSWORD')">
                     <el-input formControlName="PASSWORD" native-type="password"></el-input>
-                </el-form-item>
-                <el-form-item label="确认密码" [required]="true"[status]="rptstatusCtrl('PASSWORD1')" [error]="rptmessageCtrl('PASSWORD1')">
-                    <el-input formControlName="PASSWORD1" native-type="password"></el-input>
                 </el-form-item>
                 <el-form-item label="关联姓名"><el-input formControlName="USER_NAME"></el-input></el-form-item>
                 <el-form-item>

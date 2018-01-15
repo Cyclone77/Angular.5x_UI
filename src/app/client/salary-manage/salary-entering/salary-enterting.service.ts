@@ -10,7 +10,7 @@ export class SalaryEntertingService {
   orgTree_Select_ByParentUrl = '/api/M00002/OrgTree/Select_ByParent';
 
   // 获取表格
-  salaryTbl_Select_ByUnitID = '/api/M00001/Salary/Select_ByUnitID';
+  salaryTbl_GetSalaryList = '/api/M00001/Salary/GetSalaryList';
 
   constructor(
     private http: GAjaxService
@@ -28,7 +28,7 @@ export class SalaryEntertingService {
   }
 
   // 获取工资表格数据服务
-  getTableData(unitID: number) {
-    return this.http.get(this.url(this.salaryTbl_Select_ByUnitID) + '&unitID=' + unitID);
+  getTableData(option) {
+    return this.http.post(this.salaryTbl_GetSalaryList, option);
   }
 }

@@ -15,27 +15,27 @@ export class PolicyService {
   public SelectTblRow: TreeNode;
   //#region 授权分组树
   // 获得模块树
-  private PolicyGroup_Select:string = '/api/Core/PolicyGroup/Select';
+  private PolicyGroup_Select = '/api/Core/PolicyGroup/Select';
   // 删除模块
-  private PolicyGroup_Delete:string = '/api/Core/PolicyGroup/Delete';
+  private PolicyGroup_Delete = '/api/Core/PolicyGroup/Delete';
   // 增加模块
-  private PolicyGroup_Insert:string = '/api/Core/PolicyGroup/Insert';
+  private PolicyGroup_Insert = '/api/Core/PolicyGroup/Insert';
   // 更新模块
-  private PolicyGroup_Update:string = '/api/Core/PolicyGroup/Update';
+  private PolicyGroup_Update = '/api/Core/PolicyGroup/Update';
   //#endregion
 
   //#region 角色管理
 
   // 授权分组下的用户
-  private MOD_GroupUser:string = '/api/Core/Policy/SelectGroupUser';
+  private MOD_GroupUser = '/api/Core/Policy/SelectGroupUser';
   // 增加
-  private MOD_Insert:string = '/api/Core/Policy/Insert';
+  private MOD_Insert = '/api/Core/Policy/Insert';
   // 删除
-  private MOD_Delete:string = '/api/Core/Policy/Delete';
+  private MOD_Delete = '/api/Core/Policy/Delete';
   // 更新
-  private MOD_Update:string = '/api/Core/Policy/Update';
+  private MOD_Update = '/api/Core/Policy/Update';
   // 查询
-  private MOD_Select:string = '/api/Core/Policy/Select';
+  private MOD_Select = '/api/Core/Policy/Select';
   //#endregion
 
   constructor(
@@ -73,17 +73,14 @@ export class PolicyService {
     return this.http.post(this.url(this.PolicyGroup_Update), validateForm.value);
   }
   //#endregion
-
-
-  //#region 用户管理
-  
+  //#region 角色管理
   // 增加
   mod_insert(validateForm: FormGroup) {
     return this.http.post(this.url(this.MOD_Insert), validateForm.value);
   }
   // 删除
-  mod_delete(keyId:any) {
-    return this.http.post(this.url(this.MOD_Delete),{"POLICY_ID":keyId});
+  mod_delete(keyId: any) {
+    return this.http.post(this.url(this.MOD_Delete), { 'POLICY_ID' : keyId });
   }
   // 修改
   mod_update(validateForm: FormGroup) {
@@ -93,5 +90,5 @@ export class PolicyService {
     return this.http.get(this.url(this.MOD_Select) + `&keyId=${keyId}`);
   }
   //#endregion
-
 }
+

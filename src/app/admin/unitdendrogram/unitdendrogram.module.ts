@@ -18,6 +18,7 @@ import { OrganOptionComponent } from './organ-option/organ-option.component';
 import { LegalRepresetComponent } from './legal-represet/legal-represet.component';
 import { EventBusService } from '../../services/event-bus.service';
 import { UnitRenameComponent } from './unit-rename/unit-rename.component';
+import { IntellSuperComponent } from './intell-super/intell-super.component';
 
 const router: Routes = [
   {
@@ -27,7 +28,8 @@ const router: Routes = [
       { path: '', redirectTo: 'organ-option', pathMatch: 'full' },
       { path: 'organ-option', component: OrganOptionComponent },
       { path: 'legal-represet', component: LegalRepresetComponent },
-      { path: 'unit-rename', component: UnitRenameComponent }
+      { path: 'unit-rename', component: UnitRenameComponent },
+      { path: 'intell-super', component: IntellSuperComponent }
     ]
   }
 ];
@@ -55,7 +57,8 @@ const router: Routes = [
     UnitdendrogramComponent,
     OrganOptionComponent,
     LegalRepresetComponent,
-    UnitRenameComponent
+    UnitRenameComponent,
+    IntellSuperComponent
   ]
 })
 export class UnitdendrogramModule { }

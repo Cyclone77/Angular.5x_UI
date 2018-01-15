@@ -1,0 +1,12 @@
+<gl-udcontrol>
+    <ng-template #top>
+        <el-breadcrumb prevent="true" (next)="handle($event)">
+            <el-breadcrumb-item to="index">人员管理</el-breadcrumb-item>
+            <el-breadcrumb-item to="subset-list">人员信息</el-breadcrumb-item>
+            <el-breadcrumb-item to="">子集信息</el-breadcrumb-item>
+        </el-breadcrumb>
+    </ng-template>
+    <ng-template #bottom>
+        <p>子集列表</p>
+    </ng-template>
+</gl-udcontrol>

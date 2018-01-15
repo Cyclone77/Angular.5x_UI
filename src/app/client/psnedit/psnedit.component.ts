@@ -56,15 +56,12 @@ export class PsneditComponent implements OnInit {
 
   ngOnInit() {
     this.nodeExpand();
-    setTimeout(() => {
-      this.loadAscriptionData();
-    }, 1);
-
     // this.loadResumeData();
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
+    this.loadAscriptionData();
     this.loadPClasstbl();
   }
 
@@ -116,7 +113,8 @@ export class PsneditComponent implements OnInit {
   }
 
   selectRow(row) {
-    this.request.Person_Data = row;
+    this.request.PersonID = row.KEY_ID;
+    sessionStorage.setItem('psn_edit_sub_set_list_PersonID', row.KEY_ID);
     this.router.navigate(['subset-list'], { relativeTo: this.route });
   }
 

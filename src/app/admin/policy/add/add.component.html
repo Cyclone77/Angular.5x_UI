@@ -14,7 +14,7 @@
                 </el-form-item>
                 <el-form-item label="角色描述" [required]="true">
                     <el-input type="textarea" formControlName="DESCRIPT"
-                        [rows]="10"
+                        [autosize]="{ minRows: 5, maxRows: 10}"
                         placeholder="请输入内容!!"
                         [model]="textarea">
                     </el-input>

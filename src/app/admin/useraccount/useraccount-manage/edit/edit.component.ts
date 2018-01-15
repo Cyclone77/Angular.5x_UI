@@ -29,6 +29,7 @@ export class EditUseraccountComponent implements OnInit {
 
   validateForm: FormGroup;
   loading = false;
+  showPolicy = true;
   saveText = '保存';
 
   constructor(
@@ -39,21 +40,24 @@ export class EditUseraccountComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const data = {
-      PASSWORD: [ '', [this.passwordValidator] ],
-      PASSWORD1: [ '', [this.rptpasswordValidator] ],
-      ISADMIN: [ 0 ],
-      USER_NAME:[ '' ],
-      USER_ACCOUNT:[''],
+    const data: any = {
+      PASSWORD: [ '@@@@@@', [this.passwordValidator] ],
+      IS_ADMIN: [ '0' ],
+      USER_NAME: [ '' ],
+      USER_ACCOUNT: [''],
       GROUP_ID: ['']
     };
-
-    Object.assign(data, this.request.SelectTblRow,{'PASSWORD':'@@@@@@','PASSWORD1':'@@@@@@'});
-    this.validateForm = this.formBuilder.group(data);
-    // console.log(this.request.SelectTblRow);
-    if (!this.request.SelectTblRow) {
+    if (this.request.SelectTblRow) {
+      data['USERID'] = this.request.SelectTblRow['USERID'];
+      data['IS_ADMIN'] = this.request.SelectTblRow['IS_ADMIN'] ? '1' : '0';
+      data['USER_NAME'] = this.request.SelectTblRow['USER_NAME'];
+      data['USER_ACCOUNT'] = this.request.SelectTblRow['USER_ACCOUNT'];
+      data['GROUP_ID'] = this.request.SelectTblRow['GROUP_ID'];
+    }  else {
       this.router.navigate(['../'],  { relativeTo: this.route });
     }
+    this.validateForm = this.formBuilder.group(data);
+    // this.showPolicy = this.validateForm.value['IS_ADMIN'] == '0'?true:false;
   }
 
   handle(path: string): void {
@@ -61,24 +65,21 @@ export class EditUseraccountComponent implements OnInit {
       this.router.navigate(['../'],  { relativeTo: this.route });
     }
   }
-
+  //#region 标准密码的处理
   reset(): void {
     this.validateForm.reset()
   }
-  
   ctrl(item: string): AbstractControl {
-    return this.validateForm.controls[item]
+    return this.validateForm.controls[item];
   }
-  
   statusCtrl(item: string): string {
-    if (!this.validateForm.controls[item]) return
-    const control: AbstractControl = this.validateForm.controls[item]
+    if (!this.ctrl(item)) { return; }
+    const control: AbstractControl = this.ctrl(item);
     return control.dirty && control.hasError('status') ? control.errors.status : ''
   }
-  
   messageCtrl(item: string): string {
-    if (!this.validateForm.controls[item]) return
-    const control: AbstractControl = this.validateForm.controls[item]
+    if (!this.ctrl(item)) { return; }
+    const control: AbstractControl = this.ctrl(item);
     return control.dirty && control.hasError('message') ? control.errors.message : ''
   }
 
@@ -89,42 +90,19 @@ export class EditUseraccountComponent implements OnInit {
     if (control.value.length < 6) {
       return { status: 'error', message: '密码长度必须大于 6 位' }
     }
-    return { status: 'success' }
-  }
-  rptstatusCtrl(item: string): string {
-    if (!this.validateForm.controls[item]) return
-    const control: AbstractControl = this.validateForm.controls[item]
-    return control.dirty && control.hasError('status') ? control.errors.status : ''
-  }
-  
-  rptmessageCtrl(item: string): string {
-    if (!this.validateForm.controls[item]) return
-    const control: AbstractControl = this.validateForm.controls[item]
-    return control.dirty && control.hasError('message') ? control.errors.message : ''
-  }
-
-  private rptpasswordValidator = (control: FormControl): validateResult => {
-    //that.validateForm.value
-    if (!control.value) {
-      return { status: 'error', message: '密码是必填的' }
+    const ctrol =  control.parent && control.parent.get('PASSWORD1');
+    if (ctrol && ctrol.value !== control.value) {
+      return { status: 'error', message: '两次密码不一致' };
     }
-    var onepwd = control.parent.get("PASSWORD");
-    if(!!onepwd && onepwd.value != control.value){
-        return { status: 'error', message: '两次密码不一致' };
-    }
-    if (control.value.length < 6) {
-      return { status: 'error', message: '密码长度必须大于 6 位' }
-    }
-    return { status: 'success' }
+    // this.statusCtrl('PASSWORD1');
+    return { status: 'success' };
   }
-
-
-
+  //#endregion
   submit(): void {
     // console.log(this.validateForm.value);
     this.loading = true;
-    // this.saveText = '保存中……';
-    this.request.updataUser(this.validateForm).then((json: Json) => {
+    this.saveText = '保存中……';
+    this.request.mod_update(this.validateForm).then((json: Json) => {
       if (json.IsSucceed) {
         this.router.navigate(['../'],  { relativeTo: this.route });
       } else {

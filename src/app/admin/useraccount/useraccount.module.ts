@@ -37,6 +37,10 @@ const router: Routes = [
   {
     path: 'useraccount-manage',
     loadChildren: './useraccount-manage/useraccount-manage.module#UseraccountManageModule'
+  },
+  {
+    path: 'usermodule-manage',
+    loadChildren: './usermodule-manage/usermodule-manage.module#UsermoduleManageModule'
   }
 ];
 

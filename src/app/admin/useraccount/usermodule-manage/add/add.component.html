@@ -1,0 +1,31 @@
+﻿<gl-udcontrol>
+    <ng-template #top>
+        <el-breadcrumb prevent="true" (next)="handle($event)">
+            <el-breadcrumb-item to="index">账户管理</el-breadcrumb-item>
+            <el-breadcrumb-item to="">编辑账户</el-breadcrumb-item>
+        </el-breadcrumb>
+    </ng-template>
+    <ng-template #bottom>
+        <gl-headline [title]="'账户信息'"></gl-headline>
+        <div class="gl-content" el-col [span]="12">
+            <el-form [formGroup]="validateForm" label-width="120px" size="small" [show-icon]="true" [show-message]="true" el-class="form-demo">
+                <el-form-item label="是否后台管理员">
+                    <el-radio-group formControlName="IS_ADMIN">
+                      <el-radio label="0">项目账户</el-radio>
+                      <el-radio label="1">后台管理员</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="账户名称" [required]="true"><el-input formControlName="USER_ACCOUNT"></el-input></el-form-item>
+                <el-form-item label="账户密码" [required]="true"[status]="statusCtrl('PASSWORD')" [error]="messageCtrl('PASSWORD')">
+                    <el-input formControlName="PASSWORD" native-type="password"></el-input>
+                </el-form-item>
+                <el-form-item label="关联姓名"><el-input formControlName="USER_NAME"></el-input></el-form-item>
+                <el-form-item>
+                    <el-button type="primary" (click)="submit()" [disabled]="loading">{{ saveText }}</el-button>
+                    <el-button type="primary" (click)="reset()" [disabled]="loading">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </ng-template>
+</gl-udcontrol>
+

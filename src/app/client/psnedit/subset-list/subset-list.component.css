@@ -1,7 +1,24 @@
 /*子集菜单*/
 
+.gl-south {
+    position: relative;
+    height: 100%;
+}
+
 .gl-psnmsg {
-    height: 150px
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.gl-west {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    bottom: 0;
+    overflow: auto;
 }
 
 .item-menu {
@@ -16,6 +33,10 @@
     box-sizing: border-box;
     white-space: nowrap;
     border-bottom: 1px solid #efefef;
+}
+
+.set-menu {
+    border-top: 1px solid #efefef;
 }
 
 .item-menu:hover {
@@ -42,5 +63,12 @@
 .set-main {
     height: 100%;
     overflow: auto;
+}
+
+.set-main-content {
     padding: 20px 0;
+}
+
+.set-syrypx {
+    width: 100%;
 }

@@ -8,11 +8,13 @@ import { UnitdendrogramService } from './../unitdendrogram.service';
 import { Json } from '../../../classes/json';
 import { HttpDataType } from '../../../classes/http-data-type';
 import { EventBusService } from '../../../services/event-bus.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-unit-rename',
   templateUrl: './unit-rename.component.html',
-  styleUrls: ['./unit-rename.component.css']
+  styleUrls: ['./unit-rename.component.css'],
+  providers: [MessageService]
 })
 export class UnitRenameComponent implements OnInit {
 
@@ -25,7 +27,8 @@ export class UnitRenameComponent implements OnInit {
     private route: ActivatedRoute,
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
     private request: UnitdendrogramService,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -44,7 +47,31 @@ export class UnitRenameComponent implements OnInit {
   loadInit() {
     if (this.selectNode) {
       this.unitname = this.selectNode.label;
+      console.log(this.selectNode);
     }
+  }
+  changeUnitName(){
+      let data: HttpDataType = {
+      KEY_ID: this.selectNode ? this.selectNode.data['UNIT_ID'] : '-1',
+      DATA_ROW: 1,
+      SetID: 'B01',
+      ModuleId: 'M00002',
+      Data: this.validateForm.value
+    };
+    this.request.changeUnitName(data).then(
+      (json: Json) => {
+        if (json.IsSucceed) {
+          this.showMsg('保存成功！', 'success');
+        } else {
+          this.showMsg(json.Err, 'error');
+        }
+      }, err => {
+        this.showMsg('保存数据时发生异常！', 'warn');
+      }
+    )
+  }
+  showMsg(msg: string, type: string) {
+    this.messageService.add({severity: type, summary: '系统消息', detail: msg });
   }
 
 }

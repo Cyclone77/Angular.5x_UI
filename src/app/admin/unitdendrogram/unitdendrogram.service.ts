@@ -48,4 +48,19 @@ export class UnitdendrogramService {
   setB03Data(option, isAdd: boolean) {
     return this.http.post(this.url(isAdd ? this.Dynamic_Insert : this.Dynamic_Update), option);
   }
+  // 更新单位名称
+  changeUnitName(option: HttpDataType) {
+    console.log(option);
+    return this.http.post(this.url('/api/M00002/B01/ModifyUnitName'), option); 
+  }
+
+  // 获得B11数据
+  getB11Data(option: HttpDataType) {
+    return this.http.post(this.url(this.Dynamic_Select), option);
+  }
+
+  // 更新B11数据
+  setB11Data(option, isAdd: boolean) {
+    return this.http.post(this.url(isAdd ? this.Dynamic_Insert : this.Dynamic_Update), option);
+  }
 }

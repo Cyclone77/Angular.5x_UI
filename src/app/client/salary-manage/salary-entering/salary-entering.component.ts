@@ -4,6 +4,7 @@ import { GAjaxService } from '../../../services/g-ajax.service';
 import { Json } from '../../../classes/json';
 import { SalaryEntertingService } from './salary-enterting.service';
 import { Message } from 'primeng/components/common/api';
+import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 
 @Component({
   selector: 'app-salary-entering',
@@ -25,6 +26,8 @@ export class SalaryEnteringComponent implements OnInit {
   selectedNode: any;
   // 表格数据
   tblData: any[];
+  // 表格数据总数
+  totalRecords: number;
   // 消息容器
   msgs: Message[] = [];
 
@@ -59,26 +62,38 @@ export class SalaryEnteringComponent implements OnInit {
       if (nodes && nodes.length > 0 && this.selectFirstNode) {
         this.selectedNode = nodes[0];
         this.selectFirstNode = false;
-        this.getTableData(nodes[0]);
+        this.getTableData(null, nodes[0]);
       }
     });
 
   }
 
   nodeSelect(event) {
-    this.getTableData(event.node);
+    this.getTableData(event, event.node);
   }
 
-  getTableData(node?: TreeNode) {
-    let unitID;
+  loadCarsLazy(event: LazyLoadEvent) {
+    if (this.selectedNode) {
+      this.getTableData(event, this.selectedNode);
+    }
+  }
+
+  getTableData(event, node?: TreeNode) {
     if (node && node.data && node.data.ITEM_TYPE === 'N') {
-      unitID = node.data.UNIT_ID;
+      const data = {
+        UnitId: node.data.UNIT_ID ? node.data.UNIT_ID : 0,
+        ModuleId: 'M00001',
+        SetID: 'SALARY',
+        StartRowIndex: event &&  event.first || 1,
+        PageSize: event && event.rows || 15
+      };
       this.tableLoading = true;
-      this.request.getTableData(unitID).then((json: Json) => {
+      this.request.getTableData(data).then((json: Json) => {
         this.tableLoading = false;
         if (!json.IsSucceed) {
           return this.showError(json.Err);
         }
+        this.totalRecords = json.SignData;
         this.tblData = json.ListData;
       });
     }

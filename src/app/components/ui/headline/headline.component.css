@@ -16,3 +16,8 @@
     font-weight: normal;
     color: #1f2f3d;
 }
+
+.headline .core {
+    display: inline-block;
+    margin-left: 20px;
+}
